@@ -449,15 +449,24 @@ function setupDropzone(el){
 
         const id = e.dataTransfer.getData("text/plain");
         const tier = el.dataset.tier;
+        const fromTier = e.dataTransfer.getData("fromTier") || "unranked";
 
         const item = state.items.find(x => x.id === id);
         if (!item) return;
 
         item.tier = tier;
 
-        // Insert at pointer position (reorder within tier)
-        const index = getDropIndex(el, e.clientX, e.clientY);
-        moveIdToTierAtIndex(tier, item.id, index);
+        // UX rule:
+        // - from UNRANKED into a ranked tier: append to end
+        // - otherwise: insert by pointer position (reorder)
+        if (fromTier === "unranked" && tier !== "unranked") {
+          ensureOrders();
+          const arr = state.orders[tier] || (state.orders[tier] = []);
+          moveIdToTierAtIndex(tier, item.id, arr.length);
+        } else {
+          const index = getDropIndex(el, e.clientX, e.clientY);
+          moveIdToTierAtIndex(tier, item.id, index);
+        }
 
         saveState();
         render();});
@@ -580,8 +589,8 @@ function prettyNameFromFilename(filename){
 
       el.addEventListener("dragstart", (e) => {
         e.dataTransfer.setData("text/plain", item.id);
-      });
-      return el;
+        e.dataTransfer.setData("fromTier", item.tier || "unranked");
+      });return el;
     }
 
     function render(){
