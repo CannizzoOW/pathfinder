@@ -374,6 +374,36 @@
       state.orders[key].push(id);
     }
 
+    // Compute insertion index based on pointer position (supports wrapped flex)
+    function getDropIndex(containerEl, clientX, clientY) {
+      const cards = Array.from(containerEl.querySelectorAll(".character"));
+      if (cards.length === 0) return 0;
+
+      for (let i = 0; i < cards.length; i++) {
+        const rect = cards[i].getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+
+        const before =
+          clientY < cy - rect.height * 0.1 ||
+          (Math.abs(clientY - cy) <= rect.height * 0.6 && clientX < cx);
+
+        if (before) return i;
+      }
+      return cards.length;
+    }
+
+    function moveIdToTierAtIndex(tier, id, index) {
+      ensureOrders();
+      const key = tier === "unranked" ? "unranked" : tier;
+      removeIdFromAllOrders(id);
+
+      const arr = state.orders[key];
+      const safeIndex = Math.max(0, Math.min(index, arr.length));
+      arr.splice(safeIndex, 0, id);
+    }
+
+
     function rebuildOrdersFromItems(){
       ensureOrders();
       // Keep existing orders where possible; append missing ids at end
@@ -399,7 +429,6 @@
 
     // initialize order tracking on load
     ensureOrders();
-    rebuildOrdersFromItems();
 
 function setupDropzone(el){
       if (el.dataset.dndReady === "1") return;
@@ -426,8 +455,10 @@ function setupDropzone(el){
 
         item.tier = tier;
 
-        // preserve insertion order per tier
-        addToOrder(tier, item.id);
+        // Insert at pointer position (reorder within tier)
+        const index = getDropIndex(el, e.clientX, e.clientY);
+        moveIdToTierAtIndex(tier, item.id, index);
+
         saveState();
         render();});
     }
