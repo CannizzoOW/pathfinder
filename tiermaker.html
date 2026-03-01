@@ -305,7 +305,7 @@
     const STORAGE_KEY = "tierlist_pathfinders_style_v3";
 
 
-    // Extra "alias" entries that should reuse an existing icon triple role characters
+    // Extra "alias" entries that should reuse an existing icon
     const EXTRA_ALIASES = [
       { base: "deadpool", name: "Tankpool" },
       { base: "deadpool", name: "Healpool" },
@@ -511,24 +511,19 @@ function prettyNameFromFilename(filename){
       const slots = new Map();
       document.querySelectorAll("[data-tier]").forEach(z => slots.set(z.dataset.tier, z));
 
-     // Split items by tier
-      const rankedItems = state.items.filter(it => it.tier !== "unranked");
-      const unrankedItems = state.items.filter(it => it.tier === "unranked");
-
-    // 1) Render ranked items in their stored order (DO NOT SORT)
-      for (const item of rankedItems) {
+      // Keep the user's order in S-F tiers (no sorting).
+      const rankedItems = state.items.filter(it => it.tier && it.tier !== "unranked");
+      for (const item of rankedItems){
         const target = slots.get(item.tier);
-        if (target) {
-          target.appendChild(createCharacter(item));
-        }
+        if (target) target.appendChild(createCharacter(item));
       }
 
-      // 2) Sort ONLY unranked alphabetically by display name
+      // Sort ONLY UNRANKED alphabetically by display name.
+      const unrankedItems = state.items.filter(it => !it.tier || it.tier === "unranked");
       unrankedItems
-        .sort((a, b) => a.name.localeCompare(b.name))
-        .forEach(item => {
-          unranked.appendChild(createCharacter(item));
-        });
+        .slice()
+        .sort((a, b) => String(a.name || "").localeCompare(String(b.name || ""), undefined, { sensitivity: "base" }))
+        .forEach(item => unranked.appendChild(createCharacter(item)));
     }
 
     async function loadImages(){
