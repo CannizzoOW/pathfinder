@@ -715,19 +715,21 @@ function prettyNameFromFilename(filename){
         if (item.tier && out[item.tier]) out[item.tier].push(item.name);
       }
 
-      let formatted = "```\n";   // START Discord code block
-      TIERS.forEach((t) => {
-        const names = out[t].join(", ");
-        formatted += `${t}:\n`;
+      let formatted = "```\n";
+      formatted += "tiers = {\n";
 
-        if (names.length > 0) {
-          formatted += `${names}\n`;
-        } else {
-          formatted += "(empty)\n";
-        }
-        formatted += "\n"; // extra line between tiers
+      TIERS.forEach((t, idx) => {
+        const names = out[t].map(n => `"${n}"`).join(", ");
+        formatted += `  "${t}": [${names}]`;
+
+        if (idx < TIERS.length - 1) formatted += ",";
+
+      // NEW: extra blank line between tiers
+        formatted += "\n\n";
       });
-      formatted += "```";   // END Discord code block
+
+      formatted += "};\n";
+      formatted += "```";
       try{
         await navigator.clipboard.writeText(formatted);
         alert("Copied tiers to clipboard ✅");
