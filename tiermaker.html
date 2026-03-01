@@ -304,6 +304,25 @@
     const TIERS = ["S","A","B","C","D","E","F"];
     const STORAGE_KEY = "tierlist_pathfinders_style_v3";
 
+
+    // Extra "alias" entries that should reuse an existing icon
+    const EXTRA_ALIASES = [
+      { base: "deadpool", name: "Tankpool" },
+      { base: "deadpool", name: "Healpool" },
+    ];
+
+    // Helpers to match files regardless of -/_ and case
+    function fileKeyNoExt(file) {
+      return String(file || "")
+        .replace(/\.[^.]+$/, "")
+        .toLowerCase()
+        .replace(/[_]+/g, "-");
+    }
+
+    function findFileForBase(files, baseSlug) {
+      const baseKey = String(baseSlug).toLowerCase().replace(/[_]+/g, "-");
+      return files.find(f => fileKeyNoExt(f) === baseKey) || null;
+    }
     const hintEl = document.getElementById("hint");
 
     function tierClass(letter){
@@ -358,7 +377,7 @@
       });
     }
 
-// --- Name overrides (dictionary) ---
+    // --- Name overrides (dictionary) ---
 // key = filename without extension (lowercase)
 const NAME_OVERRIDES = {
   "cloak-dagger": "Cloak & Dagger",
@@ -476,16 +495,6 @@ function prettyNameFromFilename(filename){
       el.addEventListener("dragstart", (e) => {
         e.dataTransfer.setData("text/plain", item.id);
       });
-
-      el.addEventListener("dblclick", () => {
-        const newName = prompt("Rename character:", item.name);
-        if (newName && newName.trim()) {
-          item.name = newName.trim();
-          saveState();
-          render();
-        }
-      });
-
       return el;
     }
 
@@ -529,6 +538,7 @@ function prettyNameFromFilename(filename){
 
       const existingByFile = new Map(state.items.map(it => [it.file, it]));
 
+      // 1) Add base items from images.json (normal behavior)
       for (const file of files){
         if (existingByFile.has(file)) continue;
 
@@ -540,7 +550,29 @@ function prettyNameFromFilename(filename){
         });
       }
 
-      saveState();
+      // 2) Add alias items (Tankpool/Healpool) that reuse Deadpool's icon
+      for (const alias of EXTRA_ALIASES) {
+        const deadpoolFile = findFileForBase(files, alias.base);
+        if (!deadpoolFile) continue;
+
+        const alreadyExists = state.items.some(it =>
+          it.isAlias === true &&
+          it.aliasName === alias.name &&
+          fileKeyNoExt(it.file) === fileKeyNoExt(deadpoolFile)
+        );
+
+        if (alreadyExists) continue;
+
+        state.items.push({
+          id: crypto.randomUUID(),
+          file: deadpoolFile,
+          name: alias.name,
+          tier: "unranked",
+          isAlias: true,
+          aliasName: alias.name,
+          aliasBase: alias.base
+        });
+      }saveState();
       render();
     }
 
@@ -549,10 +581,12 @@ function prettyNameFromFilename(filename){
 
       for (const item of state.items){
         item.tier = "unranked";
-        item.name = prettyNameFromFilename(item.file);
-      }
-
-      saveState();
+        if (item.isAlias) {
+          item.name = item.aliasName; // keep Tankpool/Healpool, etc.
+        } else {
+          item.name = prettyNameFromFilename(item.file);
+        }
+      }saveState();
       render();
     });
 
