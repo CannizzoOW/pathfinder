@@ -1,20 +1,20 @@
-🗲 Marvel Rivals Pathfinders
+# 🗲 Marvel Rivals Pathfinders
 
 A community-driven Marvel Rivals toolkit featuring:
 
-📊 Tier Lists
+# 📊 Tier Lists
 
-🧠 Match Analyzer (Radar Chart + Rank Benchmarking)
+# 🧠 Match Analyzer (Radar Chart + Rank Benchmarking)
 
-🦸 Hero Chart with Modal System
+# 🦸 Hero Chart with Modal System
 
-🎭 Hero Image Fallback Logic
+# 🎭 Hero Image Fallback Logic
 
-🖼 Avatar Auto Downloader
+# 🖼 Avatar Auto Downloader
 
-📁 Automatic images.json Generator
+# 📁 Automatic images.json Generator
 
-💾 Local Storage Persistence
+# 💾 Local Storage Persistence
 
 📁 Project Structure
 project-root/
