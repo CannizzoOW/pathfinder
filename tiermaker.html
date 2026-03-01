@@ -511,10 +511,24 @@ function prettyNameFromFilename(filename){
       const slots = new Map();
       document.querySelectorAll("[data-tier]").forEach(z => slots.set(z.dataset.tier, z));
 
-      for (const item of state.items){
-        const target = slots.get(item.tier) ?? unranked;
-        target.appendChild(createCharacter(item));
+     // Split items by tier
+      const rankedItems = state.items.filter(it => it.tier !== "unranked");
+      const unrankedItems = state.items.filter(it => it.tier === "unranked");
+
+    // 1) Render ranked items in their stored order (DO NOT SORT)
+      for (const item of rankedItems) {
+        const target = slots.get(item.tier);
+        if (target) {
+          target.appendChild(createCharacter(item));
+        }
       }
+
+      // 2) Sort ONLY unranked alphabetically by display name
+      unrankedItems
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .forEach(item => {
+          unranked.appendChild(createCharacter(item));
+        });
     }
 
     async function loadImages(){
