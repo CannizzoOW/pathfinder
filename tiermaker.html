@@ -342,13 +342,66 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
 
-    let state = loadState() ?? { items: [] };
+    let state = loadState() ?? { items: [], orders: {} };
     if (!Array.isArray(state.items)) state.items = [];
+    if (!state.orders || typeof state.orders !== "object") state.orders = {};
+
 
     const board = document.getElementById("board");
     const unranked = document.getElementById("unranked");
 
-    function setupDropzone(el){
+    
+
+    // --- Tier order tracking (preserve insertion order per tier) ---
+    function ensureOrders(){
+      for (const t of TIERS) {
+        if (!Array.isArray(state.orders[t])) state.orders[t] = [];
+      }
+      if (!Array.isArray(state.orders.unranked)) state.orders.unranked = [];
+    }
+
+    function removeIdFromAllOrders(id){
+      ensureOrders();
+      for (const key of Object.keys(state.orders)) {
+        state.orders[key] = (state.orders[key] || []).filter(x => x !== id);
+      }
+    }
+
+    function addToOrder(tier, id){
+      ensureOrders();
+      const key = tier === "unranked" ? "unranked" : tier;
+      removeIdFromAllOrders(id);
+      state.orders[key].push(id);
+    }
+
+    function rebuildOrdersFromItems(){
+      ensureOrders();
+      // Keep existing orders where possible; append missing ids at end
+      const byTier = { unranked: [] };
+      for (const t of TIERS) byTier[t] = [];
+
+      for (const item of state.items){
+        const tier = item.tier || "unranked";
+        if (byTier[tier]) byTier[tier].push(item.id);
+        else byTier.unranked.push(item.id);
+      }
+
+      for (const key of Object.keys(byTier)){
+        const existing = new Set(state.orders[key] || []);
+        // drop ids that no longer exist in that tier
+        state.orders[key] = (state.orders[key] || []).filter(id => byTier[key].includes(id));
+        // append any new ids not yet tracked
+        for (const id of byTier[key]){
+          if (!existing.has(id)) state.orders[key].push(id);
+        }
+      }
+    }
+
+    // initialize order tracking on load
+    ensureOrders();
+    rebuildOrdersFromItems();
+
+function setupDropzone(el){
       if (el.dataset.dndReady === "1") return;
       el.dataset.dndReady = "1";
 
@@ -372,9 +425,11 @@
         if (!item) return;
 
         item.tier = tier;
+
+        // preserve insertion order per tier
+        addToOrder(tier, item.id);
         saveState();
-        render();
-      });
+        render();});
     }
 
     // --- Name overrides (dictionary) ---
@@ -511,15 +566,30 @@ function prettyNameFromFilename(filename){
       const slots = new Map();
       document.querySelectorAll("[data-tier]").forEach(z => slots.set(z.dataset.tier, z));
 
-      // Keep the user's order in S-F tiers (no sorting).
-      const rankedItems = state.items.filter(it => it.tier && it.tier !== "unranked");
-      for (const item of rankedItems){
-        const target = slots.get(item.tier);
-        if (target) target.appendChild(createCharacter(item));
+      ensureOrders();
+      rebuildOrdersFromItems();
+
+      const itemById = new Map(state.items.map(it => [it.id, it]));
+
+      // Render ranked tiers using the per-tier order arrays
+      for (const t of TIERS){
+        const target = slots.get(t);
+        if (!target) continue;
+        const orderedIds = state.orders[t] || [];
+        for (const id of orderedIds){
+          const item = itemById.get(id);
+          if (!item) continue;
+          if (item.tier !== t) continue;
+          target.appendChild(createCharacter(item));
+        }
       }
 
-      // Sort ONLY UNRANKED alphabetically by display name.
-      const unrankedItems = state.items.filter(it => !it.tier || it.tier === "unranked");
+      // Sort ONLY UNRANKED alphabetically by display name (not affecting S-F)
+      const unrankedItems = (state.orders.unranked || [])
+        .map(id => itemById.get(id))
+        .filter(Boolean)
+        .filter(it => !it.tier || it.tier === "unranked");
+
       unrankedItems
         .slice()
         .sort((a, b) => String(a.name || "").localeCompare(String(b.name || ""), undefined, { sensitivity: "base" }))
@@ -581,11 +651,10 @@ function prettyNameFromFilename(filename){
           aliasName: alias.name,
           aliasBase: alias.base
         });
-      }saveState();
+      }rebuildOrdersFromItems();
+      saveState();
       render();
-    }
-
-    document.getElementById("reset").addEventListener("click", () => {
+    }document.getElementById("reset").addEventListener("click", () => {
       if (!confirm("Reset ranks (keep image list)?")) return;
 
       for (const item of state.items){
@@ -595,11 +664,10 @@ function prettyNameFromFilename(filename){
         } else {
           item.name = prettyNameFromFilename(item.file);
         }
-      }saveState();
+      }rebuildOrdersFromItems();
+      saveState();
       render();
-    });
-
-    document.getElementById("copy").addEventListener("click", async () => {
+    });document.getElementById("copy").addEventListener("click", async () => {
       const out = {};
       for (const t of TIERS) out[t] = [];
 
