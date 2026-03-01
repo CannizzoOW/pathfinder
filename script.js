@@ -1,14 +1,6 @@
 /* ---------------------------------------------------
-   Pathfinders index - script.js (images.json driven heroes)
-   - Hero Chart now loads from images.json (like tiermaker)
-   - Keeps Cannizzo-style name casing/overrides
-   - Robust image fallback for both Hero Chart + Tier Lists
+   NAME FORMATTING (Cannizzo-style casing)
 ----------------------------------------------------- */
-
-/* =========================
-   Cannizzo-style name formatting
-========================= */
-// key = filename without extension (lowercase)
 const NAME_OVERRIDES = {
   "cloak-dagger": "Cloak & Dagger",
   "cloak_and_dagger": "Cloak & Dagger",
@@ -18,19 +10,18 @@ const NAME_OVERRIDES = {
 
   "jeff-the-land-shark": "Jeff",
   "jeff_the_land_shark": "Jeff",
+
   "elsa_bloodstone": "Elsa Bloodstone",
-  "elsa-bloodstone": "Elsa Bloodstone",
+  "elsa-bloodstone": "Elsa Bloodstone"
 };
 
-// Common words that stay lowercase (except first word)
 const LOWERCASE_WORDS = new Set(["and", "of", "the", "to", "in", "on", "a", "an"]);
 
-// Known compressed names (optional)
 const WORD_SPLITS = [
   ["adamwarlock", "Adam Warlock"],
   ["ironman", "Iron Man"],
   ["doctorstrange", "Doctor Strange"],
-  ["spiderman", "Spider-Man"],
+  ["spiderman", "Spider-Man"]
 ];
 
 function splitCamelCase(str) {
@@ -46,6 +37,7 @@ function titleCaseSmart(str) {
   }).join(" ");
 }
 
+// Mirrors tiermaker behavior: includes "and" -> "&"
 function prettyNameFromFilename(filenameOrKey) {
   let base = String(filenameOrKey || "").replace(/\.[^.]+$/, "");
   const key = base.toLowerCase();
@@ -58,369 +50,290 @@ function prettyNameFromFilename(filenameOrKey) {
 
   base = base.replace(/[_-]+/g, " ");
   base = splitCamelCase(base);
-
-  // Match tiermaker behavior:
   base = base.replace(/\band\b/gi, "&");
-
   base = base.replace(/\s+/g, " ").trim();
+
   return titleCaseSmart(base);
 }
 
-/* =========================
-   Paths (match tiermaker)
-========================= */
-const BASE_PATH = window.location.pathname.replace(/\/[^/]*$/, "/");
-const IMAGES_JSON_URL = BASE_PATH + "images.json";
-const IMAGES_DIR = BASE_PATH + "images/characters/";
+/* ---------------------------------------------------
+   IMAGE FALLBACK (handles slug differences like & / and / _ / -)
+----------------------------------------------------- */
+function setHeroImageWithFallback(imgEl, heroSlug) {
+  const slug = String(heroSlug || "");
+  const base = slug.replace(/\.[^.]+$/, "");
+  const cleaned = base.toLowerCase();
 
-/* =========================
-   Robust image fallback
-========================= */
-function setHeroImageWithFallback(imgEl, heroSlugOrBase, explicitFile) {
-  const base = String(heroSlugOrBase || "");
   const candidates = [];
+  const push = (s) => { if (s && !candidates.includes(s)) candidates.push(s); };
 
-  // 1) Exact file from images.json (best)
-  if (explicitFile) {
-    const safeFile = String(explicitFile)
-      .split("/")
-      .map(encodeURIComponent)
-      .join("/");
-    candidates.push(IMAGES_DIR + safeFile);
-  }
+  // Primary
+  push(`images/characters/${cleaned}.png`);
 
-  // 2) Common slug-based options
-  if (base) {
-    const slug = base.replace(/\.[^.]+$/, "");
-    candidates.push(IMAGES_DIR + encodeURIComponent(slug) + ".png");
-    candidates.push(IMAGES_DIR + encodeURIComponent(slug.replace(/&/g, "and")) + ".png");
-    candidates.push(IMAGES_DIR + encodeURIComponent(slug.replace(/&/g, "and").replace(/-/g, "_")) + ".png");
-    candidates.push(IMAGES_DIR + encodeURIComponent(slug.replace(/-/g, "_")) + ".png");
-    candidates.push(IMAGES_DIR + encodeURIComponent(slug.replace(/_/g, "-")) + ".png");
-    candidates.push(IMAGES_DIR + encodeURIComponent(slug.replace(/&/g, "")) + ".png");
-    candidates.push(IMAGES_DIR + encodeURIComponent(slug.replace(/&/g, "").replace(/--+/g, "-")) + ".png");
-  }
+  // Common variants
+  push(`images/characters/${cleaned.replace(/&/g, "and")}.png`);
+  push(`images/characters/${cleaned.replace(/&/g, "and").replace(/-/g, "_")}.png`);
+  push(`images/characters/${cleaned.replace(/-/g, "_")}.png`);
+  push(`images/characters/${cleaned.replace(/_/g, "-")}.png`);
 
-  // de-dupe
-  const seen = new Set();
-  const uniq = candidates.filter(u => (u && !seen.has(u) && seen.add(u)));
+  // Sometimes '&' is removed entirely
+  push(`images/characters/${cleaned.replace(/&/g, "")}.png`);
+  push(`images/characters/${cleaned.replace(/&/g, "").replace(/-/g, "_")}.png`);
+
+  // Last-resort: strip anything not a-z/0-9/_/-
+  push(`images/characters/${cleaned.replace(/[^a-z0-9_-]/g, "")}.png`);
 
   let i = 0;
-  imgEl.src = uniq[i] || "";
+  imgEl.src = candidates[i];
+
   imgEl.onerror = () => {
-    i++;
-    if (i < uniq.length) {
-      imgEl.src = uniq[i];
+    i += 1;
+    if (i < candidates.length) {
+      imgEl.src = candidates[i];
     } else {
+      // stop the broken icon loop
+      imgEl.onerror = null;
       imgEl.removeAttribute("src");
     }
   };
 }
 
-/* =========================
-   Heroes loaded from images.json
-========================= */
-let allHeroes = [];          // [{ slug, file, role, description, diagram }]
-let heroesLoaded = false;
-
-// normalize for matching tierlist names -> hero entries
-function normKey(s) {
-  return String(s || "")
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim()
-    .replace(/\s+/g, " ");
-}
-
-function buildHeroMetaFromHardcoded() {
-  const meta = new Map();
-  try {
-    if (typeof heroData === "undefined") return meta;
-    for (const role of Object.keys(heroData)) {
-      for (const h of heroData[role] || []) {
-        if (!h || !h.name) continue;
-        meta.set(h.name, { role, description: h.description || "", diagram: h.diagram || "" });
-      }
-    }
-  } catch (e) {}
-  return meta;
-}
-
-async function ensureHeroesLoaded() {
-  if (heroesLoaded) return;
-
-  let files = [];
-  try {
-    const res = await fetch(IMAGES_JSON_URL, { cache: "no-store" });
-    if (!res.ok) throw new Error("Failed to fetch images.json (" + res.status + ")");
-    const json = await res.json();
-    files = (Array.isArray(json) ? json : []).filter(f => typeof f === "string");
-  } catch (err) {
-    console.error("[heroes] Could not load images.json:", err);
-
-    // fallback: build from hardcoded heroData if present
-    if (typeof heroData !== "undefined") {
-      const fallback = [];
-      for (const role of Object.keys(heroData)) {
-        for (const h of heroData[role] || []) {
-          fallback.push({
-            slug: h.name,
-            file: h.name + ".png",
-            role,
-            description: h.description || "",
-            diagram: h.diagram || "",
-          });
-        }
-      }
-      allHeroes = fallback;
-      heroesLoaded = true;
-      return;
-    }
-
-    allHeroes = [];
-    heroesLoaded = true;
-    return;
-  }
-
-  const meta = buildHeroMetaFromHardcoded();
-  const seen = new Set();
-
-  allHeroes = files.map(file => {
-    const slug = String(file).replace(/\.[^.]+$/, "");
-    if (seen.has(slug)) return null;
-    seen.add(slug);
-
-    const m = meta.get(slug);
-    return {
-      slug,
-      file,
-      role: (m && m.role) ? m.role : "Duelist",
-      description: (m && m.description) ? m.description : "",
-      diagram: (m && m.diagram) ? m.diagram : "",
-    };
-  }).filter(Boolean);
-
-  allHeroes.sort((a, b) => prettyNameFromFilename(a.slug).localeCompare(prettyNameFromFilename(b.slug)));
-  heroesLoaded = true;
-}
 
 /* ---------------------------------------------------
-   HERO CHART (images.json driven)
+   RENDER SYSTEM
 ----------------------------------------------------- */
-let currentHeroes = [];
-let currentHeroIndex = -1;
-
-async function renderHeroes() {
-  await ensureHeroesLoaded();
-
-  const container = document.getElementById("heroGrid");
-  const filterElement = document.getElementById("roleFilter");
-  const filter = filterElement ? filterElement.value : "all";
-  if (!container) return;
-
-  container.innerHTML = "";
-
-  const filtered = allHeroes.filter(h => filter === "all" || h.role === filter);
-  currentHeroes = filtered;
-
-  filtered.forEach((hero, idx) => {
-    const card = document.createElement("div");
-    card.className = "hero-slot";
-
-    const displayName = prettyNameFromFilename(hero.slug);
-
-    const img = document.createElement("img");
-    img.alt = displayName;
-    setHeroImageWithFallback(img, hero.slug, hero.file);
-
-    const nameDiv = document.createElement("div");
-    nameDiv.className = "hero-name";
-    nameDiv.textContent = displayName;
-
-    card.appendChild(img);
-    card.appendChild(nameDiv);
-
-    card.addEventListener("click", () => {
-      currentHeroIndex = idx;
-      openHeroModal(hero);
+function renderHeroes() {
+    const container = document.getElementById("heroGrid");
+    const filterElement = document.getElementById("roleFilter");
+    const filter = filterElement ? filterElement.value : "all";
+    if (!container) return;
+    container.innerHTML = "";
+    Object.keys(heroData).forEach(category => {
+        if (filter !== "all" && filter !== category) return;
+        heroData[category].forEach(hero => {
+            const card = document.createElement("div");
+            card.className = "hero-slot";
+            const img = document.createElement("img");
+            const displayName = prettyNameFromFilename(hero.name);
+            img.alt = displayName;
+            setHeroImageWithFallback(img, hero.name);
+            const nameDiv = document.createElement("div");
+            nameDiv.className = "hero-name";
+            nameDiv.textContent = displayName;
+            card.appendChild(img);
+            card.appendChild(nameDiv);
+            card.addEventListener("click", () => openHeroModal(hero));
+            container.appendChild(card);
+        });
     });
-
-    container.appendChild(card);
-  });
 }
-
 // ---------------------------------------------------
-// HERO MODAL
+// HERO MODAL (fixed: use .show class + better logging)
 // ---------------------------------------------------
 const modal = document.getElementById("heroModal");
 const closeBtn = document.getElementById("closeHeroModal");
 
 function openHeroModal(hero) {
-  console.log("[openHeroModal] hero:", hero);
-  try {
-    if (!modal) return;
-    if (!hero || !hero.slug) return;
+    console.log("[openHeroModal] hero:", hero);
+    try {
+        if (!modal) {
+            console.error("[openHeroModal] Missing #heroModal in DOM");
+            return;
+        }
+        if (!hero || !hero.name) {
+            console.error("[openHeroModal] Invalid hero object:", hero);
+            return;
+        }
+        const nameEl = document.getElementById("modalHeroName");
+        const imgEl = document.getElementById("modalHeroImage");
+        const descEl = document.getElementById("modalHeroDescription");
+        const diagramEl = document.getElementById("modalHeroDiagram");
+        if (!nameEl || !imgEl || !descEl || !diagramEl) {
+            console.error("[openHeroModal] Missing modal elements:", {
+                modalHeroName: !!nameEl,
+                modalHeroImage: !!imgEl,
+                modalHeroDescription: !!descEl,
+                modalHeroDiagram: !!diagramEl
+            });
+            return;
+        }
+        nameEl.textContent = prettyNameFromFilename(hero.name ?? "");
+        imgEl.alt = prettyNameFromFilename(hero.name ?? "");
+        setHeroImageWithFallback(imgEl, hero.name);
+descEl.textContent = hero.description ?? "";
+        diagramEl.src = hero.diagram ?? "";
+        modal.classList.add("show");
 
-    const nameEl = document.getElementById("modalHeroName");
-    const imgEl = document.getElementById("modalHeroImage");
-    const descEl = document.getElementById("modalHeroDescription");
-    const diagramEl = document.getElementById("modalHeroDiagram");
-    if (!nameEl || !imgEl || !descEl || !diagramEl) return;
-
-    const displayName = prettyNameFromFilename(hero.slug);
-    nameEl.textContent = displayName;
-
-    imgEl.alt = displayName;
-    setHeroImageWithFallback(imgEl, hero.slug, hero.file);
-
-    descEl.textContent = hero.description ?? "";
-    diagramEl.src = hero.diagram ?? "";
-
-    modal.classList.add("show");
-  } catch (err) {
-    console.error("[openHeroModal] Error:", err, { hero });
-  }
+        console.log("[openHeroModal] modal opened; className =", modal.className);
+    } catch (err) {
+        console.error("[openHeroModal] Error opening modal:", err, { hero });
+    }
 }
 
 function closeHeroModal(reason = "unknown") {
-  if (!modal) return;
-  modal.classList.remove("show");
+    if (!modal) return;
+    console.log("[closeHeroModal] closing; reason =", reason);
+    modal.classList.remove("show");
 }
 
-if (closeBtn) closeBtn.addEventListener("click", () => closeHeroModal("close button"));
-window.addEventListener("click", (e) => { if (modal && e.target === modal) closeHeroModal("backdrop click"); });
+if (closeBtn) {
+    closeBtn.addEventListener("click", () => closeHeroModal("close button"));
+} else {
+    console.warn("[heroModal] Missing #closeHeroModal");
+}
+
+window.addEventListener("click", (e) => {
+    if (!modal) return;
+    if (e.target === modal) closeHeroModal("backdrop click");
+});
 
 /* ---------------------------------------------------
-   TIERLIST RENDER (image fallback)
-   - tierlist data comes from script2.js
+   LOAD TIERLIST
 ----------------------------------------------------- */
-let heroLookupByNameKey = null;
-
-function buildHeroLookup() {
-  const map = new Map();
-  for (const h of allHeroes) {
-    const disp = prettyNameFromFilename(h.slug);
-    map.set(normKey(disp), h);
-    map.set(normKey(h.slug), h);
-    map.set(normKey(h.file.replace(/\.[^.]+$/, "")), h);
-  }
-  return map;
-}
-
-function renderTierlist() {
-  const container = document.getElementById("tierlist");
-  if (!container) return;
-  container.innerHTML = "";
-
-  (async () => {
-    await ensureHeroesLoaded();
-    heroLookupByNameKey = heroLookupByNameKey || buildHeroLookup();
-
-    Object.keys(tierlist).forEach(tier => {
-      const row = document.createElement("div");
-      row.className = "tier";
-
-      const label = document.createElement("div");
-      label.className = "tier-label tier-" + tier.toLowerCase();
-      label.textContent = tier;
-
-      const slot = document.createElement("div");
-      slot.className = "tier-slot";
-
-      tierlist[tier].forEach(name => {
-        const char = document.createElement("div");
-        char.className = "character";
-        char.dataset.name = name;
-
-        const img = document.createElement("img");
-        img.alt = name;
-
-        const hit = heroLookupByNameKey.get(normKey(name));
-        if (hit) {
-          setHeroImageWithFallback(img, hit.slug, hit.file);
-        } else {
-          const baseSlug = name.toLowerCase().replace(/\s+/g, "-");
-          setHeroImageWithFallback(img, baseSlug, null);
+async function loadTierlist() {
+    try {
+        const res = await fetch('/functions/save');
+        if(res.ok) {
+            tierlist = await res.json();
         }
-
-        const span = document.createElement("span");
-        span.textContent = name;
-
-        char.appendChild(img);
-        char.appendChild(span);
-        slot.appendChild(char);
-      });
-
-      row.appendChild(label);
-      row.appendChild(slot);
-      container.appendChild(row);
-    });
-  })();
+    } catch(err) {
+        console.log('Error loading tierlist:', err);
+    }
+    renderTierlist();
 }
-
 /* ---------------------------------------------------
-   NAV + PAGE SWITCHING
+   INITIAL LOAD
 ----------------------------------------------------- */
-function showPage(pageId) {
-  document.querySelectorAll("section").forEach(sec => sec.style.display = "none");
-  const page = document.getElementById(pageId);
-  if (!page) return;
-  page.style.display = "block";
-
-  if (pageId === "heroes") renderHeroes();
-  if (pageId === "tierlists") renderTierlist();
-}
-
 document.querySelectorAll(".nav-links a").forEach(link => {
-  link.addEventListener("click", (e) => {
+  link.addEventListener("click", e => {
     e.preventDefault();
-    const page = link.getAttribute("data-page");
+    document.querySelectorAll(".nav-links a")
+      .forEach(l => l.classList.remove("active"));
+
+    link.classList.add("active");
+    const page = link.dataset.page;
     if (page) showPage(page);
   });
 });
 
-const roleFilter = document.getElementById("roleFilter");
-if (roleFilter) roleFilter.addEventListener("change", renderHeroes);
+const logoText = document.querySelector(".logo-text");
+const lightningContainer = document.querySelector(".lightning-container");
 
-showPage("home");
+function confettiBurst(x, y, amount = 3) {
+    for (let i = 0; i < amount; i++) {
+        const bolt = document.createElement("span");
+        bolt.className = "lightning";
+        bolt.textContent = "🗲";
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 30 + Math.random() * 40;
+        bolt.style.left = `${x}px`;
+        bolt.style.top = `${y}px`;
+        bolt.style.setProperty("--x", `${Math.cos(angle) * distance}px`);
+        bolt.style.setProperty("--y", `${Math.sin(angle) * distance}px`);
+        lightningContainer.appendChild(bolt);
+        setTimeout(() => bolt.remove(), 1200);
+    }
+}
 
-/* ---------------------------------------------------
-   TIERLIST SEARCH (unchanged)
------------------------------------------------------ */
+let lastBurst = 0;
+const cooldown = 200;
+logoText.addEventListener("mousemove", (e) => {
+    const now = Date.now();
+    if (now - lastBurst < cooldown) return;
+    lastBurst = now;
+    const rect = logoText.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    confettiBurst(x, y, 4);
+});
+
+function renderTierlist() {
+    const container = document.getElementById("tierlist");
+    container.innerHTML = "";
+    Object.keys(tierlist).forEach(tier => {
+        const row = document.createElement("div");
+        row.className = "tier";
+        const label = document.createElement("div");
+        label.className = "tier-label tier-" + tier.toLowerCase();
+        label.textContent = tier;
+        const slot = document.createElement("div");
+        slot.className = "tier-slot";
+        tierlist[tier].forEach(name => {
+            const char = document.createElement("div");
+            char.className = "character";
+            char.dataset.name = name;
+            const img = document.createElement("img");
+            const baseSlug = name.toLowerCase().replace(/\s+/g, "-");
+            setHeroImageWithFallback(img, baseSlug);
+            img.alt = name;
+            const label = document.createElement("span");
+            label.textContent = name;
+            char.appendChild(img);
+            char.appendChild(label);
+            slot.appendChild(char);
+        });
+        row.appendChild(label);
+        row.appendChild(slot);
+        container.appendChild(row);
+    });
+}
+
 const searchInput = document.getElementById("tierlist-search");
 const title = document.getElementById("tierlist-title");
-
-if (searchInput) {
-  searchInput.addEventListener("input", () => {
+if (searchInput && title) {
+    searchInput.addEventListener("input", () => {
+    });
+}
+searchInput.addEventListener("input", () => {
     const value = searchInput.value.trim().toLowerCase();
     if (!value) {
-      tierlist = JSON.parse(JSON.stringify(defaultTierlist));
-      if (title && title.firstChild) title.firstChild.textContent = "Tier List (Season 6.0)";
-      renderTierlist();
-      return;
+        tierlist = JSON.parse(JSON.stringify(defaultTierlist));
+        title.firstChild.textContent = "Tier List (Season 6.0)";
+        renderTierlist();
+        return;
     }
     if (tierlistsByCharacter[value]) {
-      tierlist = JSON.parse(JSON.stringify(tierlistsByCharacter[value]));
-      if (title && title.firstChild) {
+        tierlist = JSON.parse(JSON.stringify(tierlistsByCharacter[value]));
         title.firstChild.textContent =
-          `Tier List vs ${value.charAt(0).toUpperCase() + value.slice(1)}`;
-      }
-      renderTierlist();
+            `Tier List vs ${value.charAt(0).toUpperCase() + value.slice(1)}`;
+        renderTierlist();
     }
-  });
+});
+
+function showPage(pageId) {
+    document.querySelectorAll("section").forEach(sec => sec.style.display = "none");
+    const page = document.getElementById(pageId);
+    page.style.display = "block";
+
+      if (pageId === "heroes") {
+        renderHeroes();
+    }
+
+    if (pageId === "tierlists") {
+        renderTierlist();
+    }
+}
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const page = link.getAttribute("data-page");
+        if (page) showPage(page);
+    });
+});
+
+const roleFilter = document.getElementById("roleFilter");
+if (roleFilter) {
+    roleFilter.addEventListener("change", renderHeroes);
 }
 
-/* ---------------------------------------------------
-   GUIDES FILTER (unchanged)
------------------------------------------------------ */
 function filterByCharacter(name) {
-  document.querySelectorAll('.video-card').forEach(card => {
-    card.style.display = card.dataset.character === name ? "block" : "none";
-  });
+    document.querySelectorAll('.video-card').forEach(card => {
+        card.style.display =
+            card.dataset.character === name ? "block" : "none"; /* THIS IS NEW*/
+    });
 }
 
-
+showPage("home");
 
 /* ---------------------------------------------------
    RANK ANALYZER
