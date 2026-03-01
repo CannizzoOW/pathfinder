@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tier List</title>
+
+  <link rel="icon" type="image/png" href="pathfinder.png">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body{
+      min-height: 100vh;        /* Allow the page to grow taller than the viewport */
+      height: auto;             /* Don't lock the body to exactly 100vh */
+      overflow-y: auto;         /* Let the browser page scroll when content grows */
+      overflow-x: hidden;       /* Prevent horizontal scroll */
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;   /* Start at top instead of vertically centering */
+      margin:0;
+      padding: 16px 0;          /* Add a little breathing room top/bottom */
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: #0b0f19;
+      color: #e8eeff;
+}
+
+    .tier-tool{
+      width: min(1200px, 96vw);
+      height: auto;             /* Let the container expand with content */
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+}
+
+    .tier-header{
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(21, 24, 36, 0.65);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(76, 201, 240, 0.35);
+      box-shadow: 0 0 25px rgba(0,0,0,0.5);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tier-header h1{
+      margin:0;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color:#4cc9f0;
+      text-shadow: 0 0 10px rgba(76, 201, 240, 0.35);
+    }
+
+    .tier-header .hint{
+      margin-top: 4px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.35;
+      max-width: 760px;
+    }
+
+    .tier-actions{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      flex-wrap: wrap;
+    }
+
+    .tier-actions button{
+      background: rgba(76, 201, 240, 0.08);
+      border: 1px solid rgba(76, 201, 240, 0.35);
+      color: #4cc9f0;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      border-radius: 10px;
+      padding: 10px 14px;
+      transition: all 0.25s ease;
+      cursor:pointer;
+      user-select:none;
+    }
+
+    .tier-actions button:hover{
+      background: rgba(76, 201, 240, 0.18);
+      border-color: #4cc9f0;
+      box-shadow: 0 0 18px rgba(76,201,240,0.35);
+      transform: translateY(-2px);
+    }
+
+    .tier-actions button:active{
+      transform: translateY(0);
+    }
+
+    .tier-main{
+      flex:1;
+      min-height:0;
+      display:grid;
+      grid-template-rows: 1fr 160px; /* board gets most space, unranked stays visible */
+      gap: 10px;
+      overflow:hidden;
+    }
+
+    .tier-board{
+      display:flex;
+      flex-direction:column;
+      gap: 9px;
+      overflow: visible;        /* Let the board grow; page scrolls instead */
+      padding-right: 0;
+}
+
+    /* scroll for board (optional) */
+    .tier-board::-webkit-scrollbar { width: 10px; }
+    .tier-board::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+    }
+    .tier-board::-webkit-scrollbar-thumb {
+      background: linear-gradient(#4cc9f0, #00aaff);
+      border-radius: 999px;
+    }
+
+    /* IMPORTANT: make each tier a proper row */
+    .tier{
+      margin-bottom: 0;
+      padding: 10px;
+      display:flex;           /* <-- critical */
+      gap: 10px;              /* <-- makes spacing work */
+      align-items: stretch;
+      border-radius: 14px;
+      background: rgba(21, 24, 36, 0.45);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .tier-label{
+      width: 64px;
+      margin-bottom: 0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: rgba(0,0,0,0.75);
+      background: rgba(76, 201, 240, 0.35);
+    }
+
+    /* IMPORTANT: make tier slot actually lay out children */
+    .tier-slot{
+      flex: 1;                /* <-- critical */
+      min-height: 70px;
+      padding: 8px;
+      display:flex;           /* <-- critical */
+      flex-wrap: wrap;        /* <-- critical */
+      gap: 10px;
+      align-content: flex-start;
+      border-radius: 12px;
+      border: 1px dashed rgba(255,255,255,0.10);
+      background: rgba(15, 18, 32, 0.35);
+      overflow:auto;
+    }
+
+    .tier-slot::-webkit-scrollbar { width: 10px; }
+    .tier-slot::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+    }
+    .tier-slot::-webkit-scrollbar-thumb {
+      background: linear-gradient(#4cc9f0, #00aaff);
+      border-radius: 999px;
+    }
+
+    .character{
+      padding: 6px 10px;
+      font-size: 0.85rem;
+      border-radius: 10px;
+      background: #0f1220;
+      border: 1px solid rgba(255,255,255,0.12);
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      cursor: grab;
+      user-select:none;
+    }
+
+    .character:active{ cursor: grabbing; }
+
+    .character img{
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      object-fit: cover;
+      display:block;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .unranked-panel{
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(21, 24, 36, 0.65);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(76, 201, 240, 0.35);
+      box-shadow: 0 0 25px rgba(0,0,0,0.5);
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+      height: auto;             /* Let it size naturally */
+      max-height: 260px;        /* Keep it from becoming huge */
+      min-height: 0px;
+      overflow:hidden;
+}
+
+    .unranked-title{
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.85rem;
+      display:flex;
+      align-items:center;
+      gap: 8px;
+    }
+
+    .unranked-title::before{
+      content:"🗲";
+      color:#ffd54a;
+      text-shadow: 0 0 8px rgba(255, 213, 74, 0.9);
+    }
+
+    .unranked-slot{
+      flex:1;
+      min-height:0;
+      overflow-y:auto;
+      overflow-x:hidden;
+      padding-right: 8px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-content:flex-start;
+    }
+
+    .unranked-slot::-webkit-scrollbar { width: 10px; }
+    .unranked-slot::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+    }
+    .unranked-slot::-webkit-scrollbar-thumb {
+      background: linear-gradient(#4cc9f0, #00aaff);
+      border-radius: 999px;
+    }
+    .unranked-slot::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(#00e5ff, #0077cc);
+    }
+
+    .drag-over{
+      outline: 2px solid #4cc9f0;
+      outline-offset: -2px;
+      box-shadow: 0 0 12px rgba(76,201,240,0.35) inset;
+    }
+
+    @media (max-height: 700px){
+      .tier-tool{ height: 96vh; }
+      .tier-slot{ min-height: 60px; }
+      .character{ font-size: 0.8rem; }
+      .character img{ width: 30px; height: 30px; }
+      .unranked-panel{ min-height: 180px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="tier-tool">
+    <div class="tier-header">
+      <div>
+        <h1>Tier List</h1>
+        <div class="hint" id="hint">
+          Drag From UNRANKED to where you'd like on the tier list. <b>Reset</b> will reset the board. After you are done hit the <b>Copy tiers</b> button and send that in your channel.
+        </div>
+      </div>
+
+      <div class="tier-actions">
+        <button id="reset" type="button">Reset</button>
+        <button id="copy" type="button">Copy tiers</button>
+      </div>
+    </div>
+
+    <div class="tier-main">
+      <div class="tier-board" id="board"></div>
+
+      <div class="unranked-panel">
+        <div class="unranked-title">UNRANKED</div>
+        <div class="unranked-slot" id="unranked" data-tier="unranked"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const BASE_PATH = window.location.pathname.replace(/\/[^/]*$/, "/");
+    const IMAGES_JSON_URL = BASE_PATH + "images.json";
+    const IMAGES_DIR = BASE_PATH + "images/characters/";
+    const TIERS = ["S","A","B","C","D","E","F"];
+    const STORAGE_KEY = "tierlist_pathfinders_style_v3";
+
+    const hintEl = document.getElementById("hint");
+
+    function tierClass(letter){
+      return "tier-" + letter.toLowerCase();
+    }
+
+    function loadState(){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : null;
+      }catch{
+        return null;
+      }
+    }
+
+    function saveState(){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    let state = loadState() ?? { items: [] };
+    if (!Array.isArray(state.items)) state.items = [];
+
+    const board = document.getElementById("board");
+    const unranked = document.getElementById("unranked");
+
+    function setupDropzone(el){
+      if (el.dataset.dndReady === "1") return;
+      el.dataset.dndReady = "1";
+
+      el.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        el.classList.add("drag-over");
+      });
+
+      el.addEventListener("dragleave", () => {
+        el.classList.remove("drag-over");
+      });
+
+      el.addEventListener("drop", (e) => {
+        e.preventDefault();
+        el.classList.remove("drag-over");
+
+        const id = e.dataTransfer.getData("text/plain");
+        const tier = el.dataset.tier;
+
+        const item = state.items.find(x => x.id === id);
+        if (!item) return;
+
+        item.tier = tier;
+        saveState();
+        render();
+      });
+    }
+
+    // --- Name overrides (dictionary) ---
+// key = filename without extension (lowercase)
+const NAME_OVERRIDES = {
+  "cloak-dagger": "Cloak & Dagger",
+  "cloak_and_dagger": "Cloak & Dagger",
+  "cloakdagger": "Cloak & Dagger",
+  "cloak_dagger": "Cloak & Dagger",
+  "jeff-the-land-shark": "Jeff",
+  "jeff_the_land_shark": "Jeff",
+  "elsa_bloodstone": "Elsa Bloodstone",
+  "elsa-bloodstone": "Elsa Bloodstone",
+
+  // Add more manual overrides here:
+  // "dr-strange": "Doctor Strange",
+  // "mr-fantastic": "Mr. Fantastic",
+};
+
+// Common words that usually stay lowercase in titles (except first word)
+const LOWERCASE_WORDS = new Set(["and", "of", "the", "to", "in", "on", "a", "an"]);
+
+// Known fully-compressed names that need manual splitting
+// Add entries here as you discover them
+const WORD_SPLITS = [
+  ["adamwarlock", "Adam Warlock"],
+  ["ironman", "Iron Man"],
+  ["doctorstrange", "Doctor Strange"],
+  ["spiderman", "Spider-Man"],
+];
+
+function splitCamelCase(str) {
+  // Example: "AdamWarlock" -> "Adam Warlock"
+  return str.replace(/([a-z])([A-Z])/g, "$1 $2");
+}
+
+function titleCaseSmart(str) {
+  const words = str.split(/\s+/).filter(Boolean);
+  return words.map((word, index) => {
+    const lower = word.toLowerCase();
+    if (index > 0 && LOWERCASE_WORDS.has(lower)) return lower;
+    return lower.charAt(0).toUpperCase() + lower.slice(1);
+  }).join(" ");
+}
+
+function prettyNameFromFilename(filename){
+  // Remove extension
+  let base = String(filename || "").replace(/\.[^.]+$/, "");
+  const key = base.toLowerCase();
+
+  // 1) Manual overrides first (full control)
+  if (NAME_OVERRIDES[key]) return NAME_OVERRIDES[key];
+
+  // 2) Known compressed names
+  for (const [needle, pretty] of WORD_SPLITS) {
+    if (key === needle) return pretty;
+  }
+
+  // 3) Replace separators with spaces
+  base = base.replace(/[_-]+/g, " ");
+
+  // 4) Split camelCase words if any
+  base = splitCamelCase(base);
+
+  // 5) Convert "and" to "&" (optional style choice)
+  base = base.replace(/\band\b/gi, "&");
+
+  // 6) Normalize whitespace
+  base = base.replace(/\s+/g, " ").trim();
+
+  // 7) Apply smart title casing
+  return titleCaseSmart(base);
+}
+
+    function createTierRow(letter){
+      const row = document.createElement("div");
+      row.className = "tier";
+
+      const label = document.createElement("div");
+      label.className = "tier-label " + tierClass(letter);
+      label.textContent = letter;
+
+      const slot = document.createElement("div");
+      slot.className = "tier-slot";
+      slot.dataset.tier = letter;
+
+      setupDropzone(slot);
+
+      row.appendChild(label);
+      row.appendChild(slot);
+
+      return row;
+    }
+
+    function createCharacter(item){
+      const el = document.createElement("div");
+      el.className = "character";
+      el.draggable = true;
+      el.dataset.id = item.id;
+
+      const img = document.createElement("img");
+
+      // Safer/cleaner URL building (works reliably with BASE_PATH)
+      const safeFile = String(item.file || "")
+        .split("/")
+        .map(encodeURIComponent)
+        .join("/");
+
+      img.src = IMAGES_DIR + safeFile;
+      img.alt = item.name || "";
+
+      const span = document.createElement("span");
+      span.textContent = item.name || "";
+
+      el.appendChild(img);
+      el.appendChild(span);
+
+      el.addEventListener("dragstart", (e) => {
+        e.dataTransfer.setData("text/plain", item.id);
+      });
+
+      el.addEventListener("dblclick", () => {
+        const newName = prompt("Rename character:", item.name);
+        if (newName && newName.trim()) {
+          item.name = newName.trim();
+          saveState();
+          render();
+        }
+      });
+
+      return el;
+    }
+
+    function render(){
+      board.innerHTML = "";
+      unranked.innerHTML = "";
+
+      for (const t of TIERS){
+        board.appendChild(createTierRow(t));
+      }
+
+      setupDropzone(unranked);
+
+      const slots = new Map();
+      document.querySelectorAll("[data-tier]").forEach(z => slots.set(z.dataset.tier, z));
+
+      for (const item of state.items){
+        const target = slots.get(item.tier) ?? unranked;
+        target.appendChild(createCharacter(item));
+      }
+    }
+
+    async function loadImages(){
+      let files;
+      try{
+        const res = await fetch(IMAGES_JSON_URL, { cache: "no-store" });
+        if (!res.ok) throw new Error("Failed to fetch images.json (" + res.status + ")");
+        files = await res.json();
+      }catch(err){
+        console.error(err);
+        hintEl.innerHTML =
+          'Could not load <b>images.json</b>. Check path and run via a local server (Live Server). ' +
+          'Open DevTools → Network/Console for details.';
+        render();
+        return;
+      }
+
+      // Expect: ["a.png","b.png"] (array of strings)
+      // If you ever change images.json to an object format, you can adapt here.
+      files = (Array.isArray(files) ? files : []).filter(f => typeof f === "string");
+
+      const existingByFile = new Map(state.items.map(it => [it.file, it]));
+
+      for (const file of files){
+        if (existingByFile.has(file)) continue;
+
+        state.items.push({
+          id: crypto.randomUUID(),
+          file,
+          name: prettyNameFromFilename(file),
+          tier: "unranked"
+        });
+      }
+
+      saveState();
+      render();
+    }
+
+    document.getElementById("reset").addEventListener("click", () => {
+      if (!confirm("Reset ranks (keep image list)?")) return;
+
+      for (const item of state.items){
+        item.tier = "unranked";
+        item.name = prettyNameFromFilename(item.file);
+      }
+
+      saveState();
+      render();
+    });
+
+    document.getElementById("copy").addEventListener("click", async () => {
+      const out = {};
+      for (const t of TIERS) out[t] = [];
+
+      for (const item of state.items){
+        if (item.tier && out[item.tier]) out[item.tier].push(item.name);
+      }
+
+      let formatted = "tiers = {\n";
+      TIERS.forEach((t, idx) => {
+        const names = out[t].map(n => `"${n}"`).join(", ");
+        formatted += `  "${t}": [${names}]`;
+        if (idx < TIERS.length - 1) formatted += ",";
+        formatted += "\n";
+      });
+      formatted += "};";
+
+      try{
+        await navigator.clipboard.writeText(formatted);
+        alert("Copied tiers to clipboard ✅");
+      }catch(err){
+        console.error(err);
+        alert("Failed to copy. Run via Live Server / http://");
+      }
+    });
+
+    render();
+    loadImages();
+  </script>
+</body>
+</html>
