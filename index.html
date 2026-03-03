@@ -161,13 +161,16 @@ Buttanuggets @buttanuggets
 
 <!-- TIERLIST -->
 <section id="tierlists" class="section section-wide">
-    <h1 id="tierlist-title" style="display:flex; align-items:center; gap:10px;">
-        Tier List (Season 6.5)
-        <input type="text" id="tierlist-search" placeholder="Search characters (in work)" style="padding:4px 8px; font-size:0.9rem; border-radius:4px; border:1px solid #ccc;">
-        <a class="tier-maker" href="tiermaker.html" target="_blank">
-           Tier Maker
-        </a>
-    </h1>
+    <div class="tierlists-header">
+  <h1 id="tierlist-title">Tier List (Season 6.5)</h1>
+
+  <input type="text" id="tierlist-search"
+         placeholder="Search characters (in work)">
+
+  <a class="guides-cta" href="tiermaker.html" target="_blank" rel="noopener">
+    Tier Maker
+  </a>
+</div>
     <div class="tierlist-wide">
         <div class="tierlist-container" id="tierlist"></div>
     </div>
@@ -329,6 +332,11 @@ Buttanuggets @buttanuggets
             </a>
     </div>
 </section>
+<footer class="site-footer">
+  <p>
+    This website is developed by Pathfinders and is not affiliated with the official NetEase, It does not represent official opinions.
+  </p>
+</footer>
 <script src="script.js"></script>
 <script src="script2.js"></script>
 <script src="script3.js"></script>

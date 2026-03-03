@@ -5,7 +5,7 @@
 const heroData = {
     
     Duelist: [
-        { name: "black-panther", description: "", diagram: "images//black-panther.png" },
+        { name: "black-panther", description: "", diagram: "images/diagrams/black-panther.png" },
         { name: "black-widow", description: "", diagram: "images/diagrams/Black Widow.png" },
         { name: "blade", description: "", diagram: "images/diagrams/Blade.png" },
         { name: "daredevil", description: "", diagram: "images/diagrams/Daredevil.png" },
