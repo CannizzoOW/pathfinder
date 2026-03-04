@@ -143,7 +143,6 @@ body{
 
 .analyzer-wrapper{
   flex-direction: column;
-  align-direction: center;
   gap: 24px;
 }
 
