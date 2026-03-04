@@ -995,10 +995,31 @@ function prettyNameFromFilename(filename){
       e.preventDefault();
       e.stopPropagation();
 
-      slotEl.appendChild(selected);
-      clearSelected();
-      return;
-    }
+      const id = selected.dataset.id;
+      const tier = slotEl.dataset.tier;
+
+      const item = state.items.find(x => x.id === id);
+      if (!item) {
+        clearSelected();
+        return;
+  }
+
+  // Update state like the desktop drop does
+  const fromTier = item.tier || "unranked";
+  item.tier = tier;
+
+  // Append at end (simple + predictable on mobile)
+  ensureOrders();
+  const key = tier === "unranked" ? "unranked" : tier;
+  removeIdFromAllOrders(id);
+  state.orders[key].push(id);
+
+  saveState();
+  render();
+
+  clearSelected();
+  return;
+  }
 
     // Tap anywhere else: cancel selection
     if (selected) {
