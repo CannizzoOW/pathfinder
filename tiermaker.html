@@ -268,6 +268,177 @@
       .character img{ width: 30px; height: 30px; }
       .unranked-panel{ min-height: 180px; }
     }
+
+    /* ============================
+   Mobile tweaks (Tiermaker)
+   ============================ */
+@media (max-width: 768px){
+
+  body{
+    padding: 10px 0;
+  }
+
+  .tier-tool{
+    width: 100vw;          /* use full screen width */
+    max-width: 100vw;
+    padding: 0 12px;       /* keep a little breathing room */
+  }
+
+  .tier-header{
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .tier-header h1{
+    font-size: 1rem;
+  }
+
+  .tier-header .hint{
+    max-width: 100%;
+    font-size: 0.82rem;
+  }
+
+  .tier-actions{
+    width: 100%;
+  }
+
+  .tier-actions button{
+    flex: 1;               /* make buttons share row */
+    width: 100%;
+    padding: 12px 14px;    /* bigger tap target */
+  }
+
+  /* Make each tier row stack: label on top, slot below */
+  .tier{
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .tier-label{
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .tier-slot{
+    min-height: 88px;
+    overflow-x: hidden;
+  }
+
+  /* Make unranked panel a bit taller and easier to scroll on mobile */
+  .tier-main{
+    grid-template-rows: 1fr 220px;
+  }
+
+  .unranked-panel{
+    max-height: none;
+  }
+
+  .unranked-slot{
+    padding-right: 0;
+  }
+
+  /* Slightly smaller chips to fit more per row */
+  .character{
+    padding: 6px 8px;
+    font-size: 0.82rem;
+  }
+
+  .character img{
+    width: 30px;
+    height: 30px;
+  }
+
+
+/* 1) Use modern viewport units so mobile browser chrome doesn't break scrolling */
+  html, body{
+    height: auto;
+    min-height: 100dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* 2) Don't trap the whole app in a fixed height */
+  .tier-tool{
+    height: auto;         /* was min(900px, 96vh) */
+    min-height: 100dvh;   /* app fills screen, but can grow */
+  }
+
+  /* 3) Allow the main area to actually scroll */
+  .tier-main{
+    overflow: visible;    /* was overflow:hidden */
+    min-height: 0;
+  }
+
+  /* 4) Make "unranked" panel scroll nicely */
+  .unranked-panel{
+    min-height: 220px;    /* adjust if you want */
+  }
+
+  .unranked-slot{
+    max-height: 40dvh;    /* scroll area inside panel */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* 5) If tiers themselves get too tall, allow internal scrolling */
+  .tierlist-container{
+    overflow: visible;
+  }
+}
+/* Mobile landscape fixes */
+@media (max-width: 900px) and (orientation: landscape){
+
+  /* Let the page scroll normally */
+  html, body{
+    height: auto;
+    min-height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Stop using viewport-locked heights in landscape */
+  .tier-tool{
+    height: auto !important;
+    min-height: 0 !important;
+    width: 100vw;
+    max-width: 100vw;
+    padding: 0 12px;
+  }
+
+  /* Don't trap scrolling inside the app grid */
+  .tier-main{
+    overflow: visible !important;
+    min-height: 0;
+    /* Give more room to tiers by reducing unranked row height */
+    grid-template-rows: 1fr 150px !important;
+  }
+
+  /* Make unranked scrollable but not too tall */
+  .unranked-slot{
+    max-height: 150px !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Slightly tighter header so it doesn't eat the whole screen */
+  .tier-header{
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .tier-actions button{
+    padding: 10px 12px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse){
+  .character.is-selected{
+    outline: 2px solid #4cc9f0;
+    box-shadow: 0 0 14px rgba(76,201,240,0.35);
+    transform: translateY(-1px);
+  }
+}
   </style>
 </head>
 
@@ -742,5 +913,80 @@ function prettyNameFromFilename(filename){
     render();
     loadImages();
   </script>
+  <script>
+(() => {
+  const isMobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+  if (!isMobile) return;
+
+  let selected = null;
+
+  const clearSelected = () => {
+    if (selected) selected.classList.remove("is-selected");
+    selected = null;
+  };
+
+  const select = (el) => {
+    clearSelected();
+    selected = el;
+    selected.classList.add("is-selected");
+  };
+
+  // On mobile, HTML5 DnD is unreliable. We disable dragging ONLY on mobile.
+  const disableNativeDnDForMobile = () => {
+    document.querySelectorAll(".character").forEach(el => {
+      el.setAttribute("draggable", "false");
+    });
+  };
+
+  // If characters are created dynamically, run again:
+  const observeForNewCharacters = () => {
+    const root = document.querySelector(".tier-tool") || document.body;
+    const mo = new MutationObserver(() => disableNativeDnDForMobile());
+    mo.observe(root, { childList: true, subtree: true });
+  };
+
+  disableNativeDnDForMobile();
+  observeForNewCharacters();
+
+  // Capture-phase handler so we still work even if existing code stops bubbling clicks.
+  document.addEventListener("pointerup", (e) => {
+    // Only respond to primary touches
+    // (Pointer events on mobile are typically touch pointers.)
+    const charEl = e.target.closest(".character");
+    const slotEl = e.target.closest(".tier-slot, .unranked-slot");
+
+    // Tap a character: toggle select
+    if (charEl) {
+      // Prevent other handlers from hijacking this tap on mobile
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (selected === charEl) {
+        clearSelected();
+      } else {
+        select(charEl);
+      }
+      return;
+    }
+
+    // Tap a slot: place selected
+    if (slotEl && selected) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      slotEl.appendChild(selected);
+      clearSelected();
+      return;
+    }
+
+    // Tap anywhere else: cancel selection
+    if (selected) {
+      // Don't block normal taps outside; just clear selection
+      clearSelected();
+    }
+  }, { capture: true, passive: false });
+
+})();
+</script>
 </body>
 </html>
