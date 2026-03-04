@@ -439,6 +439,22 @@
     transform: translateY(-1px);
   }
 }
+
+.site-footer{
+  margin-top: 30px;
+  padding: 16px 20px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+@media (max-width: 768px){
+  .site-footer{
+    font-size: 0.75rem;
+    padding: 14px 16px;
+  }
+}
   </style>
 </head>
 
@@ -447,9 +463,16 @@
     <div class="tier-header">
       <div>
         <h1>Tier List</h1>
+
         <div class="hint" id="hint">
           Drag From UNRANKED to where you'd like on the tier list. <b>Reset</b> will reset the board. After you are done hit the <b>Copy tiers</b> button and send that in your channel.
         </div>
+        <footer class="site-footer">
+          This website is developed by Pathfinders and is not affiliated with the official NetEase. 
+          It does not represent official opinions.
+          </footer>
+
+      
       </div>
 
       <div class="tier-actions">
