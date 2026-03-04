@@ -419,24 +419,28 @@ frame();
 
 function drawGrid(ctx){
 
-const cx=260;
-const cy=260;
-const rings=10;
-const points=6;
-const max=180;
-const labels=[
+const canvas = ctx.canvas;
+const dpr = window.devicePixelRatio || 1;
 
+const cx = canvas.width / 2 / dpr;
+const cy = canvas.height / 2 / dpr;
+
+const rings = 10;
+const points = 6;
+const max = Math.min(cx, cy) - 40;
+
+const labels=[
 "Positioning",
 "Awareness",
 "Ability Usage",
 "Ulitmate Usage",
 "Mechanics",
 "Decision Making"
-
 ];
 
 ctx.strokeStyle="rgba(76,201,240,0.15)";
 ctx.lineWidth=1;
+
 for(let r=1;r<=rings;r++){
 ctx.beginPath();
 for(let i=0;i<points;i++){
@@ -446,7 +450,6 @@ const x=cx+Math.cos(angle)*radius;
 const y=cy+Math.sin(angle)*radius;
 i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
 }
-
 ctx.closePath();
 ctx.stroke();
 }
@@ -467,10 +470,11 @@ ctx.fillStyle="rgba(255,255,255,0.85)";
 ctx.font="14px Orbitron, sans-serif";
 ctx.textAlign="center";
 ctx.textBaseline="middle";
+
 for(let i=0;i<points;i++){
 const angle=(Math.PI*2/points)*i-Math.PI/2;
-const lx=cx+Math.cos(angle)*(max+30);
-const ly=cy+Math.sin(angle)*(max+30);
+const lx=cx+Math.cos(angle)*(max+25);
+const ly=cy+Math.sin(angle)*(max+25);
 ctx.fillText(labels[i],lx,ly);
 }
 }
@@ -564,9 +568,12 @@ tooltip.style.opacity=0;
 
 function drawShape(ctx,data,color,scale){
 
-const cx=260;
-const cy=260;
-const max=180;
+const canvas = ctx.canvas;
+const dpr = window.devicePixelRatio || 1;
+
+const cx = canvas.width / 2 / dpr;
+const cy = canvas.height / 2 / dpr;
+const max = Math.min(cx, cy) - 40;
 const points=6;
 ctx.beginPath();
 data.forEach((val,i)=>{

@@ -139,62 +139,28 @@ body{
    Match Analyzer: full-width + responsive chart
    ============================ */
 
-/* Make ONLY match-analyzer section full width on mobile */
-#match-analyzer.section{
-  max-width: 100%;
-  width: 100%;
-  margin: 0;
-  padding-left: 16px;
-  padding-right: 16px;
-}
+/* Match Analyzer mobile layout */
 
-/* Ensure wrapper fills width and stacks nicely */
-#match-analyzer .analyzer-wrapper{
-  width: 100%;
+.analyzer-wrapper{
   flex-direction: column;
+  align-direction: center;
   gap: 24px;
-  flex-wrap: wrap;
 }
 
-/* Panel: fill available width (override fixed desktop sizing) */
-#match-analyzer .analyzer-panel{
-  width: 100%;
+.analyzer-panel,
+.analyzer-canvas-box{
+  flex: none;
+  width: 315px;
   max-width: 100%;
   min-width: 0;
-  flex: unset;
-  padding: 18px;
-  margin: 0 auto 20px auto;
 }
+/* Needs paddig for the content */
 
-/* Make platform buttons easier to tap */
-#match-analyzer .platform-toggle{
-  width: 100%;
-}
-
-#match-analyzer .platform-btn{
-  flex: 1;
-  padding: 10px 0;
-}
-
-/* Make action buttons full width on mobile */
-#match-analyzer #analyze-btn,
-#match-analyzer #export-btn{
-  width: 100%;
-}
-
-/* Canvas box: fill width */
-#match-analyzer .analyzer-canvas-box{
-  width: 100%;
-  max-width: 100%;
-  padding: 16px;
-  position: relative;
-  top: 0;
-}
-
-/* Force canvas to scale to the screen (overrides inline width/height styles) */
-#match-analyzer #radarChart{
+/* Mobile: force the radar canvas to be square and centered */
+#radarChart{
   width: 100% !important;
+  aspect-ratio: 1 / 1;   /* makes it square */
   height: auto !important;
-  max-width: 100% !important;
   display: block;
+  margin: 0 auto;
 }
