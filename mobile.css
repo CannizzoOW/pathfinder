@@ -1,0 +1,116 @@
+/* mobile.css — mobile-only overrides (<= 768px) */
+
+/* --- Navbar: wrap + tighter padding --- */
+.navbar{
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 16px;
+}
+
+.nav-links{
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Prevent “hover scale” chaos on touch devices */
+@media (hover: none){
+  .nav-links a:hover,
+  .guides-cta:hover,
+  .video-card:hover{
+    transform: none;
+  }
+}
+
+/* --- Sections: tighter padding --- */
+.section{
+  padding: 80px 16px 40px;
+}
+
+.section::after{
+  margin-top: 40px;
+  width: 80%;
+}
+
+/* --- Home/FAQ: remove desktop left offset --- */
+#home{
+  margin-left: 0;
+  margin-right: auto;
+  max-width: 100%;
+  margin: auto;
+}
+
+#pathfinder-content{
+  align-items: stretch;
+}
+
+#pathfinder-faq{
+  max-width: 100%;
+}
+
+/* --- Cards: slightly tighter --- */
+.guides-card,
+.external-card{
+  padding: 14px 16px;
+}
+
+/* --- Tier rows: stack label over slot --- */
+.tier{
+  flex-direction: column;
+}
+
+.tier-label{
+  width: 100%;
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.tier-slot{
+  overflow-x: auto;
+}
+
+/* --- Analyzer: stack + disable sticky canvas --- */
+.analyzer-wrapper{
+  flex-direction: column;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.analyzer-panel{
+  width: 100%;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.analyzer-canvas-box{
+  position: relative;
+  top: 0;
+}
+
+/* --- Hero modal: stack content + allow scrolling --- */
+.hero-modal-content{
+  flex-direction: column;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.hero-modal-left{
+  min-width: 0;
+}
+
+/* Optional: hide arrows on mobile (less clutter) */
+#prevHero,
+#nextHero{
+  display: none;
+}
+
+/* --- Grids: tighter on mobile --- */
+.hero-grid{
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.video-grid{
+  grid-template-columns: 1fr;
+}
