@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Marvel Rivals Heroes",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["name", "role", "difficulty"],
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Hero display name"
+      },
+      "role": {
+        "type": "string",
+        "enum": ["Vanguard", "Duelist", "Strategist"]
+      },
+      "difficulty": {
+        "type": "string",
+        "enum": ["Easy", "Medium", "Hard"]
+      },
+      "health": {
+        "type": "number",
+        "minimum": 0
+      },
+      "mobility": {
+        "type": "string",
+        "enum": ["Low", "Medium", "High"]
+      },
+      "damage": {
+        "type": "string",
+        "enum": ["Low", "Medium", "High"]
+      },
+      "description": {
+        "type": "string"
+      }
+    },
+    "additionalProperties": false
+  }
+}
