@@ -154,7 +154,6 @@ body{
   max-width: 100%;
   min-width: 0;
 }
-/* Needs paddig for the content */
 
 /* Mobile: force the radar canvas to be square and centered */
 #radarChart{
