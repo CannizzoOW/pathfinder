@@ -2,6 +2,14 @@
   {
     "name": "Angela",
     "role": "Vanguard",
-    "difficulty": "Easy"
+    "description": ""
+
+   
+  },
+  {
+     "name": "daredevil",
+     "role": "Vanguard",
+     "description": ""
   }
 ]
+

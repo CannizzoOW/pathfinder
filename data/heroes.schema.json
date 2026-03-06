@@ -4,7 +4,7 @@
   "type": "array",
   "items": {
     "type": "object",
-    "required": ["name", "role", "difficulty"],
+    "required": ["name", "role"],
     "properties": {
       "name": {
         "type": "string",
@@ -13,22 +13,6 @@
       "role": {
         "type": "string",
         "enum": ["Vanguard", "Duelist", "Strategist"]
-      },
-      "difficulty": {
-        "type": "string",
-        "enum": ["Easy", "Medium", "Hard"]
-      },
-      "health": {
-        "type": "number",
-        "minimum": 0
-      },
-      "mobility": {
-        "type": "string",
-        "enum": ["Low", "Medium", "High"]
-      },
-      "damage": {
-        "type": "string",
-        "enum": ["Low", "Medium", "High"]
       },
       "description": {
         "type": "string"
