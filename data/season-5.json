@@ -1,0 +1,4675 @@
+{
+  "seasonId": 5,
+  "timestamp": 1776565056,
+  "ranks": {
+    "0": {
+      "heroes": [
+        {
+          "heroId": 1041,
+          "matches": 16687,
+          "wins": 8772,
+          "wrMatches": 14423,
+          "wrWins": 7675,
+          "mirrorMatches": 1130,
+          "winRate": 53.21
+        },
+        {
+          "heroId": 1023,
+          "matches": 22742,
+          "wins": 11556,
+          "wrMatches": 18603,
+          "wrWins": 9521,
+          "mirrorMatches": 2066,
+          "winRate": 51.18
+        },
+        {
+          "heroId": 1037,
+          "matches": 21352,
+          "wins": 7258,
+          "wrMatches": 17907,
+          "wrWins": 5569,
+          "mirrorMatches": 1720,
+          "winRate": 31.1
+        },
+        {
+          "heroId": 1025,
+          "matches": 31929,
+          "wins": 17991,
+          "wrMatches": 23860,
+          "wrWins": 14008,
+          "mirrorMatches": 4029,
+          "winRate": 58.71
+        },
+        {
+          "heroId": 1045,
+          "matches": 13863,
+          "wins": 6114,
+          "wrMatches": 12297,
+          "wrWins": 5351,
+          "mirrorMatches": 782,
+          "winRate": 43.51
+        },
+        {
+          "heroId": 1051,
+          "matches": 19118,
+          "wins": 7578,
+          "wrMatches": 16454,
+          "wrWins": 6271,
+          "mirrorMatches": 1331,
+          "winRate": 38.11
+        },
+        {
+          "heroId": 1014,
+          "matches": 18109,
+          "wins": 9749,
+          "wrMatches": 15456,
+          "wrWins": 8451,
+          "mirrorMatches": 1326,
+          "winRate": 54.68
+        },
+        {
+          "heroId": 1031,
+          "matches": 27267,
+          "wins": 14165,
+          "wrMatches": 21334,
+          "wrWins": 11237,
+          "mirrorMatches": 2960,
+          "winRate": 52.67
+        },
+        {
+          "heroId": 1026,
+          "matches": 12718,
+          "wins": 8602,
+          "wrMatches": 11518,
+          "wrWins": 8021,
+          "mirrorMatches": 599,
+          "winRate": 69.64
+        },
+        {
+          "heroId": 1038,
+          "matches": 16650,
+          "wins": 8885,
+          "wrMatches": 14441,
+          "wrWins": 7809,
+          "mirrorMatches": 1102,
+          "winRate": 54.08
+        },
+        {
+          "heroId": 1029,
+          "matches": 12603,
+          "wins": 8123,
+          "wrMatches": 11511,
+          "wrWins": 7587,
+          "mirrorMatches": 546,
+          "winRate": 65.91
+        },
+        {
+          "heroId": 1040,
+          "matches": 12964,
+          "wins": 5247,
+          "wrMatches": 11699,
+          "wrWins": 4635,
+          "mirrorMatches": 632,
+          "winRate": 39.62
+        },
+        {
+          "heroId": 1030,
+          "matches": 16879,
+          "wins": 9290,
+          "wrMatches": 14595,
+          "wrWins": 8174,
+          "mirrorMatches": 1141,
+          "winRate": 56.01
+        },
+        {
+          "heroId": 1042,
+          "matches": 22000,
+          "wins": 8078,
+          "wrMatches": 18396,
+          "wrWins": 6311,
+          "mirrorMatches": 1800,
+          "winRate": 34.31
+        },
+        {
+          "heroId": 1020,
+          "matches": 23796,
+          "wins": 9586,
+          "wrMatches": 19511,
+          "wrWins": 7472,
+          "mirrorMatches": 2141,
+          "winRate": 38.3
+        },
+        {
+          "heroId": 1052,
+          "matches": 10107,
+          "wins": 5305,
+          "wrMatches": 9335,
+          "wrWins": 4939,
+          "mirrorMatches": 386,
+          "winRate": 52.91
+        },
+        {
+          "heroId": 1036,
+          "matches": 18632,
+          "wins": 13839,
+          "wrMatches": 16582,
+          "wrWins": 12852,
+          "mirrorMatches": 1022,
+          "winRate": 77.51
+        },
+        {
+          "heroId": 1015,
+          "matches": 11207,
+          "wins": 3778,
+          "wrMatches": 10293,
+          "wrWins": 3326,
+          "mirrorMatches": 457,
+          "winRate": 32.31
+        },
+        {
+          "heroId": 1027,
+          "matches": 27994,
+          "wins": 14890,
+          "wrMatches": 21823,
+          "wrWins": 11827,
+          "mirrorMatches": 3083,
+          "winRate": 54.2
+        },
+        {
+          "heroId": 1035,
+          "matches": 23024,
+          "wins": 10726,
+          "wrMatches": 18749,
+          "wrWins": 8632,
+          "mirrorMatches": 2135,
+          "winRate": 46.04
+        },
+        {
+          "heroId": 1046,
+          "matches": 25367,
+          "wins": 12668,
+          "wrMatches": 20263,
+          "wrWins": 10149,
+          "mirrorMatches": 2551,
+          "winRate": 50.09
+        },
+        {
+          "heroId": 1022,
+          "matches": 21399,
+          "wins": 10270,
+          "wrMatches": 17842,
+          "wrWins": 8529,
+          "mirrorMatches": 1778,
+          "winRate": 47.8
+        },
+        {
+          "heroId": 1049,
+          "matches": 11826,
+          "wins": 7137,
+          "wrMatches": 10756,
+          "wrWins": 6617,
+          "mirrorMatches": 534,
+          "winRate": 61.52
+        },
+        {
+          "heroId": 1043,
+          "matches": 12125,
+          "wins": 6489,
+          "wrMatches": 10915,
+          "wrWins": 5899,
+          "mirrorMatches": 605,
+          "winRate": 54.04
+        },
+        {
+          "heroId": 1032,
+          "matches": 16421,
+          "wins": 9031,
+          "wrMatches": 14283,
+          "wrWins": 7980,
+          "mirrorMatches": 1068,
+          "winRate": 55.87
+        },
+        {
+          "heroId": 1024,
+          "matches": 15767,
+          "wins": 8675,
+          "wrMatches": 13750,
+          "wrWins": 7686,
+          "mirrorMatches": 1008,
+          "winRate": 55.9
+        },
+        {
+          "heroId": null,
+          "matches": 4674,
+          "wins": 135,
+          "wrMatches": 3500,
+          "wrWins": 117,
+          "mirrorMatches": 509,
+          "winRate": 3.34
+        },
+        {
+          "heroId": 1034,
+          "matches": 16753,
+          "wins": 9169,
+          "wrMatches": 14379,
+          "wrWins": 8018,
+          "mirrorMatches": 1184,
+          "winRate": 55.76
+        },
+        {
+          "heroId": 1017,
+          "matches": 11400,
+          "wins": 3764,
+          "wrMatches": 10336,
+          "wrWins": 3258,
+          "mirrorMatches": 532,
+          "winRate": 31.52
+        },
+        {
+          "heroId": 1011,
+          "matches": 23764,
+          "wins": 11027,
+          "wrMatches": 19110,
+          "wrWins": 8737,
+          "mirrorMatches": 2325,
+          "winRate": 45.72
+        },
+        {
+          "heroId": 1050,
+          "matches": 34139,
+          "wins": 19147,
+          "wrMatches": 24977,
+          "wrWins": 14597,
+          "mirrorMatches": 4573,
+          "winRate": 58.44
+        },
+        {
+          "heroId": 1039,
+          "matches": 17920,
+          "wins": 6572,
+          "wrMatches": 15465,
+          "wrWins": 5381,
+          "mirrorMatches": 1227,
+          "winRate": 34.79
+        },
+        {
+          "heroId": 1021,
+          "matches": 10930,
+          "wins": 5153,
+          "wrMatches": 9907,
+          "wrWins": 4654,
+          "mirrorMatches": 511,
+          "winRate": 46.98
+        },
+        {
+          "heroId": 1033,
+          "matches": 10239,
+          "wins": 4493,
+          "wrMatches": 9343,
+          "wrWins": 4057,
+          "mirrorMatches": 448,
+          "winRate": 43.42
+        },
+        {
+          "heroId": 1053,
+          "matches": 27600,
+          "wins": 14836,
+          "wrMatches": 21574,
+          "wrWins": 11861,
+          "mirrorMatches": 3009,
+          "winRate": 54.98
+        },
+        {
+          "heroId": 1028,
+          "matches": 26107,
+          "wins": 10508,
+          "wrMatches": 20843,
+          "wrWins": 7952,
+          "mirrorMatches": 2629,
+          "winRate": 38.15
+        },
+        {
+          "heroId": 1016,
+          "matches": 27255,
+          "wins": 10580,
+          "wrMatches": 21607,
+          "wrWins": 7806,
+          "mirrorMatches": 2822,
+          "winRate": 36.13
+        },
+        {
+          "heroId": 1018,
+          "matches": 22481,
+          "wins": 9407,
+          "wrMatches": 18539,
+          "wrWins": 7474,
+          "mirrorMatches": 1968,
+          "winRate": 40.32
+        },
+        {
+          "heroId": 1048,
+          "matches": 13556,
+          "wins": 7682,
+          "wrMatches": 12061,
+          "wrWins": 6961,
+          "mirrorMatches": 747,
+          "winRate": 57.71
+        },
+        {
+          "heroId": 1047,
+          "matches": 32636,
+          "wins": 18589,
+          "wrMatches": 24014,
+          "wrWins": 14366,
+          "mirrorMatches": 4300,
+          "winRate": 59.82
+        }
+      ]
+    },
+    "1": {
+      "heroes": [
+        {
+          "heroId": 1014,
+          "matches": 225451,
+          "wins": 104278,
+          "wrMatches": 177860,
+          "wrWins": 81736,
+          "mirrorMatches": 23657,
+          "winRate": 45.96
+        },
+        {
+          "heroId": 1051,
+          "matches": 146662,
+          "wins": 70052,
+          "wrMatches": 127956,
+          "wrWins": 61224,
+          "mirrorMatches": 9326,
+          "winRate": 47.85
+        },
+        {
+          "heroId": null,
+          "matches": 96189,
+          "wins": 703,
+          "wrMatches": 61578,
+          "wrWins": 554,
+          "mirrorMatches": 14643,
+          "winRate": 0.9
+        },
+        {
+          "heroId": 1046,
+          "matches": 128457,
+          "wins": 62708,
+          "wrMatches": 112612,
+          "wrWins": 55125,
+          "mirrorMatches": 7899,
+          "winRate": 48.95
+        },
+        {
+          "heroId": 1024,
+          "matches": 164270,
+          "wins": 78039,
+          "wrMatches": 138708,
+          "wrWins": 65876,
+          "mirrorMatches": 12745,
+          "winRate": 47.49
+        },
+        {
+          "heroId": 1032,
+          "matches": 212349,
+          "wins": 100764,
+          "wrMatches": 166627,
+          "wrWins": 78654,
+          "mirrorMatches": 22787,
+          "winRate": 47.2
+        },
+        {
+          "heroId": 1045,
+          "matches": 132436,
+          "wins": 62466,
+          "wrMatches": 118628,
+          "wrWins": 55906,
+          "mirrorMatches": 6887,
+          "winRate": 47.13
+        },
+        {
+          "heroId": 1033,
+          "matches": 83556,
+          "wins": 33405,
+          "wrMatches": 74963,
+          "wrWins": 29346,
+          "mirrorMatches": 4289,
+          "winRate": 39.15
+        },
+        {
+          "heroId": 1039,
+          "matches": 136381,
+          "wins": 68228,
+          "wrMatches": 119600,
+          "wrWins": 60323,
+          "mirrorMatches": 8365,
+          "winRate": 50.44
+        },
+        {
+          "heroId": 1036,
+          "matches": 318364,
+          "wins": 147349,
+          "wrMatches": 216535,
+          "wrWins": 99898,
+          "mirrorMatches": 50414,
+          "winRate": 46.13
+        },
+        {
+          "heroId": 1042,
+          "matches": 171820,
+          "wins": 94582,
+          "wrMatches": 145574,
+          "wrWins": 81935,
+          "mirrorMatches": 13078,
+          "winRate": 56.28
+        },
+        {
+          "heroId": 1048,
+          "matches": 133836,
+          "wins": 60213,
+          "wrMatches": 117001,
+          "wrWins": 52234,
+          "mirrorMatches": 8396,
+          "winRate": 44.64
+        },
+        {
+          "heroId": 1011,
+          "matches": 135418,
+          "wins": 68102,
+          "wrMatches": 117648,
+          "wrWins": 59711,
+          "mirrorMatches": 8862,
+          "winRate": 50.75
+        },
+        {
+          "heroId": 1052,
+          "matches": 92760,
+          "wins": 42975,
+          "wrMatches": 83425,
+          "wrWins": 38659,
+          "mirrorMatches": 4644,
+          "winRate": 46.34
+        },
+        {
+          "heroId": 1026,
+          "matches": 217558,
+          "wins": 105279,
+          "wrMatches": 164946,
+          "wrWins": 80891,
+          "mirrorMatches": 26056,
+          "winRate": 49.04
+        },
+        {
+          "heroId": 1028,
+          "matches": 253473,
+          "wins": 134016,
+          "wrMatches": 194159,
+          "wrWins": 105490,
+          "mirrorMatches": 29510,
+          "winRate": 54.33
+        },
+        {
+          "heroId": 1043,
+          "matches": 130646,
+          "wins": 60381,
+          "wrMatches": 115090,
+          "wrWins": 53034,
+          "mirrorMatches": 7754,
+          "winRate": 46.08
+        },
+        {
+          "heroId": 1037,
+          "matches": 191936,
+          "wins": 90530,
+          "wrMatches": 157773,
+          "wrWins": 74153,
+          "mirrorMatches": 17025,
+          "winRate": 47
+        },
+        {
+          "heroId": 1034,
+          "matches": 216507,
+          "wins": 108633,
+          "wrMatches": 171599,
+          "wrWins": 87432,
+          "mirrorMatches": 22312,
+          "winRate": 50.95
+        },
+        {
+          "heroId": 1027,
+          "matches": 83786,
+          "wins": 37531,
+          "wrMatches": 77729,
+          "wrWins": 34674,
+          "mirrorMatches": 3025,
+          "winRate": 44.61
+        },
+        {
+          "heroId": 1020,
+          "matches": 144895,
+          "wins": 75806,
+          "wrMatches": 125758,
+          "wrWins": 66578,
+          "mirrorMatches": 9547,
+          "winRate": 52.94
+        },
+        {
+          "heroId": 1016,
+          "matches": 204197,
+          "wins": 100475,
+          "wrMatches": 167504,
+          "wrWins": 82922,
+          "mirrorMatches": 18277,
+          "winRate": 49.5
+        },
+        {
+          "heroId": 1053,
+          "matches": 278953,
+          "wins": 136283,
+          "wrMatches": 211001,
+          "wrWins": 103866,
+          "mirrorMatches": 33770,
+          "winRate": 49.23
+        },
+        {
+          "heroId": 1038,
+          "matches": 184677,
+          "wins": 87252,
+          "wrMatches": 150851,
+          "wrWins": 71168,
+          "mirrorMatches": 16834,
+          "winRate": 47.18
+        },
+        {
+          "heroId": 1029,
+          "matches": 170401,
+          "wins": 85610,
+          "wrMatches": 141569,
+          "wrWins": 71977,
+          "mirrorMatches": 14344,
+          "winRate": 50.84
+        },
+        {
+          "heroId": 1021,
+          "matches": 85002,
+          "wins": 35172,
+          "wrMatches": 77316,
+          "wrWins": 31595,
+          "mirrorMatches": 3835,
+          "winRate": 40.86
+        },
+        {
+          "heroId": 1022,
+          "matches": 137901,
+          "wins": 69421,
+          "wrMatches": 120065,
+          "wrWins": 60986,
+          "mirrorMatches": 8889,
+          "winRate": 50.79
+        },
+        {
+          "heroId": 1015,
+          "matches": 82305,
+          "wins": 41908,
+          "wrMatches": 75961,
+          "wrWins": 38865,
+          "mirrorMatches": 3167,
+          "winRate": 51.16
+        },
+        {
+          "heroId": 1025,
+          "matches": 412860,
+          "wins": 200121,
+          "wrMatches": 260790,
+          "wrWins": 126729,
+          "mirrorMatches": 75524,
+          "winRate": 48.59
+        },
+        {
+          "heroId": 1030,
+          "matches": 194445,
+          "wins": 89106,
+          "wrMatches": 159430,
+          "wrWins": 72464,
+          "mirrorMatches": 17436,
+          "winRate": 45.45
+        },
+        {
+          "heroId": 1049,
+          "matches": 152536,
+          "wins": 71820,
+          "wrMatches": 130623,
+          "wrWins": 61478,
+          "mirrorMatches": 10920,
+          "winRate": 47.07
+        },
+        {
+          "heroId": 1047,
+          "matches": 474431,
+          "wins": 217791,
+          "wrMatches": 272317,
+          "wrWins": 120690,
+          "mirrorMatches": 100167,
+          "winRate": 44.32
+        },
+        {
+          "heroId": 1050,
+          "matches": 332101,
+          "wins": 152818,
+          "wrMatches": 234575,
+          "wrWins": 106015,
+          "mirrorMatches": 48486,
+          "winRate": 45.19
+        },
+        {
+          "heroId": 1023,
+          "matches": 280653,
+          "wins": 155472,
+          "wrMatches": 209365,
+          "wrWins": 120799,
+          "mirrorMatches": 35481,
+          "winRate": 57.7
+        },
+        {
+          "heroId": 1018,
+          "matches": 147413,
+          "wins": 71506,
+          "wrMatches": 127901,
+          "wrWins": 62255,
+          "mirrorMatches": 9730,
+          "winRate": 48.67
+        },
+        {
+          "heroId": 1041,
+          "matches": 178817,
+          "wins": 81966,
+          "wrMatches": 149577,
+          "wrWins": 68166,
+          "mirrorMatches": 14567,
+          "winRate": 45.57
+        },
+        {
+          "heroId": 1035,
+          "matches": 144281,
+          "wins": 64832,
+          "wrMatches": 125222,
+          "wrWins": 55925,
+          "mirrorMatches": 9494,
+          "winRate": 44.66
+        },
+        {
+          "heroId": 1031,
+          "matches": 247987,
+          "wins": 110348,
+          "wrMatches": 192753,
+          "wrWins": 83882,
+          "mirrorMatches": 27506,
+          "winRate": 43.52
+        },
+        {
+          "heroId": 1017,
+          "matches": 63938,
+          "wins": 27221,
+          "wrMatches": 60088,
+          "wrWins": 25451,
+          "mirrorMatches": 1921,
+          "winRate": 42.36
+        },
+        {
+          "heroId": 1040,
+          "matches": 148523,
+          "wins": 80888,
+          "wrMatches": 129176,
+          "wrWins": 71645,
+          "mirrorMatches": 9648,
+          "winRate": 55.46
+        }
+      ]
+    },
+    "2": {
+      "heroes": [
+        {
+          "heroId": 1052,
+          "matches": 1610,
+          "wins": 791,
+          "wrMatches": 1518,
+          "wrWins": 746,
+          "mirrorMatches": 46,
+          "winRate": 49.14
+        },
+        {
+          "heroId": 1035,
+          "matches": 4470,
+          "wins": 2035,
+          "wrMatches": 3906,
+          "wrWins": 1757,
+          "mirrorMatches": 282,
+          "winRate": 44.98
+        },
+        {
+          "heroId": 1032,
+          "matches": 7313,
+          "wins": 3351,
+          "wrMatches": 5590,
+          "wrWins": 2513,
+          "mirrorMatches": 860,
+          "winRate": 44.96
+        },
+        {
+          "heroId": 1049,
+          "matches": 2316,
+          "wins": 1214,
+          "wrMatches": 2150,
+          "wrWins": 1134,
+          "mirrorMatches": 83,
+          "winRate": 52.74
+        },
+        {
+          "heroId": 1037,
+          "matches": 6238,
+          "wins": 3053,
+          "wrMatches": 5061,
+          "wrWins": 2479,
+          "mirrorMatches": 587,
+          "winRate": 48.98
+        },
+        {
+          "heroId": 1047,
+          "matches": 13054,
+          "wins": 6039,
+          "wrMatches": 7857,
+          "wrWins": 3490,
+          "mirrorMatches": 2583,
+          "winRate": 44.42
+        },
+        {
+          "heroId": 1011,
+          "matches": 3457,
+          "wins": 1709,
+          "wrMatches": 3075,
+          "wrWins": 1520,
+          "mirrorMatches": 191,
+          "winRate": 49.43
+        },
+        {
+          "heroId": 1015,
+          "matches": 1948,
+          "wins": 1081,
+          "wrMatches": 1828,
+          "wrWins": 1025,
+          "mirrorMatches": 60,
+          "winRate": 56.07
+        },
+        {
+          "heroId": 1043,
+          "matches": 3066,
+          "wins": 1466,
+          "wrMatches": 2760,
+          "wrWins": 1316,
+          "mirrorMatches": 153,
+          "winRate": 47.68
+        },
+        {
+          "heroId": 1018,
+          "matches": 5833,
+          "wins": 2856,
+          "wrMatches": 4808,
+          "wrWins": 2349,
+          "mirrorMatches": 512,
+          "winRate": 48.86
+        },
+        {
+          "heroId": 1022,
+          "matches": 3464,
+          "wins": 1769,
+          "wrMatches": 3100,
+          "wrWins": 1589,
+          "mirrorMatches": 182,
+          "winRate": 51.26
+        },
+        {
+          "heroId": 1039,
+          "matches": 4179,
+          "wins": 2178,
+          "wrMatches": 3663,
+          "wrWins": 1924,
+          "mirrorMatches": 258,
+          "winRate": 52.53
+        },
+        {
+          "heroId": 1034,
+          "matches": 7857,
+          "wins": 3994,
+          "wrMatches": 6006,
+          "wrWins": 3093,
+          "mirrorMatches": 921,
+          "winRate": 51.5
+        },
+        {
+          "heroId": 1048,
+          "matches": 3046,
+          "wins": 1524,
+          "wrMatches": 2772,
+          "wrWins": 1389,
+          "mirrorMatches": 137,
+          "winRate": 50.11
+        },
+        {
+          "heroId": 1050,
+          "matches": 10955,
+          "wins": 5171,
+          "wrMatches": 7376,
+          "wrWins": 3419,
+          "mirrorMatches": 1782,
+          "winRate": 46.35
+        },
+        {
+          "heroId": 1024,
+          "matches": 3930,
+          "wins": 2117,
+          "wrMatches": 3380,
+          "wrWins": 1852,
+          "mirrorMatches": 274,
+          "winRate": 54.79
+        },
+        {
+          "heroId": 1020,
+          "matches": 2890,
+          "wins": 1454,
+          "wrMatches": 2638,
+          "wrWins": 1330,
+          "mirrorMatches": 126,
+          "winRate": 50.42
+        },
+        {
+          "heroId": 1051,
+          "matches": 4456,
+          "wins": 2165,
+          "wrMatches": 3912,
+          "wrWins": 1898,
+          "mirrorMatches": 272,
+          "winRate": 48.52
+        },
+        {
+          "heroId": null,
+          "matches": 1,
+          "wins": 0,
+          "wrMatches": 1,
+          "wrWins": 0,
+          "mirrorMatches": 0,
+          "winRate": 0
+        },
+        {
+          "heroId": 1046,
+          "matches": 2009,
+          "wins": 976,
+          "wrMatches": 1883,
+          "wrWins": 914,
+          "mirrorMatches": 63,
+          "winRate": 48.54
+        },
+        {
+          "heroId": 1041,
+          "matches": 4548,
+          "wins": 2329,
+          "wrMatches": 3968,
+          "wrWins": 2041,
+          "mirrorMatches": 289,
+          "winRate": 51.44
+        },
+        {
+          "heroId": 1017,
+          "matches": 1037,
+          "wins": 503,
+          "wrMatches": 1003,
+          "wrWins": 486,
+          "mirrorMatches": 17,
+          "winRate": 48.45
+        },
+        {
+          "heroId": 1016,
+          "matches": 4369,
+          "wins": 2121,
+          "wrMatches": 3872,
+          "wrWins": 1879,
+          "mirrorMatches": 248,
+          "winRate": 48.53
+        },
+        {
+          "heroId": 1029,
+          "matches": 3443,
+          "wins": 1914,
+          "wrMatches": 3073,
+          "wrWins": 1735,
+          "mirrorMatches": 184,
+          "winRate": 56.46
+        },
+        {
+          "heroId": 1026,
+          "matches": 3504,
+          "wins": 2083,
+          "wrMatches": 3058,
+          "wrWins": 1863,
+          "mirrorMatches": 222,
+          "winRate": 60.92
+        },
+        {
+          "heroId": 1027,
+          "matches": 3285,
+          "wins": 1558,
+          "wrMatches": 2955,
+          "wrWins": 1395,
+          "mirrorMatches": 165,
+          "winRate": 47.21
+        },
+        {
+          "heroId": 1053,
+          "matches": 10218,
+          "wins": 5143,
+          "wrMatches": 7174,
+          "wrWins": 3647,
+          "mirrorMatches": 1517,
+          "winRate": 50.84
+        },
+        {
+          "heroId": 1014,
+          "matches": 7776,
+          "wins": 3721,
+          "wrMatches": 5891,
+          "wrWins": 2804,
+          "mirrorMatches": 939,
+          "winRate": 47.6
+        },
+        {
+          "heroId": 1040,
+          "matches": 4208,
+          "wins": 2242,
+          "wrMatches": 3694,
+          "wrWins": 1989,
+          "mirrorMatches": 257,
+          "winRate": 53.84
+        },
+        {
+          "heroId": 1030,
+          "matches": 6437,
+          "wins": 3044,
+          "wrMatches": 5291,
+          "wrWins": 2479,
+          "mirrorMatches": 572,
+          "winRate": 46.85
+        },
+        {
+          "heroId": 1042,
+          "matches": 8140,
+          "wins": 4394,
+          "wrMatches": 6124,
+          "wrWins": 3411,
+          "mirrorMatches": 1004,
+          "winRate": 55.7
+        },
+        {
+          "heroId": 1033,
+          "matches": 797,
+          "wins": 383,
+          "wrMatches": 769,
+          "wrWins": 370,
+          "mirrorMatches": 14,
+          "winRate": 48.11
+        },
+        {
+          "heroId": 1021,
+          "matches": 1372,
+          "wins": 662,
+          "wrMatches": 1294,
+          "wrWins": 623,
+          "mirrorMatches": 39,
+          "winRate": 48.15
+        },
+        {
+          "heroId": 1045,
+          "matches": 3756,
+          "wins": 1673,
+          "wrMatches": 3405,
+          "wrWins": 1505,
+          "mirrorMatches": 175,
+          "winRate": 44.2
+        },
+        {
+          "heroId": 1036,
+          "matches": 5212,
+          "wins": 2793,
+          "wrMatches": 4278,
+          "wrWins": 2328,
+          "mirrorMatches": 466,
+          "winRate": 54.42
+        },
+        {
+          "heroId": 1038,
+          "matches": 6912,
+          "wins": 3186,
+          "wrMatches": 5473,
+          "wrWins": 2483,
+          "mirrorMatches": 717,
+          "winRate": 45.37
+        },
+        {
+          "heroId": 1023,
+          "matches": 9762,
+          "wins": 5390,
+          "wrMatches": 6927,
+          "wrWins": 3991,
+          "mirrorMatches": 1414,
+          "winRate": 57.62
+        },
+        {
+          "heroId": 1028,
+          "matches": 6150,
+          "wins": 3529,
+          "wrMatches": 5043,
+          "wrWins": 2979,
+          "mirrorMatches": 553,
+          "winRate": 59.07
+        },
+        {
+          "heroId": 1031,
+          "matches": 5789,
+          "wins": 2743,
+          "wrMatches": 4735,
+          "wrWins": 2229,
+          "mirrorMatches": 525,
+          "winRate": 47.07
+        },
+        {
+          "heroId": 1025,
+          "matches": 19362,
+          "wins": 9351,
+          "wrMatches": 8427,
+          "wrWins": 3984,
+          "mirrorMatches": 5423,
+          "winRate": 47.28
+        }
+      ]
+    },
+    "3": {
+      "bans": [
+        {
+          "hero_id": 1036,
+          "bans": 13396
+        },
+        {
+          "hero_id": 1020,
+          "bans": 46
+        },
+        {
+          "hero_id": 1030,
+          "bans": 642
+        },
+        {
+          "hero_id": 1046,
+          "bans": 58
+        },
+        {
+          "hero_id": 1028,
+          "bans": 1796
+        },
+        {
+          "hero_id": 1027,
+          "bans": 3536
+        },
+        {
+          "hero_id": 1045,
+          "bans": 3981
+        },
+        {
+          "hero_id": 1038,
+          "bans": 1173
+        },
+        {
+          "hero_id": 1015,
+          "bans": 3537
+        },
+        {
+          "hero_id": 1043,
+          "bans": 244
+        },
+        {
+          "hero_id": 1025,
+          "bans": 1326
+        },
+        {
+          "hero_id": 1053,
+          "bans": 2081
+        },
+        {
+          "hero_id": 1024,
+          "bans": 1611
+        },
+        {
+          "hero_id": 1026,
+          "bans": 10643
+        },
+        {
+          "hero_id": 1041,
+          "bans": 298
+        },
+        {
+          "hero_id": 1047,
+          "bans": 736
+        },
+        {
+          "hero_id": 1042,
+          "bans": 11128
+        },
+        {
+          "hero_id": 1035,
+          "bans": 154
+        },
+        {
+          "hero_id": 1051,
+          "bans": 385
+        },
+        {
+          "hero_id": 1018,
+          "bans": 386
+        },
+        {
+          "hero_id": 1050,
+          "bans": 257
+        },
+        {
+          "hero_id": 1048,
+          "bans": 223
+        },
+        {
+          "hero_id": 1021,
+          "bans": 379
+        },
+        {
+          "hero_id": 1031,
+          "bans": 993
+        },
+        {
+          "hero_id": 1032,
+          "bans": 3132
+        },
+        {
+          "hero_id": 1052,
+          "bans": 728
+        },
+        {
+          "hero_id": 1040,
+          "bans": 745
+        },
+        {
+          "hero_id": 1023,
+          "bans": 1351
+        },
+        {
+          "hero_id": 1017,
+          "bans": 276
+        },
+        {
+          "hero_id": 1014,
+          "bans": 1584
+        },
+        {
+          "hero_id": 1037,
+          "bans": 334
+        },
+        {
+          "hero_id": 1049,
+          "bans": 3908
+        },
+        {
+          "hero_id": 1016,
+          "bans": 493
+        },
+        {
+          "hero_id": 1011,
+          "bans": 1857
+        },
+        {
+          "hero_id": 1039,
+          "bans": 167
+        },
+        {
+          "hero_id": 1022,
+          "bans": 397
+        },
+        {
+          "hero_id": 1029,
+          "bans": 663
+        },
+        {
+          "hero_id": 1033,
+          "bans": 160
+        },
+        {
+          "hero_id": 0,
+          "bans": 88
+        },
+        {
+          "hero_id": 1034,
+          "bans": 11348
+        }
+      ],
+      "heroes": [
+        {
+          "heroId": 1046,
+          "matches": 2666,
+          "wins": 1399,
+          "wrMatches": 2522,
+          "wrWins": 1329,
+          "mirrorMatches": 72,
+          "winRate": 52.7
+        },
+        {
+          "heroId": 1021,
+          "matches": 2241,
+          "wins": 1058,
+          "wrMatches": 2113,
+          "wrWins": 997,
+          "mirrorMatches": 64,
+          "winRate": 47.18
+        },
+        {
+          "heroId": 1018,
+          "matches": 9908,
+          "wins": 4938,
+          "wrMatches": 7897,
+          "wrWins": 3951,
+          "mirrorMatches": 1002,
+          "winRate": 50.03
+        },
+        {
+          "heroId": 1025,
+          "matches": 28965,
+          "wins": 14066,
+          "wrMatches": 11350,
+          "wrWins": 5389,
+          "mirrorMatches": 8744,
+          "winRate": 47.48
+        },
+        {
+          "heroId": 1024,
+          "matches": 5579,
+          "wins": 2884,
+          "wrMatches": 4810,
+          "wrWins": 2504,
+          "mirrorMatches": 383,
+          "winRate": 52.06
+        },
+        {
+          "heroId": 1042,
+          "matches": 8950,
+          "wins": 4834,
+          "wrMatches": 6093,
+          "wrWins": 3430,
+          "mirrorMatches": 1423,
+          "winRate": 56.29
+        },
+        {
+          "heroId": 1026,
+          "matches": 4325,
+          "wins": 2516,
+          "wrMatches": 3590,
+          "wrWins": 2150,
+          "mirrorMatches": 366,
+          "winRate": 59.89
+        },
+        {
+          "heroId": 1011,
+          "matches": 5672,
+          "wins": 2929,
+          "wrMatches": 4875,
+          "wrWins": 2530,
+          "mirrorMatches": 398,
+          "winRate": 51.9
+        },
+        {
+          "heroId": 1016,
+          "matches": 7108,
+          "wins": 3576,
+          "wrMatches": 5971,
+          "wrWins": 3017,
+          "mirrorMatches": 567,
+          "winRate": 50.53
+        },
+        {
+          "heroId": 1036,
+          "matches": 5262,
+          "wins": 2738,
+          "wrMatches": 3955,
+          "wrWins": 2092,
+          "mirrorMatches": 651,
+          "winRate": 52.9
+        },
+        {
+          "heroId": 1017,
+          "matches": 1632,
+          "wins": 751,
+          "wrMatches": 1580,
+          "wrWins": 726,
+          "mirrorMatches": 26,
+          "winRate": 45.95
+        },
+        {
+          "heroId": 1029,
+          "matches": 5281,
+          "wins": 2952,
+          "wrMatches": 4672,
+          "wrWins": 2649,
+          "mirrorMatches": 304,
+          "winRate": 56.7
+        },
+        {
+          "heroId": 1051,
+          "matches": 6557,
+          "wins": 3164,
+          "wrMatches": 5698,
+          "wrWins": 2744,
+          "mirrorMatches": 429,
+          "winRate": 48.16
+        },
+        {
+          "heroId": 1030,
+          "matches": 9823,
+          "wins": 4663,
+          "wrMatches": 7796,
+          "wrWins": 3668,
+          "mirrorMatches": 1011,
+          "winRate": 47.05
+        },
+        {
+          "heroId": 1043,
+          "matches": 4708,
+          "wins": 2284,
+          "wrMatches": 4222,
+          "wrWins": 2043,
+          "mirrorMatches": 243,
+          "winRate": 48.39
+        },
+        {
+          "heroId": null,
+          "matches": 4,
+          "wins": 0,
+          "wrMatches": 4,
+          "wrWins": 0,
+          "mirrorMatches": 0,
+          "winRate": 0
+        },
+        {
+          "heroId": 1027,
+          "matches": 5245,
+          "wins": 2566,
+          "wrMatches": 4669,
+          "wrWins": 2278,
+          "mirrorMatches": 288,
+          "winRate": 48.79
+        },
+        {
+          "heroId": 1023,
+          "matches": 15063,
+          "wins": 8306,
+          "wrMatches": 9942,
+          "wrWins": 5777,
+          "mirrorMatches": 2550,
+          "winRate": 58.11
+        },
+        {
+          "heroId": 1037,
+          "matches": 10458,
+          "wins": 5188,
+          "wrMatches": 8234,
+          "wrWins": 4095,
+          "mirrorMatches": 1108,
+          "winRate": 49.73
+        },
+        {
+          "heroId": 1052,
+          "matches": 2435,
+          "wins": 1235,
+          "wrMatches": 2258,
+          "wrWins": 1148,
+          "mirrorMatches": 88,
+          "winRate": 50.84
+        },
+        {
+          "heroId": 1035,
+          "matches": 5975,
+          "wins": 2743,
+          "wrMatches": 5249,
+          "wrWins": 2384,
+          "mirrorMatches": 363,
+          "winRate": 45.42
+        },
+        {
+          "heroId": 1020,
+          "matches": 3675,
+          "wins": 1905,
+          "wrMatches": 3401,
+          "wrWins": 1771,
+          "mirrorMatches": 137,
+          "winRate": 52.07
+        },
+        {
+          "heroId": 1039,
+          "matches": 6959,
+          "wins": 3536,
+          "wrMatches": 5957,
+          "wrWins": 3038,
+          "mirrorMatches": 499,
+          "winRate": 51
+        },
+        {
+          "heroId": 1022,
+          "matches": 5281,
+          "wins": 2695,
+          "wrMatches": 4713,
+          "wrWins": 2414,
+          "mirrorMatches": 284,
+          "winRate": 51.22
+        },
+        {
+          "heroId": 1050,
+          "matches": 18087,
+          "wins": 8505,
+          "wrMatches": 11296,
+          "wrWins": 5172,
+          "mirrorMatches": 3382,
+          "winRate": 45.79
+        },
+        {
+          "heroId": 1014,
+          "matches": 11126,
+          "wins": 5294,
+          "wrMatches": 8403,
+          "wrWins": 3957,
+          "mirrorMatches": 1356,
+          "winRate": 47.09
+        },
+        {
+          "heroId": 1045,
+          "matches": 5902,
+          "wins": 2710,
+          "wrMatches": 5071,
+          "wrWins": 2305,
+          "mirrorMatches": 415,
+          "winRate": 45.45
+        },
+        {
+          "heroId": 1028,
+          "matches": 6718,
+          "wins": 3794,
+          "wrMatches": 5694,
+          "wrWins": 3286,
+          "mirrorMatches": 511,
+          "winRate": 57.71
+        },
+        {
+          "heroId": 1053,
+          "matches": 15329,
+          "wins": 7760,
+          "wrMatches": 10303,
+          "wrWins": 5284,
+          "mirrorMatches": 2502,
+          "winRate": 51.29
+        },
+        {
+          "heroId": 1031,
+          "matches": 8856,
+          "wins": 4202,
+          "wrMatches": 7014,
+          "wrWins": 3300,
+          "mirrorMatches": 918,
+          "winRate": 47.05
+        },
+        {
+          "heroId": 1015,
+          "matches": 3228,
+          "wins": 1722,
+          "wrMatches": 2936,
+          "wrWins": 1578,
+          "mirrorMatches": 146,
+          "winRate": 53.75
+        },
+        {
+          "heroId": 1049,
+          "matches": 3930,
+          "wins": 2081,
+          "wrMatches": 3518,
+          "wrWins": 1877,
+          "mirrorMatches": 206,
+          "winRate": 53.35
+        },
+        {
+          "heroId": 1048,
+          "matches": 4415,
+          "wins": 2234,
+          "wrMatches": 4024,
+          "wrWins": 2039,
+          "mirrorMatches": 195,
+          "winRate": 50.67
+        },
+        {
+          "heroId": 1032,
+          "matches": 11007,
+          "wins": 5084,
+          "wrMatches": 7965,
+          "wrWins": 3594,
+          "mirrorMatches": 1514,
+          "winRate": 45.12
+        },
+        {
+          "heroId": 1041,
+          "matches": 7001,
+          "wins": 3576,
+          "wrMatches": 5947,
+          "wrWins": 3057,
+          "mirrorMatches": 523,
+          "winRate": 51.4
+        },
+        {
+          "heroId": 1038,
+          "matches": 10177,
+          "wins": 4730,
+          "wrMatches": 7897,
+          "wrWins": 3617,
+          "mirrorMatches": 1135,
+          "winRate": 45.8
+        },
+        {
+          "heroId": 1034,
+          "matches": 7668,
+          "wins": 3982,
+          "wrMatches": 5632,
+          "wrWins": 2977,
+          "mirrorMatches": 1014,
+          "winRate": 52.86
+        },
+        {
+          "heroId": 1047,
+          "matches": 17305,
+          "wins": 7859,
+          "wrMatches": 10912,
+          "wrWins": 4718,
+          "mirrorMatches": 3184,
+          "winRate": 43.24
+        },
+        {
+          "heroId": 1033,
+          "matches": 1407,
+          "wins": 657,
+          "wrMatches": 1339,
+          "wrWins": 626,
+          "mirrorMatches": 34,
+          "winRate": 46.75
+        },
+        {
+          "heroId": 1040,
+          "matches": 6616,
+          "wins": 3549,
+          "wrMatches": 5765,
+          "wrWins": 3128,
+          "mirrorMatches": 425,
+          "winRate": 54.26
+        }
+      ]
+    },
+    "4": {
+      "bans": [
+        {
+          "hero_id": 1011,
+          "bans": 8833
+        },
+        {
+          "hero_id": 1025,
+          "bans": 2895
+        },
+        {
+          "hero_id": 1052,
+          "bans": 977
+        },
+        {
+          "hero_id": 1035,
+          "bans": 281
+        },
+        {
+          "hero_id": 1038,
+          "bans": 1571
+        },
+        {
+          "hero_id": 1037,
+          "bans": 865
+        },
+        {
+          "hero_id": 1021,
+          "bans": 1116
+        },
+        {
+          "hero_id": 1027,
+          "bans": 13702
+        },
+        {
+          "hero_id": 1022,
+          "bans": 980
+        },
+        {
+          "hero_id": 1036,
+          "bans": 23788
+        },
+        {
+          "hero_id": 1053,
+          "bans": 6729
+        },
+        {
+          "hero_id": 1034,
+          "bans": 33442
+        },
+        {
+          "hero_id": 1047,
+          "bans": 1333
+        },
+        {
+          "hero_id": 1046,
+          "bans": 134
+        },
+        {
+          "hero_id": 1024,
+          "bans": 4221
+        },
+        {
+          "hero_id": 1049,
+          "bans": 8969
+        },
+        {
+          "hero_id": 1043,
+          "bans": 404
+        },
+        {
+          "hero_id": 1018,
+          "bans": 948
+        },
+        {
+          "hero_id": 1017,
+          "bans": 530
+        },
+        {
+          "hero_id": 1029,
+          "bans": 1508
+        },
+        {
+          "hero_id": 1033,
+          "bans": 388
+        },
+        {
+          "hero_id": 1028,
+          "bans": 3560
+        },
+        {
+          "hero_id": 1016,
+          "bans": 1552
+        },
+        {
+          "hero_id": 1026,
+          "bans": 28386
+        },
+        {
+          "hero_id": 1041,
+          "bans": 624
+        },
+        {
+          "hero_id": 1031,
+          "bans": 1623
+        },
+        {
+          "hero_id": 1042,
+          "bans": 40604
+        },
+        {
+          "hero_id": 1032,
+          "bans": 7958
+        },
+        {
+          "hero_id": 1015,
+          "bans": 17358
+        },
+        {
+          "hero_id": 1048,
+          "bans": 332
+        },
+        {
+          "hero_id": 1050,
+          "bans": 588
+        },
+        {
+          "hero_id": 1051,
+          "bans": 933
+        },
+        {
+          "hero_id": 1023,
+          "bans": 4087
+        },
+        {
+          "hero_id": 1039,
+          "bans": 348
+        },
+        {
+          "hero_id": 0,
+          "bans": 806
+        },
+        {
+          "hero_id": 1014,
+          "bans": 5052
+        },
+        {
+          "hero_id": 1020,
+          "bans": 112
+        },
+        {
+          "hero_id": 1030,
+          "bans": 1060
+        },
+        {
+          "hero_id": 1045,
+          "bans": 11630
+        },
+        {
+          "hero_id": 1040,
+          "bans": 1893
+        }
+      ],
+      "heroes": [
+        {
+          "heroId": 1040,
+          "matches": 17429,
+          "wins": 9316,
+          "wrMatches": 14658,
+          "wrWins": 7953,
+          "mirrorMatches": 1384,
+          "winRate": 54.26
+        },
+        {
+          "heroId": 1018,
+          "matches": 26520,
+          "wins": 13344,
+          "wrMatches": 20323,
+          "wrWins": 10295,
+          "mirrorMatches": 3089,
+          "winRate": 50.66
+        },
+        {
+          "heroId": null,
+          "matches": 14,
+          "wins": 0,
+          "wrMatches": 14,
+          "wrWins": 0,
+          "mirrorMatches": 0,
+          "winRate": 0
+        },
+        {
+          "heroId": 1048,
+          "matches": 9155,
+          "wins": 4612,
+          "wrMatches": 8359,
+          "wrWins": 4215,
+          "mirrorMatches": 398,
+          "winRate": 50.42
+        },
+        {
+          "heroId": 1039,
+          "matches": 18442,
+          "wins": 9416,
+          "wrMatches": 15557,
+          "wrWins": 7993,
+          "mirrorMatches": 1442,
+          "winRate": 51.38
+        },
+        {
+          "heroId": 1031,
+          "matches": 22487,
+          "wins": 10296,
+          "wrMatches": 17744,
+          "wrWins": 7974,
+          "mirrorMatches": 2364,
+          "winRate": 44.94
+        },
+        {
+          "heroId": 1046,
+          "matches": 5534,
+          "wins": 2783,
+          "wrMatches": 5246,
+          "wrWins": 2641,
+          "mirrorMatches": 144,
+          "winRate": 50.34
+        },
+        {
+          "heroId": 1014,
+          "matches": 25070,
+          "wins": 11904,
+          "wrMatches": 19222,
+          "wrWins": 9048,
+          "mirrorMatches": 2913,
+          "winRate": 47.07
+        },
+        {
+          "heroId": 1038,
+          "matches": 22295,
+          "wins": 10641,
+          "wrMatches": 17778,
+          "wrWins": 8426,
+          "mirrorMatches": 2250,
+          "winRate": 47.4
+        },
+        {
+          "heroId": 1042,
+          "matches": 16218,
+          "wins": 8956,
+          "wrMatches": 10104,
+          "wrWins": 5952,
+          "mirrorMatches": 3042,
+          "winRate": 58.91
+        },
+        {
+          "heroId": 1023,
+          "matches": 40015,
+          "wins": 21875,
+          "wrMatches": 24465,
+          "wrWins": 14236,
+          "mirrorMatches": 7738,
+          "winRate": 58.19
+        },
+        {
+          "heroId": 1022,
+          "matches": 12300,
+          "wins": 6413,
+          "wrMatches": 10982,
+          "wrWins": 5765,
+          "mirrorMatches": 659,
+          "winRate": 52.49
+        },
+        {
+          "heroId": 1017,
+          "matches": 3329,
+          "wins": 1532,
+          "wrMatches": 3223,
+          "wrWins": 1480,
+          "mirrorMatches": 53,
+          "winRate": 45.92
+        },
+        {
+          "heroId": 1011,
+          "matches": 14211,
+          "wins": 7309,
+          "wrMatches": 11811,
+          "wrWins": 6125,
+          "mirrorMatches": 1196,
+          "winRate": 51.86
+        },
+        {
+          "heroId": 1028,
+          "matches": 14418,
+          "wins": 8089,
+          "wrMatches": 12378,
+          "wrWins": 7080,
+          "mirrorMatches": 1016,
+          "winRate": 57.2
+        },
+        {
+          "heroId": 1043,
+          "matches": 10233,
+          "wins": 5007,
+          "wrMatches": 9373,
+          "wrWins": 4579,
+          "mirrorMatches": 430,
+          "winRate": 48.85
+        },
+        {
+          "heroId": 1021,
+          "matches": 4955,
+          "wins": 2339,
+          "wrMatches": 4654,
+          "wrWins": 2189,
+          "mirrorMatches": 150,
+          "winRate": 47.03
+        },
+        {
+          "heroId": 1047,
+          "matches": 36660,
+          "wins": 16803,
+          "wrMatches": 24311,
+          "wrWins": 10747,
+          "mirrorMatches": 6151,
+          "winRate": 44.21
+        },
+        {
+          "heroId": 1033,
+          "matches": 3145,
+          "wins": 1300,
+          "wrMatches": 3013,
+          "wrWins": 1237,
+          "mirrorMatches": 66,
+          "winRate": 41.06
+        },
+        {
+          "heroId": 1016,
+          "matches": 19055,
+          "wins": 9570,
+          "wrMatches": 15827,
+          "wrWins": 7993,
+          "mirrorMatches": 1607,
+          "winRate": 50.5
+        },
+        {
+          "heroId": 1049,
+          "matches": 10773,
+          "wins": 5583,
+          "wrMatches": 9584,
+          "wrWins": 4996,
+          "mirrorMatches": 594,
+          "winRate": 52.13
+        },
+        {
+          "heroId": 1025,
+          "matches": 73327,
+          "wins": 35616,
+          "wrMatches": 26347,
+          "wrWins": 12533,
+          "mirrorMatches": 23296,
+          "winRate": 47.57
+        },
+        {
+          "heroId": 1029,
+          "matches": 12727,
+          "wins": 7235,
+          "wrMatches": 11263,
+          "wrWins": 6511,
+          "mirrorMatches": 731,
+          "winRate": 57.81
+        },
+        {
+          "heroId": 1030,
+          "matches": 22152,
+          "wins": 10480,
+          "wrMatches": 17701,
+          "wrWins": 8310,
+          "mirrorMatches": 2219,
+          "winRate": 46.95
+        },
+        {
+          "heroId": 1020,
+          "matches": 6936,
+          "wins": 3558,
+          "wrMatches": 6434,
+          "wrWins": 3312,
+          "mirrorMatches": 251,
+          "winRate": 51.48
+        },
+        {
+          "heroId": 1037,
+          "matches": 28897,
+          "wins": 14014,
+          "wrMatches": 21517,
+          "wrWins": 10397,
+          "mirrorMatches": 3680,
+          "winRate": 48.32
+        },
+        {
+          "heroId": 1036,
+          "matches": 12979,
+          "wins": 6661,
+          "wrMatches": 10123,
+          "wrWins": 5252,
+          "mirrorMatches": 1424,
+          "winRate": 51.88
+        },
+        {
+          "heroId": 1026,
+          "matches": 11031,
+          "wins": 6237,
+          "wrMatches": 8840,
+          "wrWins": 5151,
+          "mirrorMatches": 1092,
+          "winRate": 58.27
+        },
+        {
+          "heroId": 1041,
+          "matches": 16347,
+          "wins": 8093,
+          "wrMatches": 14043,
+          "wrWins": 6957,
+          "mirrorMatches": 1148,
+          "winRate": 49.54
+        },
+        {
+          "heroId": 1052,
+          "matches": 5612,
+          "wins": 2783,
+          "wrMatches": 5296,
+          "wrWins": 2633,
+          "mirrorMatches": 158,
+          "winRate": 49.72
+        },
+        {
+          "heroId": 1027,
+          "matches": 12000,
+          "wins": 5661,
+          "wrMatches": 10401,
+          "wrWins": 4886,
+          "mirrorMatches": 797,
+          "winRate": 46.98
+        },
+        {
+          "heroId": 1050,
+          "matches": 44722,
+          "wins": 21055,
+          "wrMatches": 27231,
+          "wrWins": 12466,
+          "mirrorMatches": 8703,
+          "winRate": 45.78
+        },
+        {
+          "heroId": 1034,
+          "matches": 15657,
+          "wins": 8359,
+          "wrMatches": 11312,
+          "wrWins": 6214,
+          "mirrorMatches": 2168,
+          "winRate": 54.93
+        },
+        {
+          "heroId": 1053,
+          "matches": 39844,
+          "wins": 19986,
+          "wrMatches": 25058,
+          "wrWins": 12704,
+          "mirrorMatches": 7357,
+          "winRate": 50.7
+        },
+        {
+          "heroId": 1035,
+          "matches": 12770,
+          "wins": 5885,
+          "wrMatches": 11375,
+          "wrWins": 5204,
+          "mirrorMatches": 696,
+          "winRate": 45.75
+        },
+        {
+          "heroId": 1032,
+          "matches": 26334,
+          "wins": 12501,
+          "wrMatches": 18632,
+          "wrWins": 8717,
+          "mirrorMatches": 3836,
+          "winRate": 46.79
+        },
+        {
+          "heroId": 1045,
+          "matches": 14199,
+          "wins": 6735,
+          "wrMatches": 12035,
+          "wrWins": 5682,
+          "mirrorMatches": 1079,
+          "winRate": 47.21
+        },
+        {
+          "heroId": 1051,
+          "matches": 17185,
+          "wins": 8485,
+          "wrMatches": 14729,
+          "wrWins": 7280,
+          "mirrorMatches": 1226,
+          "winRate": 49.43
+        },
+        {
+          "heroId": 1015,
+          "matches": 8068,
+          "wins": 4277,
+          "wrMatches": 7161,
+          "wrWins": 3832,
+          "mirrorMatches": 453,
+          "winRate": 53.51
+        },
+        {
+          "heroId": 1024,
+          "matches": 13315,
+          "wins": 6842,
+          "wrMatches": 11575,
+          "wrWins": 5991,
+          "mirrorMatches": 867,
+          "winRate": 51.76
+        }
+      ]
+    },
+    "5": {
+      "bans": [
+        {
+          "hero_id": 1043,
+          "bans": 507
+        },
+        {
+          "hero_id": 1030,
+          "bans": 1291
+        },
+        {
+          "hero_id": 1045,
+          "bans": 16046
+        },
+        {
+          "hero_id": 1017,
+          "bans": 529
+        },
+        {
+          "hero_id": 1040,
+          "bans": 3536
+        },
+        {
+          "hero_id": 1029,
+          "bans": 3287
+        },
+        {
+          "hero_id": 1026,
+          "bans": 62973
+        },
+        {
+          "hero_id": 1051,
+          "bans": 1915
+        },
+        {
+          "hero_id": 1046,
+          "bans": 164
+        },
+        {
+          "hero_id": 1037,
+          "bans": 2233
+        },
+        {
+          "hero_id": 1052,
+          "bans": 1058
+        },
+        {
+          "hero_id": 1020,
+          "bans": 162
+        },
+        {
+          "hero_id": 1015,
+          "bans": 50225
+        },
+        {
+          "hero_id": 1041,
+          "bans": 895
+        },
+        {
+          "hero_id": 1047,
+          "bans": 1811
+        },
+        {
+          "hero_id": 1011,
+          "bans": 24717
+        },
+        {
+          "hero_id": 1027,
+          "bans": 19432
+        },
+        {
+          "hero_id": 1022,
+          "bans": 1813
+        },
+        {
+          "hero_id": 1028,
+          "bans": 6104
+        },
+        {
+          "hero_id": 1021,
+          "bans": 2567
+        },
+        {
+          "hero_id": 1036,
+          "bans": 21507
+        },
+        {
+          "hero_id": 1014,
+          "bans": 10892
+        },
+        {
+          "hero_id": 1034,
+          "bans": 58853
+        },
+        {
+          "hero_id": 1038,
+          "bans": 1507
+        },
+        {
+          "hero_id": 1018,
+          "bans": 1720
+        },
+        {
+          "hero_id": 1042,
+          "bans": 79457
+        },
+        {
+          "hero_id": 1023,
+          "bans": 10410
+        },
+        {
+          "hero_id": 1050,
+          "bans": 758
+        },
+        {
+          "hero_id": 1033,
+          "bans": 578
+        },
+        {
+          "hero_id": 1048,
+          "bans": 605
+        },
+        {
+          "hero_id": 1035,
+          "bans": 317
+        },
+        {
+          "hero_id": 1025,
+          "bans": 4025
+        },
+        {
+          "hero_id": 1053,
+          "bans": 19175
+        },
+        {
+          "hero_id": 1049,
+          "bans": 20024
+        },
+        {
+          "hero_id": 1016,
+          "bans": 4781
+        },
+        {
+          "hero_id": 0,
+          "bans": 2659
+        },
+        {
+          "hero_id": 1031,
+          "bans": 2022
+        },
+        {
+          "hero_id": 1024,
+          "bans": 8170
+        },
+        {
+          "hero_id": 1032,
+          "bans": 11088
+        },
+        {
+          "hero_id": 1039,
+          "bans": 571
+        }
+      ],
+      "heroes": [
+        {
+          "heroId": 1016,
+          "matches": 41947,
+          "wins": 21309,
+          "wrMatches": 33249,
+          "wrWins": 17044,
+          "mirrorMatches": 4337,
+          "winRate": 51.26
+        },
+        {
+          "heroId": 1046,
+          "matches": 8611,
+          "wins": 4161,
+          "wrMatches": 8245,
+          "wrWins": 3982,
+          "mirrorMatches": 183,
+          "winRate": 48.3
+        },
+        {
+          "heroId": 1018,
+          "matches": 60253,
+          "wins": 30470,
+          "wrMatches": 43018,
+          "wrWins": 22008,
+          "mirrorMatches": 8580,
+          "winRate": 51.16
+        },
+        {
+          "heroId": 1040,
+          "matches": 33991,
+          "wins": 18048,
+          "wrMatches": 28563,
+          "wrWins": 15359,
+          "mirrorMatches": 2709,
+          "winRate": 53.77
+        },
+        {
+          "heroId": 1023,
+          "matches": 85578,
+          "wins": 46731,
+          "wrMatches": 47824,
+          "wrWins": 28169,
+          "mirrorMatches": 18767,
+          "winRate": 58.9
+        },
+        {
+          "heroId": null,
+          "matches": 11,
+          "wins": 0,
+          "wrMatches": 11,
+          "wrWins": 0,
+          "mirrorMatches": 0,
+          "winRate": 0
+        },
+        {
+          "heroId": 1041,
+          "matches": 33502,
+          "wins": 16145,
+          "wrMatches": 28297,
+          "wrWins": 13586,
+          "mirrorMatches": 2594,
+          "winRate": 48.01
+        },
+        {
+          "heroId": 1045,
+          "matches": 26785,
+          "wins": 12654,
+          "wrMatches": 22713,
+          "wrWins": 10654,
+          "mirrorMatches": 2031,
+          "winRate": 46.91
+        },
+        {
+          "heroId": 1050,
+          "matches": 85628,
+          "wins": 39766,
+          "wrMatches": 52161,
+          "wrWins": 23331,
+          "mirrorMatches": 16650,
+          "winRate": 44.73
+        },
+        {
+          "heroId": 1017,
+          "matches": 5383,
+          "wins": 2525,
+          "wrMatches": 5251,
+          "wrWins": 2458,
+          "mirrorMatches": 66,
+          "winRate": 46.81
+        },
+        {
+          "heroId": 1011,
+          "matches": 27060,
+          "wins": 13867,
+          "wrMatches": 22069,
+          "wrWins": 11388,
+          "mirrorMatches": 2491,
+          "winRate": 51.6
+        },
+        {
+          "heroId": 1036,
+          "matches": 28201,
+          "wins": 14650,
+          "wrMatches": 22749,
+          "wrWins": 11955,
+          "mirrorMatches": 2719,
+          "winRate": 52.55
+        },
+        {
+          "heroId": 1049,
+          "matches": 24669,
+          "wins": 12696,
+          "wrMatches": 21029,
+          "wrWins": 10904,
+          "mirrorMatches": 1817,
+          "winRate": 51.85
+        },
+        {
+          "heroId": 1026,
+          "matches": 21912,
+          "wins": 12090,
+          "wrMatches": 16591,
+          "wrWins": 9442,
+          "mirrorMatches": 2652,
+          "winRate": 56.91
+        },
+        {
+          "heroId": 1051,
+          "matches": 34647,
+          "wins": 16976,
+          "wrMatches": 29136,
+          "wrWins": 14263,
+          "mirrorMatches": 2751,
+          "winRate": 48.95
+        },
+        {
+          "heroId": 1047,
+          "matches": 54197,
+          "wins": 25196,
+          "wrMatches": 39301,
+          "wrWins": 17865,
+          "mirrorMatches": 7413,
+          "winRate": 45.46
+        },
+        {
+          "heroId": 1025,
+          "matches": 147680,
+          "wins": 71858,
+          "wrMatches": 48583,
+          "wrWins": 23136,
+          "mirrorMatches": 49049,
+          "winRate": 47.62
+        },
+        {
+          "heroId": 1038,
+          "matches": 35944,
+          "wins": 17306,
+          "wrMatches": 29962,
+          "wrWins": 14392,
+          "mirrorMatches": 2982,
+          "winRate": 48.03
+        },
+        {
+          "heroId": 1048,
+          "matches": 15466,
+          "wins": 7630,
+          "wrMatches": 14243,
+          "wrWins": 7027,
+          "mirrorMatches": 610,
+          "winRate": 49.34
+        },
+        {
+          "heroId": 1029,
+          "matches": 26921,
+          "wins": 15188,
+          "wrMatches": 22853,
+          "wrWins": 13175,
+          "mirrorMatches": 2028,
+          "winRate": 57.65
+        },
+        {
+          "heroId": 1027,
+          "matches": 20460,
+          "wins": 9888,
+          "wrMatches": 18047,
+          "wrWins": 8699,
+          "mirrorMatches": 1203,
+          "winRate": 48.2
+        },
+        {
+          "heroId": 1034,
+          "matches": 28508,
+          "wins": 15221,
+          "wrMatches": 20890,
+          "wrWins": 11460,
+          "mirrorMatches": 3793,
+          "winRate": 54.86
+        },
+        {
+          "heroId": 1028,
+          "matches": 24625,
+          "wins": 13368,
+          "wrMatches": 21189,
+          "wrWins": 11666,
+          "mirrorMatches": 1714,
+          "winRate": 55.06
+        },
+        {
+          "heroId": 1039,
+          "matches": 35187,
+          "wins": 17944,
+          "wrMatches": 29483,
+          "wrWins": 15130,
+          "mirrorMatches": 2848,
+          "winRate": 51.32
+        },
+        {
+          "heroId": 1037,
+          "matches": 64592,
+          "wins": 31000,
+          "wrMatches": 44517,
+          "wrWins": 21151,
+          "mirrorMatches": 9985,
+          "winRate": 47.51
+        },
+        {
+          "heroId": 1035,
+          "matches": 19553,
+          "wins": 9124,
+          "wrMatches": 17836,
+          "wrWins": 8280,
+          "mirrorMatches": 858,
+          "winRate": 46.42
+        },
+        {
+          "heroId": 1021,
+          "matches": 8241,
+          "wins": 3725,
+          "wrMatches": 7705,
+          "wrWins": 3464,
+          "mirrorMatches": 267,
+          "winRate": 44.96
+        },
+        {
+          "heroId": 1033,
+          "matches": 4902,
+          "wins": 1951,
+          "wrMatches": 4681,
+          "wrWins": 1847,
+          "mirrorMatches": 110,
+          "winRate": 39.46
+        },
+        {
+          "heroId": 1015,
+          "matches": 14611,
+          "wins": 7856,
+          "wrMatches": 12798,
+          "wrWins": 6955,
+          "mirrorMatches": 906,
+          "winRate": 54.34
+        },
+        {
+          "heroId": 1031,
+          "matches": 47026,
+          "wins": 21148,
+          "wrMatches": 35815,
+          "wrWins": 15658,
+          "mirrorMatches": 5581,
+          "winRate": 43.72
+        },
+        {
+          "heroId": 1030,
+          "matches": 37536,
+          "wins": 17743,
+          "wrMatches": 30760,
+          "wrWins": 14420,
+          "mirrorMatches": 3379,
+          "winRate": 46.88
+        },
+        {
+          "heroId": 1022,
+          "matches": 21543,
+          "wins": 11193,
+          "wrMatches": 19312,
+          "wrWins": 10083,
+          "mirrorMatches": 1114,
+          "winRate": 52.21
+        },
+        {
+          "heroId": 1032,
+          "matches": 43348,
+          "wins": 20681,
+          "wrMatches": 31634,
+          "wrWins": 14933,
+          "mirrorMatches": 5836,
+          "winRate": 47.21
+        },
+        {
+          "heroId": 1053,
+          "matches": 79926,
+          "wins": 40285,
+          "wrMatches": 45944,
+          "wrWins": 23546,
+          "mirrorMatches": 16887,
+          "winRate": 51.25
+        },
+        {
+          "heroId": 1020,
+          "matches": 10502,
+          "wins": 5464,
+          "wrMatches": 9966,
+          "wrWins": 5199,
+          "mirrorMatches": 268,
+          "winRate": 52.17
+        },
+        {
+          "heroId": 1024,
+          "matches": 27073,
+          "wins": 13480,
+          "wrMatches": 22833,
+          "wrWins": 11402,
+          "mirrorMatches": 2115,
+          "winRate": 49.94
+        },
+        {
+          "heroId": 1043,
+          "matches": 17517,
+          "wins": 8516,
+          "wrMatches": 16130,
+          "wrWins": 7834,
+          "mirrorMatches": 693,
+          "winRate": 48.57
+        },
+        {
+          "heroId": 1014,
+          "matches": 43371,
+          "wins": 20814,
+          "wrMatches": 33292,
+          "wrWins": 15898,
+          "mirrorMatches": 5023,
+          "winRate": 47.75
+        },
+        {
+          "heroId": 1042,
+          "matches": 24289,
+          "wins": 13812,
+          "wrMatches": 15933,
+          "wrWins": 9712,
+          "mirrorMatches": 4167,
+          "winRate": 60.96
+        },
+        {
+          "heroId": 1052,
+          "matches": 9956,
+          "wins": 5042,
+          "wrMatches": 9400,
+          "wrWins": 4766,
+          "mirrorMatches": 278,
+          "winRate": 50.7
+        }
+      ]
+    },
+    "6": {
+      "bans": [
+        {
+          "hero_id": 1053,
+          "bans": 27913
+        },
+        {
+          "hero_id": 1021,
+          "bans": 2622
+        },
+        {
+          "hero_id": 1046,
+          "bans": 129
+        },
+        {
+          "hero_id": 1032,
+          "bans": 4091
+        },
+        {
+          "hero_id": 1035,
+          "bans": 171
+        },
+        {
+          "hero_id": 1020,
+          "bans": 100
+        },
+        {
+          "hero_id": 0,
+          "bans": 3084
+        },
+        {
+          "hero_id": 1028,
+          "bans": 7254
+        },
+        {
+          "hero_id": 1037,
+          "bans": 2400
+        },
+        {
+          "hero_id": 1036,
+          "bans": 8352
+        },
+        {
+          "hero_id": 1022,
+          "bans": 1346
+        },
+        {
+          "hero_id": 1017,
+          "bans": 421
+        },
+        {
+          "hero_id": 1048,
+          "bans": 565
+        },
+        {
+          "hero_id": 1043,
+          "bans": 370
+        },
+        {
+          "hero_id": 1051,
+          "bans": 1933
+        },
+        {
+          "hero_id": 1041,
+          "bans": 705
+        },
+        {
+          "hero_id": 1026,
+          "bans": 69292
+        },
+        {
+          "hero_id": 1027,
+          "bans": 7621
+        },
+        {
+          "hero_id": 1030,
+          "bans": 530
+        },
+        {
+          "hero_id": 1015,
+          "bans": 50572
+        },
+        {
+          "hero_id": 1031,
+          "bans": 1329
+        },
+        {
+          "hero_id": 1040,
+          "bans": 1882
+        },
+        {
+          "hero_id": 1039,
+          "bans": 293
+        },
+        {
+          "hero_id": 1024,
+          "bans": 6935
+        },
+        {
+          "hero_id": 1042,
+          "bans": 56783
+        },
+        {
+          "hero_id": 1025,
+          "bans": 1985
+        },
+        {
+          "hero_id": 1016,
+          "bans": 5188
+        },
+        {
+          "hero_id": 1049,
+          "bans": 31417
+        },
+        {
+          "hero_id": 1052,
+          "bans": 613
+        },
+        {
+          "hero_id": 1038,
+          "bans": 459
+        },
+        {
+          "hero_id": 1033,
+          "bans": 525
+        },
+        {
+          "hero_id": 1029,
+          "bans": 2829
+        },
+        {
+          "hero_id": 1011,
+          "bans": 27747
+        },
+        {
+          "hero_id": 1045,
+          "bans": 7452
+        },
+        {
+          "hero_id": 1034,
+          "bans": 44694
+        },
+        {
+          "hero_id": 1018,
+          "bans": 984
+        },
+        {
+          "hero_id": 1023,
+          "bans": 11599
+        },
+        {
+          "hero_id": 1050,
+          "bans": 562
+        },
+        {
+          "hero_id": 1014,
+          "bans": 10844
+        },
+        {
+          "hero_id": 1047,
+          "bans": 1069
+        }
+      ],
+      "heroes": [
+        {
+          "heroId": 1032,
+          "matches": 29194,
+          "wins": 13899,
+          "wrMatches": 22708,
+          "wrWins": 10731,
+          "mirrorMatches": 3226,
+          "winRate": 47.26
+        },
+        {
+          "heroId": 1027,
+          "matches": 16417,
+          "wins": 7997,
+          "wrMatches": 14600,
+          "wrWins": 7104,
+          "mirrorMatches": 906,
+          "winRate": 48.66
+        },
+        {
+          "heroId": 1051,
+          "matches": 30683,
+          "wins": 14565,
+          "wrMatches": 25127,
+          "wrWins": 11836,
+          "mirrorMatches": 2773,
+          "winRate": 47.1
+        },
+        {
+          "heroId": 1011,
+          "matches": 25390,
+          "wins": 13339,
+          "wrMatches": 20035,
+          "wrWins": 10674,
+          "mirrorMatches": 2674,
+          "winRate": 53.28
+        },
+        {
+          "heroId": 1020,
+          "matches": 7804,
+          "wins": 4055,
+          "wrMatches": 7386,
+          "wrWins": 3850,
+          "mirrorMatches": 209,
+          "winRate": 52.13
+        },
+        {
+          "heroId": 1052,
+          "matches": 9680,
+          "wins": 4998,
+          "wrMatches": 9062,
+          "wrWins": 4690,
+          "mirrorMatches": 308,
+          "winRate": 51.75
+        },
+        {
+          "heroId": 1039,
+          "matches": 28293,
+          "wins": 14427,
+          "wrMatches": 23751,
+          "wrWins": 12177,
+          "mirrorMatches": 2264,
+          "winRate": 51.27
+        },
+        {
+          "heroId": 1025,
+          "matches": 126086,
+          "wins": 61174,
+          "wrMatches": 44577,
+          "wrWins": 21170,
+          "mirrorMatches": 40309,
+          "winRate": 47.49
+        },
+        {
+          "heroId": 1038,
+          "matches": 22886,
+          "wins": 10902,
+          "wrMatches": 19801,
+          "wrWins": 9384,
+          "mirrorMatches": 1540,
+          "winRate": 47.39
+        },
+        {
+          "heroId": 1050,
+          "matches": 73714,
+          "wins": 33959,
+          "wrMatches": 44982,
+          "wrWins": 19849,
+          "mirrorMatches": 14274,
+          "winRate": 44.13
+        },
+        {
+          "heroId": 1037,
+          "matches": 70899,
+          "wins": 34346,
+          "wrMatches": 42225,
+          "wrWins": 20272,
+          "mirrorMatches": 14219,
+          "winRate": 48.01
+        },
+        {
+          "heroId": 1015,
+          "matches": 12357,
+          "wins": 6626,
+          "wrMatches": 10497,
+          "wrWins": 5704,
+          "mirrorMatches": 927,
+          "winRate": 54.34
+        },
+        {
+          "heroId": 1028,
+          "matches": 20459,
+          "wins": 10805,
+          "wrMatches": 17362,
+          "wrWins": 9280,
+          "mirrorMatches": 1545,
+          "winRate": 53.45
+        },
+        {
+          "heroId": 1018,
+          "matches": 57226,
+          "wins": 28611,
+          "wrMatches": 39331,
+          "wrWins": 19805,
+          "mirrorMatches": 8901,
+          "winRate": 50.35
+        },
+        {
+          "heroId": 1046,
+          "matches": 6493,
+          "wins": 3009,
+          "wrMatches": 6215,
+          "wrWins": 2875,
+          "mirrorMatches": 139,
+          "winRate": 46.26
+        },
+        {
+          "heroId": 1031,
+          "matches": 47772,
+          "wins": 21646,
+          "wrMatches": 34611,
+          "wrWins": 15230,
+          "mirrorMatches": 6543,
+          "winRate": 44
+        },
+        {
+          "heroId": 1021,
+          "matches": 7854,
+          "wins": 3564,
+          "wrMatches": 7282,
+          "wrWins": 3284,
+          "mirrorMatches": 285,
+          "winRate": 45.1
+        },
+        {
+          "heroId": 1030,
+          "matches": 25580,
+          "wins": 12166,
+          "wrMatches": 21717,
+          "wrWins": 10260,
+          "mirrorMatches": 1927,
+          "winRate": 47.24
+        },
+        {
+          "heroId": 1040,
+          "matches": 29241,
+          "wins": 15187,
+          "wrMatches": 24628,
+          "wrWins": 12909,
+          "mirrorMatches": 2302,
+          "winRate": 52.42
+        },
+        {
+          "heroId": 1023,
+          "matches": 82806,
+          "wins": 44797,
+          "wrMatches": 42498,
+          "wrWins": 24964,
+          "mirrorMatches": 19985,
+          "winRate": 58.74
+        },
+        {
+          "heroId": 1024,
+          "matches": 27400,
+          "wins": 13594,
+          "wrMatches": 22312,
+          "wrWins": 11083,
+          "mirrorMatches": 2533,
+          "winRate": 49.67
+        },
+        {
+          "heroId": 1022,
+          "matches": 17403,
+          "wins": 9306,
+          "wrMatches": 15594,
+          "wrWins": 8411,
+          "mirrorMatches": 903,
+          "winRate": 53.94
+        },
+        {
+          "heroId": 1048,
+          "matches": 14237,
+          "wins": 7100,
+          "wrMatches": 12885,
+          "wrWins": 6425,
+          "mirrorMatches": 674,
+          "winRate": 49.86
+        },
+        {
+          "heroId": 1034,
+          "matches": 23731,
+          "wins": 12782,
+          "wrMatches": 17866,
+          "wrWins": 9891,
+          "mirrorMatches": 2921,
+          "winRate": 55.36
+        },
+        {
+          "heroId": 1049,
+          "matches": 27508,
+          "wins": 14338,
+          "wrMatches": 21170,
+          "wrWins": 11202,
+          "mirrorMatches": 3158,
+          "winRate": 52.91
+        },
+        {
+          "heroId": 1045,
+          "matches": 22937,
+          "wins": 10971,
+          "wrMatches": 19509,
+          "wrWins": 9302,
+          "mirrorMatches": 1708,
+          "winRate": 47.68
+        },
+        {
+          "heroId": 1043,
+          "matches": 15725,
+          "wins": 7531,
+          "wrMatches": 14349,
+          "wrWins": 6859,
+          "mirrorMatches": 688,
+          "winRate": 47.8
+        },
+        {
+          "heroId": 1033,
+          "matches": 4710,
+          "wins": 1899,
+          "wrMatches": 4472,
+          "wrWins": 1788,
+          "mirrorMatches": 118,
+          "winRate": 39.98
+        },
+        {
+          "heroId": null,
+          "matches": 6,
+          "wins": 0,
+          "wrMatches": 6,
+          "wrWins": 0,
+          "mirrorMatches": 0,
+          "winRate": 0
+        },
+        {
+          "heroId": 1042,
+          "matches": 16155,
+          "wins": 9495,
+          "wrMatches": 12286,
+          "wrWins": 7618,
+          "mirrorMatches": 1929,
+          "winRate": 62.01
+        },
+        {
+          "heroId": 1017,
+          "matches": 4886,
+          "wins": 2342,
+          "wrMatches": 4716,
+          "wrWins": 2255,
+          "mirrorMatches": 85,
+          "winRate": 47.82
+        },
+        {
+          "heroId": 1035,
+          "matches": 13831,
+          "wins": 6560,
+          "wrMatches": 12827,
+          "wrWins": 6063,
+          "mirrorMatches": 502,
+          "winRate": 47.27
+        },
+        {
+          "heroId": 1026,
+          "matches": 23020,
+          "wins": 12390,
+          "wrMatches": 14930,
+          "wrWins": 8372,
+          "mirrorMatches": 4026,
+          "winRate": 56.08
+        },
+        {
+          "heroId": 1029,
+          "matches": 27115,
+          "wins": 15123,
+          "wrMatches": 22540,
+          "wrWins": 12862,
+          "mirrorMatches": 2284,
+          "winRate": 57.06
+        },
+        {
+          "heroId": 1047,
+          "matches": 33658,
+          "wins": 15906,
+          "wrMatches": 26585,
+          "wrWins": 12427,
+          "mirrorMatches": 3525,
+          "winRate": 46.74
+        },
+        {
+          "heroId": 1041,
+          "matches": 35017,
+          "wins": 16329,
+          "wrMatches": 28343,
+          "wrWins": 13049,
+          "mirrorMatches": 3329,
+          "winRate": 46.04
+        },
+        {
+          "heroId": 1053,
+          "matches": 68763,
+          "wins": 34793,
+          "wrMatches": 35966,
+          "wrWins": 18653,
+          "mirrorMatches": 16276,
+          "winRate": 51.86
+        },
+        {
+          "heroId": 1036,
+          "matches": 29416,
+          "wins": 15102,
+          "wrMatches": 23398,
+          "wrWins": 12145,
+          "mirrorMatches": 3002,
+          "winRate": 51.91
+        },
+        {
+          "heroId": 1014,
+          "matches": 33571,
+          "wins": 16090,
+          "wrMatches": 25974,
+          "wrWins": 12383,
+          "mirrorMatches": 3780,
+          "winRate": 47.67
+        },
+        {
+          "heroId": 1016,
+          "matches": 44057,
+          "wins": 22478,
+          "wrMatches": 33137,
+          "wrWins": 17114,
+          "mirrorMatches": 5437,
+          "winRate": 51.65
+        }
+      ]
+    },
+    "7": {
+      "bans": [
+        {
+          "hero_id": 1029,
+          "bans": 228
+        },
+        {
+          "hero_id": 1021,
+          "bans": 144
+        },
+        {
+          "hero_id": 1024,
+          "bans": 435
+        },
+        {
+          "hero_id": 1017,
+          "bans": 900
+        },
+        {
+          "hero_id": 1027,
+          "bans": 110
+        },
+        {
+          "hero_id": 1051,
+          "bans": 16
+        },
+        {
+          "hero_id": 1048,
+          "bans": 442
+        },
+        {
+          "hero_id": 0,
+          "bans": 112
+        },
+        {
+          "hero_id": 1045,
+          "bans": 64
+        },
+        {
+          "hero_id": 1022,
+          "bans": 385
+        },
+        {
+          "hero_id": 1043,
+          "bans": 28
+        },
+        {
+          "hero_id": 1040,
+          "bans": 36
+        },
+        {
+          "hero_id": 1031,
+          "bans": 56
+        },
+        {
+          "hero_id": 1039,
+          "bans": 23
+        },
+        {
+          "hero_id": 1032,
+          "bans": 35
+        },
+        {
+          "hero_id": 1053,
+          "bans": 1928
+        },
+        {
+          "hero_id": 1036,
+          "bans": 586
+        },
+        {
+          "hero_id": 1034,
+          "bans": 399
+        },
+        {
+          "hero_id": 1052,
+          "bans": 129
+        },
+        {
+          "hero_id": 1041,
+          "bans": 48
+        },
+        {
+          "hero_id": 1020,
+          "bans": 9
+        },
+        {
+          "hero_id": 1011,
+          "bans": 1592
+        },
+        {
+          "hero_id": 1033,
+          "bans": 66
+        },
+        {
+          "hero_id": 1023,
+          "bans": 171
+        },
+        {
+          "hero_id": 1025,
+          "bans": 5
+        },
+        {
+          "hero_id": 1049,
+          "bans": 3322
+        },
+        {
+          "hero_id": 1050,
+          "bans": 30
+        },
+        {
+          "hero_id": 1030,
+          "bans": 19
+        },
+        {
+          "hero_id": 1047,
+          "bans": 32
+        },
+        {
+          "hero_id": 1016,
+          "bans": 509
+        },
+        {
+          "hero_id": 1014,
+          "bans": 626
+        },
+        {
+          "hero_id": 1037,
+          "bans": 94
+        },
+        {
+          "hero_id": 1046,
+          "bans": 14
+        },
+        {
+          "hero_id": 1015,
+          "bans": 624
+        },
+        {
+          "hero_id": 1026,
+          "bans": 1573
+        },
+        {
+          "hero_id": 1035,
+          "bans": 89
+        },
+        {
+          "hero_id": 1028,
+          "bans": 567
+        },
+        {
+          "hero_id": 1018,
+          "bans": 14
+        },
+        {
+          "hero_id": 1038,
+          "bans": 6
+        },
+        {
+          "hero_id": 1042,
+          "bans": 358
+        }
+      ],
+      "heroes": [
+        {
+          "heroId": 1016,
+          "matches": 2682,
+          "wins": 1387,
+          "wrMatches": 1404,
+          "wrWins": 753,
+          "mirrorMatches": 637,
+          "winRate": 53.63
+        },
+        {
+          "heroId": 1042,
+          "matches": 444,
+          "wins": 255,
+          "wrMatches": 410,
+          "wrWins": 238,
+          "mirrorMatches": 17,
+          "winRate": 58.05
+        },
+        {
+          "heroId": 1017,
+          "matches": 547,
+          "wins": 279,
+          "wrMatches": 351,
+          "wrWins": 180,
+          "mirrorMatches": 98,
+          "winRate": 51.28
+        },
+        {
+          "heroId": 1022,
+          "matches": 838,
+          "wins": 469,
+          "wrMatches": 668,
+          "wrWins": 384,
+          "mirrorMatches": 85,
+          "winRate": 57.49
+        },
+        {
+          "heroId": 1051,
+          "matches": 682,
+          "wins": 324,
+          "wrMatches": 550,
+          "wrWins": 258,
+          "mirrorMatches": 66,
+          "winRate": 46.91
+        },
+        {
+          "heroId": 1024,
+          "matches": 1788,
+          "wins": 865,
+          "wrMatches": 1140,
+          "wrWins": 547,
+          "mirrorMatches": 322,
+          "winRate": 47.98
+        },
+        {
+          "heroId": 1018,
+          "matches": 1927,
+          "wins": 952,
+          "wrMatches": 1144,
+          "wrWins": 561,
+          "mirrorMatches": 390,
+          "winRate": 49.04
+        },
+        {
+          "heroId": 1040,
+          "matches": 682,
+          "wins": 335,
+          "wrMatches": 600,
+          "wrWins": 294,
+          "mirrorMatches": 41,
+          "winRate": 49
+        },
+        {
+          "heroId": 1036,
+          "matches": 1272,
+          "wins": 677,
+          "wrMatches": 937,
+          "wrWins": 512,
+          "mirrorMatches": 167,
+          "winRate": 54.64
+        },
+        {
+          "heroId": 1050,
+          "matches": 2565,
+          "wins": 1164,
+          "wrMatches": 1498,
+          "wrWins": 642,
+          "mirrorMatches": 532,
+          "winRate": 42.86
+        },
+        {
+          "heroId": 1023,
+          "matches": 3321,
+          "wins": 1775,
+          "wrMatches": 1532,
+          "wrWins": 892,
+          "mirrorMatches": 888,
+          "winRate": 58.22
+        },
+        {
+          "heroId": 1028,
+          "matches": 755,
+          "wins": 360,
+          "wrMatches": 545,
+          "wrWins": 255,
+          "mirrorMatches": 105,
+          "winRate": 46.79
+        },
+        {
+          "heroId": 1052,
+          "matches": 618,
+          "wins": 331,
+          "wrMatches": 543,
+          "wrWins": 293,
+          "mirrorMatches": 37,
+          "winRate": 53.96
+        },
+        {
+          "heroId": 1043,
+          "matches": 529,
+          "wins": 252,
+          "wrMatches": 478,
+          "wrWins": 225,
+          "mirrorMatches": 25,
+          "winRate": 47.07
+        },
+        {
+          "heroId": 1041,
+          "matches": 2035,
+          "wins": 911,
+          "wrMatches": 1387,
+          "wrWins": 596,
+          "mirrorMatches": 321,
+          "winRate": 42.97
+        },
+        {
+          "heroId": 1045,
+          "matches": 543,
+          "wins": 260,
+          "wrMatches": 415,
+          "wrWins": 198,
+          "mirrorMatches": 64,
+          "winRate": 47.71
+        },
+        {
+          "heroId": 1053,
+          "matches": 3199,
+          "wins": 1635,
+          "wrMatches": 723,
+          "wrWins": 416,
+          "mirrorMatches": 1222,
+          "winRate": 57.54
+        },
+        {
+          "heroId": 1031,
+          "matches": 3947,
+          "wins": 1926,
+          "wrMatches": 1393,
+          "wrWins": 665,
+          "mirrorMatches": 1262,
+          "winRate": 47.74
+        },
+        {
+          "heroId": 1033,
+          "matches": 155,
+          "wins": 62,
+          "wrMatches": 139,
+          "wrWins": 54,
+          "mirrorMatches": 8,
+          "winRate": 38.85
+        },
+        {
+          "heroId": 1049,
+          "matches": 1072,
+          "wins": 561,
+          "wrMatches": 425,
+          "wrWins": 239,
+          "mirrorMatches": 321,
+          "winRate": 56.24
+        },
+        {
+          "heroId": 1047,
+          "matches": 499,
+          "wins": 224,
+          "wrMatches": 447,
+          "wrWins": 198,
+          "mirrorMatches": 26,
+          "winRate": 44.3
+        },
+        {
+          "heroId": 1015,
+          "matches": 542,
+          "wins": 280,
+          "wrMatches": 460,
+          "wrWins": 239,
+          "mirrorMatches": 41,
+          "winRate": 51.96
+        },
+        {
+          "heroId": 1039,
+          "matches": 362,
+          "wins": 178,
+          "wrMatches": 328,
+          "wrWins": 161,
+          "mirrorMatches": 17,
+          "winRate": 49.09
+        },
+        {
+          "heroId": 1025,
+          "matches": 2716,
+          "wins": 1318,
+          "wrMatches": 1562,
+          "wrWins": 749,
+          "mirrorMatches": 573,
+          "winRate": 47.95
+        },
+        {
+          "heroId": 1046,
+          "matches": 181,
+          "wins": 81,
+          "wrMatches": 169,
+          "wrWins": 76,
+          "mirrorMatches": 6,
+          "winRate": 44.97
+        },
+        {
+          "heroId": 1027,
+          "matches": 609,
+          "wins": 309,
+          "wrMatches": 483,
+          "wrWins": 247,
+          "mirrorMatches": 63,
+          "winRate": 51.14
+        },
+        {
+          "heroId": 1032,
+          "matches": 382,
+          "wins": 167,
+          "wrMatches": 336,
+          "wrWins": 146,
+          "mirrorMatches": 23,
+          "winRate": 43.45
+        },
+        {
+          "heroId": 1029,
+          "matches": 1088,
+          "wins": 564,
+          "wrMatches": 834,
+          "wrWins": 438,
+          "mirrorMatches": 127,
+          "winRate": 52.52
+        },
+        {
+          "heroId": 1037,
+          "matches": 5016,
+          "wins": 2458,
+          "wrMatches": 1419,
+          "wrWins": 694,
+          "mirrorMatches": 1771,
+          "winRate": 48.91
+        },
+        {
+          "heroId": 1035,
+          "matches": 465,
+          "wins": 256,
+          "wrMatches": 435,
+          "wrWins": 242,
+          "mirrorMatches": 15,
+          "winRate": 55.63
+        },
+        {
+          "heroId": 1020,
+          "matches": 258,
+          "wins": 131,
+          "wrMatches": 228,
+          "wrWins": 116,
+          "mirrorMatches": 15,
+          "winRate": 50.88
+        },
+        {
+          "heroId": 1026,
+          "matches": 870,
+          "wins": 459,
+          "wrMatches": 632,
+          "wrWins": 341,
+          "mirrorMatches": 118,
+          "winRate": 53.96
+        },
+        {
+          "heroId": 1011,
+          "matches": 808,
+          "wins": 412,
+          "wrMatches": 540,
+          "wrWins": 276,
+          "mirrorMatches": 134,
+          "winRate": 51.11
+        },
+        {
+          "heroId": 1030,
+          "matches": 265,
+          "wins": 138,
+          "wrMatches": 245,
+          "wrWins": 130,
+          "mirrorMatches": 10,
+          "winRate": 53.06
+        },
+        {
+          "heroId": 1021,
+          "matches": 280,
+          "wins": 142,
+          "wrMatches": 258,
+          "wrWins": 131,
+          "mirrorMatches": 11,
+          "winRate": 50.78
+        },
+        {
+          "heroId": 1048,
+          "matches": 1480,
+          "wins": 762,
+          "wrMatches": 999,
+          "wrWins": 524,
+          "mirrorMatches": 240,
+          "winRate": 52.45
+        },
+        {
+          "heroId": 1038,
+          "matches": 99,
+          "wins": 44,
+          "wrMatches": 97,
+          "wrWins": 43,
+          "mirrorMatches": 1,
+          "winRate": 44.33
+        },
+        {
+          "heroId": 1034,
+          "matches": 570,
+          "wins": 277,
+          "wrMatches": 482,
+          "wrWins": 235,
+          "mirrorMatches": 44,
+          "winRate": 48.76
+        },
+        {
+          "heroId": 1014,
+          "matches": 1381,
+          "wins": 687,
+          "wrMatches": 918,
+          "wrWins": 458,
+          "mirrorMatches": 231,
+          "winRate": 49.89
+        }
+      ]
+    },
+    "8": {
+      "bans": [
+        {
+          "hero_id": 1050,
+          "bans": 4
+        },
+        {
+          "hero_id": 1053,
+          "bans": 17
+        },
+        {
+          "hero_id": 1026,
+          "bans": 7
+        },
+        {
+          "hero_id": 1027,
+          "bans": 6
+        },
+        {
+          "hero_id": 1021,
+          "bans": 13
+        },
+        {
+          "hero_id": 1042,
+          "bans": 11
+        },
+        {
+          "hero_id": 1040,
+          "bans": 6
+        },
+        {
+          "hero_id": 1034,
+          "bans": 1
+        },
+        {
+          "hero_id": 1032,
+          "bans": 6
+        },
+        {
+          "hero_id": 1037,
+          "bans": 3
+        },
+        {
+          "hero_id": 1029,
+          "bans": 3
+        },
+        {
+          "hero_id": 1016,
+          "bans": 3
+        },
+        {
+          "hero_id": 1017,
+          "bans": 13
+        },
+        {
+          "hero_id": 1036,
+          "bans": 17
+        },
+        {
+          "hero_id": 1049,
+          "bans": 27
+        },
+        {
+          "hero_id": 1011,
+          "bans": 14
+        },
+        {
+          "hero_id": 1045,
+          "bans": 1
+        },
+        {
+          "hero_id": 1048,
+          "bans": 10
+        },
+        {
+          "hero_id": 1030,
+          "bans": 1
+        },
+        {
+          "hero_id": 1052,
+          "bans": 7
+        },
+        {
+          "hero_id": 1015,
+          "bans": 1
+        },
+        {
+          "hero_id": 0,
+          "bans": 2
+        },
+        {
+          "hero_id": 1022,
+          "bans": 15
+        },
+        {
+          "hero_id": 1024,
+          "bans": 2
+        },
+        {
+          "hero_id": 1014,
+          "bans": 6
+        }
+      ],
+      "heroes": [
+        {
+          "heroId": 1053,
+          "matches": 55,
+          "wins": 26,
+          "wrMatches": 6,
+          "wrWins": 2,
+          "mirrorMatches": 24,
+          "winRate": 33.33
+        },
+        {
+          "heroId": 1036,
+          "matches": 14,
+          "wins": 8,
+          "wrMatches": 8,
+          "wrWins": 5,
+          "mirrorMatches": 3,
+          "winRate": 62.5
+        },
+        {
+          "heroId": 1031,
+          "matches": 56,
+          "wins": 22,
+          "wrMatches": 24,
+          "wrWins": 9,
+          "mirrorMatches": 16,
+          "winRate": 37.5
+        },
+        {
+          "heroId": 1047,
+          "matches": 2,
+          "wins": 1,
+          "wrMatches": 2,
+          "wrWins": 1,
+          "mirrorMatches": 0,
+          "winRate": 50
+        },
+        {
+          "heroId": 1027,
+          "matches": 11,
+          "wins": 6,
+          "wrMatches": 5,
+          "wrWins": 3,
+          "mirrorMatches": 3,
+          "winRate": 60
+        },
+        {
+          "heroId": 1016,
+          "matches": 37,
+          "wins": 22,
+          "wrMatches": 17,
+          "wrWins": 12,
+          "mirrorMatches": 10,
+          "winRate": 70.59
+        },
+        {
+          "heroId": 1052,
+          "matches": 8,
+          "wins": 6,
+          "wrMatches": 8,
+          "wrWins": 6,
+          "mirrorMatches": 0,
+          "winRate": 75
+        },
+        {
+          "heroId": 1050,
+          "matches": 48,
+          "wins": 24,
+          "wrMatches": 20,
+          "wrWins": 10,
+          "mirrorMatches": 14,
+          "winRate": 50
+        },
+        {
+          "heroId": 1042,
+          "matches": 6,
+          "wins": 4,
+          "wrMatches": 6,
+          "wrWins": 4,
+          "mirrorMatches": 0,
+          "winRate": 66.67
+        },
+        {
+          "heroId": 1032,
+          "matches": 4,
+          "wins": 3,
+          "wrMatches": 2,
+          "wrWins": 2,
+          "mirrorMatches": 1,
+          "winRate": 100
+        },
+        {
+          "heroId": 1049,
+          "matches": 29,
+          "wins": 13,
+          "wrMatches": 7,
+          "wrWins": 2,
+          "mirrorMatches": 11,
+          "winRate": 28.57
+        },
+        {
+          "heroId": 1020,
+          "matches": 2,
+          "wins": 2,
+          "wrMatches": 2,
+          "wrWins": 2,
+          "mirrorMatches": 0,
+          "winRate": 100
+        },
+        {
+          "heroId": 1051,
+          "matches": 5,
+          "wins": 2,
+          "wrMatches": 5,
+          "wrWins": 2,
+          "mirrorMatches": 0,
+          "winRate": 40
+        },
+        {
+          "heroId": 1011,
+          "matches": 15,
+          "wins": 6,
+          "wrMatches": 13,
+          "wrWins": 5,
+          "mirrorMatches": 1,
+          "winRate": 38.46
+        },
+        {
+          "heroId": 1029,
+          "matches": 6,
+          "wins": 4,
+          "wrMatches": 6,
+          "wrWins": 4,
+          "mirrorMatches": 0,
+          "winRate": 66.67
+        },
+        {
+          "heroId": 1024,
+          "matches": 23,
+          "wins": 11,
+          "wrMatches": 17,
+          "wrWins": 8,
+          "mirrorMatches": 3,
+          "winRate": 47.06
+        },
+        {
+          "heroId": 1026,
+          "matches": 4,
+          "wins": 2,
+          "wrMatches": 4,
+          "wrWins": 2,
+          "mirrorMatches": 0,
+          "winRate": 50
+        },
+        {
+          "heroId": 1033,
+          "matches": 1,
+          "wins": 0,
+          "wrMatches": 1,
+          "wrWins": 0,
+          "mirrorMatches": 0,
+          "winRate": 0
+        },
+        {
+          "heroId": 1017,
+          "matches": 6,
+          "wins": 4,
+          "wrMatches": 6,
+          "wrWins": 4,
+          "mirrorMatches": 0,
+          "winRate": 66.67
+        },
+        {
+          "heroId": 1046,
+          "matches": 1,
+          "wins": 0,
+          "wrMatches": 1,
+          "wrWins": 0,
+          "mirrorMatches": 0,
+          "winRate": 0
+        },
+        {
+          "heroId": 1043,
+          "matches": 10,
+          "wins": 5,
+          "wrMatches": 10,
+          "wrWins": 5,
+          "mirrorMatches": 0,
+          "winRate": 50
+        },
+        {
+          "heroId": 1041,
+          "matches": 27,
+          "wins": 14,
+          "wrMatches": 23,
+          "wrWins": 12,
+          "mirrorMatches": 2,
+          "winRate": 52.17
+        },
+        {
+          "heroId": 1014,
+          "matches": 16,
+          "wins": 9,
+          "wrMatches": 10,
+          "wrWins": 6,
+          "mirrorMatches": 3,
+          "winRate": 60
+        },
+        {
+          "heroId": 1037,
+          "matches": 68,
+          "wins": 32,
+          "wrMatches": 12,
+          "wrWins": 4,
+          "mirrorMatches": 28,
+          "winRate": 33.33
+        },
+        {
+          "heroId": 1025,
+          "matches": 19,
+          "wins": 7,
+          "wrMatches": 15,
+          "wrWins": 5,
+          "mirrorMatches": 2,
+          "winRate": 33.33
+        },
+        {
+          "heroId": 1040,
+          "matches": 10,
+          "wins": 5,
+          "wrMatches": 10,
+          "wrWins": 5,
+          "mirrorMatches": 0,
+          "winRate": 50
+        },
+        {
+          "heroId": 1022,
+          "matches": 7,
+          "wins": 3,
+          "wrMatches": 7,
+          "wrWins": 3,
+          "mirrorMatches": 0,
+          "winRate": 42.86
+        },
+        {
+          "heroId": 1018,
+          "matches": 17,
+          "wins": 11,
+          "wrMatches": 9,
+          "wrWins": 7,
+          "mirrorMatches": 4,
+          "winRate": 77.78
+        },
+        {
+          "heroId": 1034,
+          "matches": 3,
+          "wins": 1,
+          "wrMatches": 3,
+          "wrWins": 1,
+          "mirrorMatches": 0,
+          "winRate": 33.33
+        },
+        {
+          "heroId": 1023,
+          "matches": 35,
+          "wins": 19,
+          "wrMatches": 17,
+          "wrWins": 10,
+          "mirrorMatches": 9,
+          "winRate": 58.82
+        },
+        {
+          "heroId": 1045,
+          "matches": 9,
+          "wins": 2,
+          "wrMatches": 9,
+          "wrWins": 2,
+          "mirrorMatches": 0,
+          "winRate": 22.22
+        },
+        {
+          "heroId": 1035,
+          "matches": 1,
+          "wins": 1,
+          "wrMatches": 1,
+          "wrWins": 1,
+          "mirrorMatches": 0,
+          "winRate": 100
+        },
+        {
+          "heroId": 1015,
+          "matches": 14,
+          "wins": 6,
+          "wrMatches": 12,
+          "wrWins": 5,
+          "mirrorMatches": 1,
+          "winRate": 41.67
+        },
+        {
+          "heroId": 1048,
+          "matches": 7,
+          "wins": 4,
+          "wrMatches": 7,
+          "wrWins": 4,
+          "mirrorMatches": 0,
+          "winRate": 57.14
+        },
+        {
+          "heroId": 1021,
+          "matches": 7,
+          "wins": 6,
+          "wrMatches": 7,
+          "wrWins": 6,
+          "mirrorMatches": 0,
+          "winRate": 85.71
+        },
+        {
+          "heroId": 1028,
+          "matches": 5,
+          "wins": 3,
+          "wrMatches": 3,
+          "wrWins": 2,
+          "mirrorMatches": 1,
+          "winRate": 66.67
+        }
+      ]
+    },
+    "9": {
+      "bans": [
+        {
+          "hero_id": 1018,
+          "bans": 193
+        },
+        {
+          "hero_id": 1027,
+          "bans": 1120
+        },
+        {
+          "hero_id": 1016,
+          "bans": 2247
+        },
+        {
+          "hero_id": 1048,
+          "bans": 578
+        },
+        {
+          "hero_id": 1047,
+          "bans": 266
+        },
+        {
+          "hero_id": 1051,
+          "bans": 459
+        },
+        {
+          "hero_id": 1053,
+          "bans": 15008
+        },
+        {
+          "hero_id": 1011,
+          "bans": 11274
+        },
+        {
+          "hero_id": 0,
+          "bans": 1067
+        },
+        {
+          "hero_id": 1033,
+          "bans": 242
+        },
+        {
+          "hero_id": 1032,
+          "bans": 328
+        },
+        {
+          "hero_id": 1025,
+          "bans": 270
+        },
+        {
+          "hero_id": 1026,
+          "bans": 22255
+        },
+        {
+          "hero_id": 1022,
+          "bans": 641
+        },
+        {
+          "hero_id": 1015,
+          "bans": 10858
+        },
+        {
+          "hero_id": 1024,
+          "bans": 2518
+        },
+        {
+          "hero_id": 1050,
+          "bans": 224
+        },
+        {
+          "hero_id": 1046,
+          "bans": 55
+        },
+        {
+          "hero_id": 1029,
+          "bans": 869
+        },
+        {
+          "hero_id": 1036,
+          "bans": 2143
+        },
+        {
+          "hero_id": 1040,
+          "bans": 295
+        },
+        {
+          "hero_id": 1028,
+          "bans": 4229
+        },
+        {
+          "hero_id": 1052,
+          "bans": 199
+        },
+        {
+          "hero_id": 1031,
+          "bans": 434
+        },
+        {
+          "hero_id": 1042,
+          "bans": 10668
+        },
+        {
+          "hero_id": 1014,
+          "bans": 5143
+        },
+        {
+          "hero_id": 1043,
+          "bans": 116
+        },
+        {
+          "hero_id": 1023,
+          "bans": 3172
+        },
+        {
+          "hero_id": 1034,
+          "bans": 9954
+        },
+        {
+          "hero_id": 1020,
+          "bans": 44
+        },
+        {
+          "hero_id": 1045,
+          "bans": 1188
+        },
+        {
+          "hero_id": 1037,
+          "bans": 1054
+        },
+        {
+          "hero_id": 1035,
+          "bans": 87
+        },
+        {
+          "hero_id": 1017,
+          "bans": 1017
+        },
+        {
+          "hero_id": 1030,
+          "bans": 83
+        },
+        {
+          "hero_id": 1049,
+          "bans": 20103
+        },
+        {
+          "hero_id": 1041,
+          "bans": 276
+        },
+        {
+          "hero_id": 1039,
+          "bans": 107
+        },
+        {
+          "hero_id": 1021,
+          "bans": 495
+        },
+        {
+          "hero_id": 1038,
+          "bans": 57
+        }
+      ],
+      "heroes": [
+        {
+          "heroId": 1050,
+          "matches": 22991,
+          "wins": 10584,
+          "wrMatches": 14167,
+          "wrWins": 6256,
+          "mirrorMatches": 4384,
+          "winRate": 44.16
+        },
+        {
+          "heroId": 1053,
+          "matches": 20396,
+          "wins": 10407,
+          "wrMatches": 8789,
+          "wrWins": 4669,
+          "mirrorMatches": 5759,
+          "winRate": 53.12
+        },
+        {
+          "heroId": 1027,
+          "matches": 4944,
+          "wins": 2458,
+          "wrMatches": 4369,
+          "wrWins": 2173,
+          "mirrorMatches": 287,
+          "winRate": 49.74
+        },
+        {
+          "heroId": 1041,
+          "matches": 14484,
+          "wins": 6716,
+          "wrMatches": 10879,
+          "wrWins": 4945,
+          "mirrorMatches": 1796,
+          "winRate": 45.45
+        },
+        {
+          "heroId": 1018,
+          "matches": 18689,
+          "wins": 9306,
+          "wrMatches": 12223,
+          "wrWins": 6138,
+          "mirrorMatches": 3214,
+          "winRate": 50.22
+        },
+        {
+          "heroId": 1046,
+          "matches": 2072,
+          "wins": 971,
+          "wrMatches": 1954,
+          "wrWins": 911,
+          "mirrorMatches": 59,
+          "winRate": 46.62
+        },
+        {
+          "heroId": null,
+          "matches": 3,
+          "wins": 0,
+          "wrMatches": 3,
+          "wrWins": 0,
+          "mirrorMatches": 0,
+          "winRate": 0
+        },
+        {
+          "heroId": 1043,
+          "matches": 5321,
+          "wins": 2541,
+          "wrMatches": 4799,
+          "wrWins": 2284,
+          "mirrorMatches": 261,
+          "winRate": 47.59
+        },
+        {
+          "heroId": 1021,
+          "matches": 2568,
+          "wins": 1188,
+          "wrMatches": 2331,
+          "wrWins": 1071,
+          "mirrorMatches": 118,
+          "winRate": 45.95
+        },
+        {
+          "heroId": 1042,
+          "matches": 3932,
+          "wins": 2302,
+          "wrMatches": 3392,
+          "wrWins": 2045,
+          "mirrorMatches": 270,
+          "winRate": 60.29
+        },
+        {
+          "heroId": 1034,
+          "matches": 7310,
+          "wins": 3828,
+          "wrMatches": 5697,
+          "wrWins": 3025,
+          "mirrorMatches": 803,
+          "winRate": 53.1
+        },
+        {
+          "heroId": 1029,
+          "matches": 9724,
+          "wins": 5322,
+          "wrMatches": 7736,
+          "wrWins": 4328,
+          "mirrorMatches": 992,
+          "winRate": 55.95
+        },
+        {
+          "heroId": 1035,
+          "matches": 4238,
+          "wins": 2068,
+          "wrMatches": 3938,
+          "wrWins": 1919,
+          "mirrorMatches": 150,
+          "winRate": 48.73
+        },
+        {
+          "heroId": 1037,
+          "matches": 30397,
+          "wins": 14905,
+          "wrMatches": 13934,
+          "wrWins": 6802,
+          "mirrorMatches": 8155,
+          "winRate": 48.82
+        },
+        {
+          "heroId": 1017,
+          "matches": 2410,
+          "wins": 1205,
+          "wrMatches": 2202,
+          "wrWins": 1103,
+          "mirrorMatches": 104,
+          "winRate": 50.09
+        },
+        {
+          "heroId": 1022,
+          "matches": 6071,
+          "wins": 3234,
+          "wrMatches": 5325,
+          "wrWins": 2862,
+          "mirrorMatches": 372,
+          "winRate": 53.75
+        },
+        {
+          "heroId": 1048,
+          "matches": 6349,
+          "wins": 3260,
+          "wrMatches": 5342,
+          "wrWins": 2760,
+          "mirrorMatches": 503,
+          "winRate": 51.67
+        },
+        {
+          "heroId": 1015,
+          "matches": 4048,
+          "wins": 2132,
+          "wrMatches": 3473,
+          "wrWins": 1850,
+          "mirrorMatches": 287,
+          "winRate": 53.27
+        },
+        {
+          "heroId": 1024,
+          "matches": 12224,
+          "wins": 6167,
+          "wrMatches": 8832,
+          "wrWins": 4488,
+          "mirrorMatches": 1690,
+          "winRate": 50.82
+        },
+        {
+          "heroId": 1020,
+          "matches": 2583,
+          "wins": 1386,
+          "wrMatches": 2373,
+          "wrWins": 1282,
+          "mirrorMatches": 105,
+          "winRate": 54.02
+        },
+        {
+          "heroId": 1023,
+          "matches": 29078,
+          "wins": 15648,
+          "wrMatches": 14116,
+          "wrWins": 8299,
+          "mirrorMatches": 7411,
+          "winRate": 58.79
+        },
+        {
+          "heroId": 1039,
+          "matches": 7342,
+          "wins": 3697,
+          "wrMatches": 6313,
+          "wrWins": 3187,
+          "mirrorMatches": 514,
+          "winRate": 50.48
+        },
+        {
+          "heroId": 1045,
+          "matches": 6687,
+          "wins": 3321,
+          "wrMatches": 5437,
+          "wrWins": 2711,
+          "mirrorMatches": 622,
+          "winRate": 49.86
+        },
+        {
+          "heroId": 1028,
+          "matches": 6179,
+          "wins": 3128,
+          "wrMatches": 5110,
+          "wrWins": 2598,
+          "mirrorMatches": 534,
+          "winRate": 50.84
+        },
+        {
+          "heroId": 1047,
+          "matches": 7909,
+          "wins": 3763,
+          "wrMatches": 6520,
+          "wrWins": 3078,
+          "mirrorMatches": 693,
+          "winRate": 47.21
+        },
+        {
+          "heroId": 1030,
+          "matches": 5253,
+          "wins": 2460,
+          "wrMatches": 4692,
+          "wrWins": 2180,
+          "mirrorMatches": 280,
+          "winRate": 46.46
+        },
+        {
+          "heroId": 1032,
+          "matches": 5944,
+          "wins": 2770,
+          "wrMatches": 5024,
+          "wrWins": 2315,
+          "mirrorMatches": 459,
+          "winRate": 46.08
+        },
+        {
+          "heroId": 1038,
+          "matches": 3759,
+          "wins": 1759,
+          "wrMatches": 3430,
+          "wrWins": 1597,
+          "mirrorMatches": 164,
+          "winRate": 46.56
+        },
+        {
+          "heroId": 1049,
+          "matches": 9165,
+          "wins": 4849,
+          "wrMatches": 5705,
+          "wrWins": 3136,
+          "mirrorMatches": 1719,
+          "winRate": 54.97
+        },
+        {
+          "heroId": 1016,
+          "matches": 16564,
+          "wins": 8530,
+          "wrMatches": 11503,
+          "wrWins": 6030,
+          "mirrorMatches": 2523,
+          "winRate": 52.42
+        },
+        {
+          "heroId": 1040,
+          "matches": 8195,
+          "wins": 4128,
+          "wrMatches": 7045,
+          "wrWins": 3564,
+          "mirrorMatches": 574,
+          "winRate": 50.59
+        },
+        {
+          "heroId": 1051,
+          "matches": 8782,
+          "wins": 4046,
+          "wrMatches": 7070,
+          "wrWins": 3201,
+          "mirrorMatches": 854,
+          "winRate": 45.28
+        },
+        {
+          "heroId": 1014,
+          "matches": 9760,
+          "wins": 4662,
+          "wrMatches": 7157,
+          "wrWins": 3379,
+          "mirrorMatches": 1296,
+          "winRate": 47.21
+        },
+        {
+          "heroId": 1025,
+          "matches": 33288,
+          "wins": 15995,
+          "wrMatches": 14991,
+          "wrWins": 7018,
+          "mirrorMatches": 9064,
+          "winRate": 46.81
+        },
+        {
+          "heroId": 1033,
+          "matches": 1790,
+          "wins": 732,
+          "wrMatches": 1670,
+          "wrWins": 673,
+          "mirrorMatches": 60,
+          "winRate": 40.3
+        },
+        {
+          "heroId": 1031,
+          "matches": 21502,
+          "wins": 10068,
+          "wrMatches": 12465,
+          "wrWins": 5628,
+          "mirrorMatches": 4474,
+          "winRate": 45.15
+        },
+        {
+          "heroId": 1011,
+          "matches": 8846,
+          "wins": 4689,
+          "wrMatches": 6359,
+          "wrWins": 3455,
+          "mirrorMatches": 1239,
+          "winRate": 54.33
+        },
+        {
+          "heroId": 1036,
+          "matches": 11253,
+          "wins": 5731,
+          "wrMatches": 8710,
+          "wrWins": 4481,
+          "mirrorMatches": 1268,
+          "winRate": 51.45
+        },
+        {
+          "heroId": 1052,
+          "matches": 3935,
+          "wins": 2039,
+          "wrMatches": 3621,
+          "wrWins": 1882,
+          "mirrorMatches": 157,
+          "winRate": 51.97
+        },
+        {
+          "heroId": 1026,
+          "matches": 8023,
+          "wins": 4279,
+          "wrMatches": 5075,
+          "wrWins": 2809,
+          "mirrorMatches": 1465,
+          "winRate": 55.35
+        }
+      ]
+    }
+  }
+}

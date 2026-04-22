@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Marvel Rivals Tier List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="tier-page">
+    <h1>Tier List</h1>
+
+    <div id="errorBox"></div>
+
+    <div class="controls">
+        <div class="control-group">
+            <label for="seasonSelect">Season</label>
+            <select id="seasonSelect">
+                <option value="1">Season 0</option>
+                <option value="2">Season 1</option>
+                <option value="3">Season 1.5</option>
+                <option value="4">Season 2</option>
+                <option value="5">Season 2.5</option>
+                <option value="6">Season 3</option>
+                <option value="7">Season 3.5</option>
+                <option value="8">Season 4</option>
+                <option value="9">Season 4.5</option>
+                <option value="10">Season 5</option>
+                <option value="11">Season 5.5</option>
+                <option value="12">Season 6</option>
+                <option value="13">Season 6.5</option>
+                <option value="14">Season 7</option>
+                <option value="15" selected>Season 7.5</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label for="rankSelect">Rank</label>
+            <select id="rankSelect">
+                <option value="0">All Ranks</option>
+                <option value="1">Bronze</option>
+                <option value="2">Silver</option>
+                <option value="3">Gold</option>
+                <option value="4">Platinum</option>
+                <option value="5">Diamond</option>
+                <option value="6" selected>Diamond+</option>
+                <option value="7">Grandmaster</option>
+                <option value="8">Grandmaster+</option>
+                <option value="9">Celestial</option>
+                <option value="10">Celestial+</option>
+                <option value="11">Eternity</option>
+                <option value="12">Eternity+</option>
+                <option value="13">One Above All</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label for="searchInput">Search Hero</label>
+            <input id="searchInput" type="text" placeholder="Type to search..." />
+        </div>
+    </div>
+
+    <div id="tiers" class="tiers"></div>
+
+    <div id="heroModal" class="hero-modal-overlay">
+        <div class="hero-modal-card">
+            <button id="heroModalClose" class="hero-modal-close-btn" type="button">×</button>
+            <div id="heroModalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const seasonSelect = document.getElementById("seasonSelect");
+        const rankSelect = document.getElementById("rankSelect");
+        const searchInput = document.getElementById("searchInput");
+        const tiersContainer = document.getElementById("tiers");
+        const errorBox = document.getElementById("errorBox");
+
+        const heroModal = document.getElementById("heroModal");
+        const heroModalContent = document.getElementById("heroModalContent");
+        const heroModalClose = document.getElementById("heroModalClose");
+
+        let heroMap = {};
+        let seasonData = null;
+
+        function escapeHtml(value) {
+            return String(value || "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+        }
+
+        function sortHeroes(heroes) {
+            return [...heroes].sort((a, b) => {
+                const scoreA = (a.winRate || 0) * Math.log(Math.max(a.wrMatches || 1, 1));
+                const scoreB = (b.winRate || 0) * Math.log(Math.max(b.wrMatches || 1, 1));
+                return scoreB - scoreA;
+            });
+        }
+
+        function groupHeroesIntoTiers(heroes) {
+            const tiers = { S: [], A: [], B: [], C: [], D: [], E: [], F: [] };
+
+            for (const hero of heroes) {
+                if (hero.winRate >= 60) tiers.S.push(hero);
+                else if (hero.winRate >= 55) tiers.A.push(hero);
+                else if (hero.winRate >= 52) tiers.B.push(hero);
+                else if (hero.winRate >= 49) tiers.C.push(hero);
+                else if (hero.winRate >= 45) tiers.D.push(hero);
+                else if (hero.winRate >= 40) tiers.E.push(hero);
+                else tiers.F.push(hero);
+            }
+
+            return tiers;
+        }
+
+        function mergeHero(hero) {
+            const meta = heroMap[String(hero.heroId)] || {};
+
+            return {
+                ...hero,
+                name: meta.name || `Hero ${hero.heroId}`,
+                image: meta.image || "",
+                slug: meta.slug || "",
+                role: meta.role || "",
+                difficulty: meta.difficulty || "",
+                itemQuality: meta.itemQuality || "",
+                description: meta.description || "",
+                lore: meta.lore || "",
+                abilities: Array.isArray(meta.abilities) ? meta.abilities : [],
+                tips: Array.isArray(meta.tips) ? meta.tips : [],
+                counters: Array.isArray(meta.counters) ? meta.counters : [],
+                skins: Array.isArray(meta.skins) ? meta.skins : []
+            };
+        }
+
+        function getMergedHeroesForRank(rank) {
+            const rankData = seasonData?.ranks?.[String(rank)];
+
+            if (!rankData || !Array.isArray(rankData.heroes)) {
+                return [];
+            }
+
+            return rankData.heroes
+                .filter((hero) => hero && hero.heroId != null)
+                .map(mergeHero);
+        }
+
+        function getMergedHeroesForAllRanks() {
+            return Object.values(seasonData?.ranks || {})
+                .flatMap((rankData) => Array.isArray(rankData?.heroes) ? rankData.heroes : [])
+                .filter((hero) => hero && hero.heroId != null)
+                .map(mergeHero);
+        }
+
+        function renderHero(hero) {
+            const fallback = "https://via.placeholder.com/70x70?text=?";
+
+            const imageHtml = hero.image
+                ? `<img src="${escapeHtml(hero.image)}" alt="${escapeHtml(hero.name)}" onerror="this.onerror=null;this.src='${fallback}'">`
+                : `<img src="${fallback}" alt="${escapeHtml(hero.name)}">`;
+
+            return `
+                <button class="hero hero-button" type="button" data-hero-id="${escapeHtml(hero.heroId)}">
+                    <div class="hero-winrate">${hero.winRate}%</div>
+                    <div class="hero-image-wrap">${imageHtml}</div>
+                    <div class="hero-name">${escapeHtml(hero.name)}</div>
+                </button>
+            `;
+        }
+
+        function renderTiers(tiers) {
+            const order = ["S", "A", "B", "C", "D", "E", "F"];
+
+            tiersContainer.innerHTML = order.map((tier) => `
+                <div class="tier tier-row">
+                    <div class="tier-label tier-${tier.toLowerCase()}">${tier}</div>
+                    <div class="tier-slot">
+                        ${(tiers[tier] || []).map(renderHero).join("")}
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        function renderList(items, emptyText) {
+            if (!Array.isArray(items) || items.length === 0) {
+                return `<p class="hero-empty">${escapeHtml(emptyText)}</p>`;
+            }
+
+            return `
+                <ul class="hero-list">
+                    ${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+                </ul>
+            `;
+        }
+
+        function renderAbilities(abilities) {
+            if (!Array.isArray(abilities) || abilities.length === 0) {
+                return `<p class="hero-empty">No abilities added yet.</p>`;
+            }
+
+            return abilities.map((ability) => `
+                <div class="hero-box">
+                    <h3>${escapeHtml(ability.name || "Unnamed Ability")}</h3>
+                    ${ability.type ? `<p><strong>Type:</strong> ${escapeHtml(ability.type)}</p>` : ""}
+                    ${ability.cooldown != null ? `<p><strong>Cooldown:</strong> ${escapeHtml(ability.cooldown)}</p>` : ""}
+                    ${ability.description ? `<p>${escapeHtml(ability.description)}</p>` : ""}
+                </div>
+            `).join("");
+        }
+
+        function renderSkins(skins) {
+            if (!Array.isArray(skins) || skins.length === 0) {
+                return `<p class="hero-empty">No skin data available.</p>`;
+            }
+
+            return `
+                <div class="hero-skin-grid">
+                    ${skins.map((skin) => `
+                        <div class="hero-box">
+                            <div class="hero-skin-thumb">
+                                <img
+                                    src="${escapeHtml(skin.image || "")}"
+                                    alt="${escapeHtml(skin.name || "Skin")}"
+                                    onerror="this.onerror=null;this.src='https://via.placeholder.com/120x120?text=?'"
+                                >
+                            </div>
+                            <h3>${escapeHtml(skin.name || "Unnamed Skin")}</h3>
+                            ${skin.itemQuality ? `<p><strong>Quality:</strong> ${escapeHtml(skin.itemQuality)}</p>` : ""}
+                            ${skin.released ? `<p><strong>Released:</strong> ${escapeHtml(skin.released)}</p>` : ""}
+                            ${skin.expires ? `<p><strong>Expires:</strong> ${escapeHtml(skin.expires)}</p>` : ""}
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+        }
+
+        function renderHeroModal(hero) {
+            const fallback = "https://via.placeholder.com/320x320?text=?";
+
+            return `
+                <div class="hero-detail-card">
+                    <div class="hero-detail-left">
+                        <div class="hero-detail-image-wrap">
+                            <img
+                                src="${escapeHtml(hero.image || fallback)}"
+                                alt="${escapeHtml(hero.name || "Unknown Hero")}"
+                                onerror="this.onerror=null;this.src='${fallback}'"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="hero-detail-right">
+                        <h1>${escapeHtml(hero.name || "Unknown Hero")}</h1>
+
+                        ${hero.role ? `<p><strong>Role:</strong> ${escapeHtml(hero.role)}</p>` : ""}
+                        ${hero.difficulty ? `<p><strong>Difficulty:</strong> ${escapeHtml(hero.difficulty)}</p>` : ""}
+                        ${hero.itemQuality ? `<p><strong>Base Quality:</strong> ${escapeHtml(hero.itemQuality)}</p>` : ""}
+
+                        <div class="hero-box">
+                            <h2>Overview</h2>
+                            ${hero.description
+                    ? `<p>${escapeHtml(hero.description)}</p>`
+                    : `<p class="hero-empty">No description added yet.</p>`}
+                        </div>
+
+                        <div class="hero-box">
+                            <h2>Lore</h2>
+                            ${hero.lore
+                    ? `<p>${escapeHtml(hero.lore)}</p>`
+                    : `<p class="hero-empty">No lore added yet.</p>`}
+                        </div>
+
+                        <div class="hero-box">
+                            <h2>Tips</h2>
+                            ${renderList(hero.tips, "No tips added yet.")}
+                        </div>
+
+                        <div class="hero-box">
+                            <h2>Counters</h2>
+                            ${renderList(hero.counters, "No counters added yet.")}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-box hero-section-block">
+                    <h2>Abilities</h2>
+                    ${renderAbilities(hero.abilities)}
+                </div>
+
+                <div class="hero-box hero-section-block">
+                    <h2>Skins</h2>
+                    ${renderSkins(hero.skins)}
+                </div>
+            `;
+        }
+
+        function openHeroModal(heroId) {
+            const hero = heroMap[String(heroId)];
+
+            if (!hero) {
+                return;
+            }
+
+            heroModalContent.innerHTML = renderHeroModal(hero);
+            heroModal.classList.add("show");
+            document.body.classList.add("modal-open");
+        }
+
+        function closeHeroModal() {
+            heroModal.classList.remove("show");
+            heroModalContent.innerHTML = "";
+            document.body.classList.remove("modal-open");
+        }
+
+        function setError(message) {
+            errorBox.innerHTML = message
+                ? `<div class="error">${escapeHtml(message)}</div>`
+                : "";
+        }
+
+        function updateView() {
+            if (!seasonData) {
+                return;
+            }
+
+            const selectedRank = rankSelect.value;
+            const searchTerm = searchInput.value.toLowerCase();
+
+            let heroes = selectedRank === "0"
+                ? getMergedHeroesForAllRanks()
+                : getMergedHeroesForRank(selectedRank);
+
+            heroes = heroes.filter((hero) =>
+                hero &&
+                hero.name &&
+                hero.name.toLowerCase().includes(searchTerm)
+            );
+
+            const sorted = sortHeroes(heroes);
+            const tiers = groupHeroesIntoTiers(sorted);
+
+            renderTiers(tiers);
+        }
+
+        async function init() {
+            try {
+                heroMap = await (await fetch("./data/heroes.json")).json();
+                const seasonId = seasonSelect.value;
+                seasonData = await (await fetch(`./data/season-${seasonId}.json`)).json();
+                updateView();
+            } catch (error) {
+                console.error(error);
+                setError("Failed to load data");
+            }
+        }
+
+        seasonSelect.addEventListener("change", async () => {
+            try {
+                const seasonId = seasonSelect.value;
+                seasonData = await (await fetch(`./data/season-${seasonId}.json`)).json();
+                updateView();
+            } catch (error) {
+                console.error(error);
+                setError("Failed to load season data");
+            }
+        });
+
+        rankSelect.addEventListener("change", updateView);
+        searchInput.addEventListener("input", updateView);
+
+        tiersContainer.addEventListener("click", (event) => {
+            const heroButton = event.target.closest(".hero-button");
+
+            if (!heroButton) {
+                return;
+            }
+
+            const heroId = heroButton.dataset.heroId;
+            openHeroModal(heroId);
+        });
+
+        heroModalClose.addEventListener("click", closeHeroModal);
+
+        heroModal.addEventListener("click", (event) => {
+            if (event.target === heroModal) {
+                closeHeroModal();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeHeroModal();
+            }
+        });
+
+        init();
+    </script>
+</body>
+
+</html>

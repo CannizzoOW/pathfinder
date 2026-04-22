@@ -1,15 +1,326 @@
-[
-  {
-    "name": "Angela",
-    "role": "Vanguard",
-    "description": ""
-
-   
+{
+  "1011": {
+    "heroId": 1011,
+    "name": "Hulk",
+    "imageId": "img_selecthero_1011001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1011001.png"
   },
-  {
-     "name": "daredevil",
-     "role": "Vanguard",
-     "description": ""
+  "1014": {
+    "heroId": 1014,
+    "name": "The Punisher",
+    "imageId": "img_selecthero_1014001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1014001.png"
+  },
+  "1015": {
+    "heroId": 1015,
+    "name": "Storm",
+    "imageId": "img_selecthero_1015001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1015001.png"
+  },
+  "1016": {
+    "heroId": 1016,
+    "name": "Loki",
+    "imageId": "img_selecthero_1016001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1016001.png"
+  },
+  "1017": {
+    "heroId": 1017,
+    "name": "Human Torch",
+    "imageId": "img_selecthero_1017001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1017001.png"
+  },
+  "1018": {
+    "heroId": 1018,
+    "name": "Doctor Strange",
+    "imageId": "img_selecthero_1018001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1018001.png"
+  },
+  "1020": {
+    "heroId": 1020,
+    "name": "Mantis",
+    "imageId": "img_selecthero_1020001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1020001.png"
+  },
+  "1021": {
+    "heroId": 1021,
+    "name": "Hawkeye",
+    "imageId": "img_selecthero_1021001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1021001.png"
+  },
+  "1022": {
+    "heroId": 1022,
+    "name": "Captain America",
+    "imageId": "img_selecthero_1022001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1022001.png"
+  },
+  "1023": {
+    "heroId": 1023,
+    "name": "Rocket Raccoon",
+    "imageId": "img_selecthero_1023001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1023001.png"
+  },
+  "1024": {
+    "heroId": 1024,
+    "name": "Hela",
+    "imageId": "img_selecthero_1024001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1024001.png"
+  },
+  "1025": {
+    "heroId": 1025,
+    "name": "Cloak & Dagger",
+    "imageId": "img_selecthero_1025001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1025001.png"
+  },
+  "1026": {
+    "heroId": 1026,
+    "name": "Black Panther",
+    "imageId": "img_selecthero_1026001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1026001.png"
+  },
+  "1027": {
+    "heroId": 1027,
+    "name": "Groot",
+    "imageId": "img_selecthero_1027001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1027001.png"
+  },
+  "1028": {
+    "heroId": 1028,
+    "name": "Ultron",
+    "imageId": "img_selecthero_1028001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1028001.png"
+  },
+  "1029": {
+    "heroId": 1029,
+    "name": "Magik",
+    "imageId": "img_selecthero_1029001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1029001.png"
+  },
+  "1030": {
+    "heroId": 1030,
+    "name": "Moon Knight",
+    "imageId": "img_selecthero_1030001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1030001.png"
+  },
+  "1031": {
+    "heroId": 1031,
+    "name": "Luna Snow",
+    "imageId": "img_selecthero_1031001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1031001.png"
+  },
+  "1032": {
+    "heroId": 1032,
+    "name": "Squirrel Girl",
+    "imageId": "img_selecthero_1032001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1032001.png"
+  },
+  "1033": {
+    "heroId": 1033,
+    "name": "Black Widow",
+    "imageId": "img_selecthero_1033001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1033001.png"
+  },
+  "1034": {
+    "heroId": 1034,
+    "name": "Iron Man",
+    "imageId": "img_selecthero_1034001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1034001.png"
+  },
+  "1035": {
+    "heroId": 1035,
+    "name": "Venom",
+    "imageId": "img_selecthero_1035001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1035001.png"
+  },
+  "1036": {
+    "heroId": 1036,
+    "name": "Spider-Man",
+    "imageId": "img_selecthero_1036001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1036001.png"
+  },
+  "1037": {
+    "heroId": 1037,
+    "name": "Magneto",
+    "imageId": "img_selecthero_1037001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1037001.png"
+  },
+  "1038": {
+    "heroId": 1038,
+    "name": "Scarlet Witch",
+    "imageId": "img_selecthero_1038001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1038001.png"
+  },
+  "1039": {
+    "heroId": 1039,
+    "name": "Thor",
+    "imageId": "img_selecthero_1039001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1039001.png"
+  },
+  "1040": {
+    "heroId": 1040,
+    "name": "Mister Fantastic",
+    "imageId": "img_selecthero_1040001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1040001.png"
+  },
+  "1041": {
+    "heroId": 1041,
+    "name": "Winter Soldier",
+    "imageId": "img_selecthero_1041001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1041001.png"
+  },
+  "1042": {
+    "heroId": 1042,
+    "name": "Peni Parker",
+    "imageId": "img_selecthero_1042001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1042001.png"
+  },
+  "1043": {
+    "heroId": 1043,
+    "name": "Star-Lord",
+    "imageId": "img_selecthero_1043001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1043001.png"
+  },
+  "1044": {
+    "heroId": 1044,
+    "name": "Blade",
+    "imageId": "img_selecthero_1044001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1044001.png"
+  },
+  "1045": {
+    "heroId": 1045,
+    "name": "Namor",
+    "imageId": "img_selecthero_1045001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1045001.png"
+  },
+  "1046": {
+    "heroId": 1046,
+    "name": "Adam Warlock",
+    "imageId": "img_selecthero_1046001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1046001.png"
+  },
+  "1047": {
+    "heroId": 1047,
+    "name": "Jeff The Land Shark",
+    "imageId": "img_selecthero_1047001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1047001.png"
+  },
+  "1048": {
+    "heroId": 1048,
+    "name": "Psylocke",
+    "imageId": "img_selecthero_1048001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1048001.png"
+  },
+  "1049": {
+    "heroId": 1049,
+    "name": "Wolverine",
+    "imageId": "img_selecthero_1049001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1049001.png"
+  },
+  "1050": {
+    "heroId": 1050,
+    "name": "Invisible Woman",
+    "imageId": "img_selecthero_1050001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1050001.png"
+  },
+  "1051": {
+    "heroId": 1051,
+    "name": "The Thing",
+    "imageId": "img_selecthero_1051001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1051001.png"
+  },
+  "1052": {
+    "heroId": 1052,
+    "name": "Iron Fist",
+    "imageId": "img_selecthero_1052001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1052001.png"
+  },
+  "1053": {
+    "heroId": 1053,
+    "name": "Emma Frost",
+    "imageId": "img_selecthero_1053001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1053001.png"
+  },
+  "1054": {
+    "heroId": 1054,
+    "name": "Phoenix",
+    "imageId": "img_selecthero_1054001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1054001.png"
+  },
+  "1055": {
+    "heroId": 1055,
+    "name": "Daredevil",
+    "imageId": "img_selecthero_1055001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1055001.png"
+  },
+  "1056": {
+    "heroId": 1056,
+    "name": "Angela",
+    "imageId": "img_selecthero_1056001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1056001.png"
+  },
+  "1057": {
+    "heroId": 1057,
+    "name": "Deadpool",
+    "imageId": "img_selecthero_1057001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1057001.png"
+  },
+  "1058": {
+    "heroId": 1058,
+    "name": "Gambit",
+    "imageId": "img_selecthero_1058001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1058001.png"
+  },
+  "1059": {
+    "heroId": 1059,
+    "name": "Elsa Bloodstone",
+    "imageId": "img_selecthero_1059001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1059001.png"
+  },
+  "1060": {
+    "heroId": 1060,
+    "name": "White Fox",
+    "imageId": "img_selecthero_1060001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1060001.png"
+  },
+  "1061": {
+    "heroId": 1061,
+    "name": "Black Cat",
+    "imageId": "img_selecthero_1061001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1061001.png"
+  },
+  "1065": {
+    "heroId": 1065,
+    "name": "Rogue",
+    "imageId": "img_selecthero_1065001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1065001.png"
+  },
+  "4017": {
+    "heroId": 4017,
+    "name": "Default",
+    "imageId": "item_skin_galacta001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/item_skin_galacta001.png"
+  },
+  "4018": {
+    "heroId": 4018,
+    "name": "Galacta Bot (Large)",
+    "imageId": "item_skin_9999100",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/item_skin_9999100.png"
+  },
+  "10571": {
+    "heroId": 10571,
+    "name": "Tankpool",
+    "imageId": "img_selecthero_10571001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_10571001.png"
+  },
+  "10572": {
+    "heroId": 10572,
+    "name": "DPSpool",
+    "imageId": "img_selecthero_10572001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_10572001.png"
+  },
+  "10573": {
+    "heroId": 10573,
+    "name": "Healpool",
+    "imageId": "img_selecthero_10573001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_10573001.png"
   }
-]
-
+}

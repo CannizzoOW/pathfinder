@@ -81,7 +81,8 @@ const heroData = {
         { name: "luna-snow", description: "", diagram: "images/diagrams/Luna Snow.png" },
         { name: "mantis", description: "", diagram: "images/diagrams/Mantis.png" },
         { name: "rocket-raccoon", description: "", diagram: "images/diagrams/Rocket Raccoon.png" },
-        { name: "ultron", description: "", diagram: "images/diagrams/Ultron.png" }
+        { name: "ultron", description: "", diagram: "images/diagrams/Ultron.png" },
+        { name: "white fox", description: "", diagram: "images/diagrams/white_fox.png" }
     ]
 };
 
