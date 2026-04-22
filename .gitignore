@@ -1582,3 +1582,4 @@ data/heroes.schema.json
 data/heroes.schema.json
 package.json
 onedrive-sheetscraper.cjs
+scripts/.env

@@ -1,51 +1,165 @@
-const {
-    HEROES_JSON_PATH,
-    readJson,
-    writeJson,
-    slugifyHeroName,
-    normalizeImageUrl,
-    normalizeTextArray
-} = require("./helpers.cjs");
+require("dotenv").config();
+
+const fs = require("fs");
+const path = require("path");
+
+const ROOT_DIR = path.join(__dirname, "..");
+const HEROES_JSON_PATH = path.join(ROOT_DIR, "data", "heroes.json");
 
 const API_KEY = process.env.MARVEL_RIVALS_API_KEY;
-const HEROES_URL = "https://marvelrivalsapi.com/api/v1/heroes";
+const BASE_URL = "https://marvelrivalsapi.com/api/v1";
+const BASE_IMAGE_URL = "https://marvelrivalsapi.com/rivals";
 
 if (!API_KEY) {
     console.error("Missing MARVEL_RIVALS_API_KEY environment variable.");
     process.exit(1);
 }
 
-async function fetchHeroesFromApi() {
-    const response = await fetch(HEROES_URL, {
-        method: "GET",
+function readJson(filePath) {
+    if (!fs.existsSync(filePath)) {
+        return {};
+    }
+
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function writeJson(filePath, data) {
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
+}
+
+function slugifyHeroName(name) {
+    return String(name || "")
+        .toLowerCase()
+        .replace(/&/g, " and ")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+}
+
+function normalizeImageUrl(url) {
+    if (!url) {
+        return "";
+    }
+
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+        return url;
+    }
+
+    if (url.startsWith("/")) {
+        return `${BASE_IMAGE_URL}${url}`;
+    }
+
+    return `${BASE_IMAGE_URL}/${url}`;
+}
+
+async function apiGet(endpoint) {
+    const response = await fetch(`${BASE_URL}${endpoint}`, {
         headers: {
             "x-api-key": API_KEY,
             "accept": "application/json"
         }
     });
 
+    const contentType = response.headers.get("content-type") || "";
+
     if (!response.ok) {
         const text = await response.text();
-        throw new Error(`Failed to fetch heroes: ${response.status} ${text}`);
+        throw new Error(`API ${endpoint} failed: ${response.status} ${text}`);
     }
 
-    const data = await response.json();
+    if (!contentType.includes("application/json")) {
+        const text = await response.text();
+        throw new Error(`API ${endpoint} returned non-JSON response: ${text.slice(0, 300)}`);
+    }
 
+    return response.json();
+}
+
+async function fetchHeroList() {
+    const data = await apiGet("/heroes");
+
+    // Docs show: { status: "success", heroes: [...] }
     if (!data || !Array.isArray(data.heroes)) {
-        throw new Error("Unexpected API response. Expected { heroes: [] }.");
+        console.error("Unexpected /heroes response:", JSON.stringify(data, null, 2));
+        throw new Error("Unexpected response from /heroes");
     }
 
     return data.heroes;
 }
 
-function buildApiIndexes(apiHeroes) {
-    const byId = new Map();
+async function fetchHeroDetails(query) {
+    // Docs show this returns the hero object directly, not wrapped in { hero: ... }
+    return apiGet(`/heroes/hero/${encodeURIComponent(query)}`);
+}
+
+function mapHeroSummaryToBaseFields(summaryHero) {
+    return {
+        apiId: summaryHero.id || null,
+        name: summaryHero.name || "",
+        alias: summaryHero.alias || "",
+        role: summaryHero.role || "",
+        slug: slugifyHeroName(summaryHero.name || ""),
+        image: normalizeImageUrl(summaryHero.imageUrl || summaryHero.image || summaryHero.icon || "")
+    };
+}
+
+function mapHeroDetailsToFields(details) {
+    const abilities = Array.isArray(details.abilities)
+        ? details.abilities.map((ability) => ({
+            id: ability.id ?? null,
+            name: ability.name || ability.ability_name || "",
+            type: ability.type || "",
+            cooldown: ability.cooldown ?? null,
+            description: ability.description || "",
+            icon: normalizeImageUrl(ability.icon || ""),
+            additional_fields: ability.additional_fields || {}
+        }))
+        : [];
+
+    const skins = Array.isArray(details.costumes)
+        ? details.costumes.map((costume) => ({
+            id: costume.id ?? null,
+            name: costume.name || "",
+            image: normalizeImageUrl(costume.icon || ""),
+            itemQuality: costume.quality || "",
+            description: costume.description || "",
+            appearance: costume.appearance || ""
+        }))
+        : [];
+
+    return {
+        apiId: details.id || null,
+        image: normalizeImageUrl(details.imageUrl || ""),
+        realName: details.real_name || "",
+        role: details.role || "",
+        attackType: details.attack_type || "",
+        difficulty: details.difficulty || "",
+        description: details.bio || "",
+        lore: details.lore || "",
+        team: Array.isArray(details.team) ? details.team : [],
+        abilities,
+        skins
+    };
+}
+
+function buildIndexes(existingHeroes) {
+    const byHeroId = new Map();
+    const byApiId = new Map();
     const byName = new Map();
     const bySlug = new Map();
 
-    for (const hero of apiHeroes) {
-        if (hero.id != null) {
-            byId.set(String(hero.id), hero);
+    for (const [key, hero] of Object.entries(existingHeroes)) {
+        if (!hero || typeof hero !== "object") {
+            continue;
+        }
+
+        byHeroId.set(String(key), hero);
+
+        if (hero.heroId != null) {
+            byHeroId.set(String(hero.heroId), hero);
+        }
+
+        if (hero.apiId != null) {
+            byApiId.set(String(hero.apiId), hero);
         }
 
         if (hero.name) {
@@ -54,114 +168,99 @@ function buildApiIndexes(apiHeroes) {
         }
     }
 
-    return { byId, byName, bySlug };
+    return { byHeroId, byApiId, byName, bySlug };
 }
 
-function pickBestImage(existingHero, apiHero) {
-    const candidates = [
-        existingHero.image,
-        apiHero.image,
-        apiHero.icon,
-        apiHero.thumbnail,
-        apiHero.avatar,
-        apiHero.portrait
-    ];
+function findExistingHero(summaryHero, indexes) {
+    const apiId = String(summaryHero.id || "");
+    const name = String(summaryHero.name || "").toLowerCase();
+    const slug = slugifyHeroName(summaryHero.name || "");
 
-    for (const candidate of candidates) {
-        const normalized = normalizeImageUrl(candidate);
-        if (normalized) {
-            return normalized;
-        }
-    }
-
-    return existingHero.image || "";
+    return (
+        indexes.byApiId.get(apiId) ||
+        indexes.byName.get(name) ||
+        indexes.bySlug.get(slug) ||
+        null
+    );
 }
 
-function mapApiHeroToExtraFields(existingHero, apiHero) {
-    const abilities = Array.isArray(apiHero.abilities)
-        ? apiHero.abilities.map((ability) => ({
-            name: ability.ability_name || ability.name || "",
-            description: ability.description || "",
-            cooldown: ability.cooldown ?? null
-        })).filter((ability) => ability.name || ability.description)
-        : [];
-
-    const parsedHeroId = Number(String(apiHero.id).replace(/[^\d]/g, ""));
-
-    return {
-        heroId: existingHero.heroId ?? (Number.isNaN(parsedHeroId) ? null : parsedHeroId),
-        slug: existingHero.slug || slugifyHeroName(existingHero.name || apiHero.name),
-        alias: existingHero.alias || apiHero.alias || "",
-        role: existingHero.role || apiHero.role || "",
-        difficulty: existingHero.difficulty || apiHero.difficulty || null,
-        description: existingHero.description || apiHero.description || apiHero.bio || "",
-        lore: existingHero.lore || apiHero.lore || "",
-        species: existingHero.species || apiHero.species || "",
-        team: existingHero.team || apiHero.team || "",
-        realName: existingHero.realName || apiHero.real_name || "",
-        abilities: existingHero.abilities?.length ? existingHero.abilities : abilities,
-        tags: existingHero.tags?.length ? existingHero.tags : normalizeTextArray(apiHero.tags),
-        image: pickBestImage(existingHero, apiHero)
-    };
-}
-
-function mergeHero(existingHero, extraFields) {
-    return {
+function mergeHero(existingHero, summaryFields, detailFields) {
+    const merged = {
         ...existingHero,
-        ...extraFields,
-        heroId: existingHero.heroId ?? extraFields.heroId ?? null,
-        name: existingHero.name || extraFields.name || "Unknown Hero",
-        image: existingHero.image || extraFields.image || ""
+        ...summaryFields,
+        ...detailFields
     };
-}
 
-function findMatchingApiHero(existingHero, indexes) {
-    const heroId = existingHero.heroId != null ? String(existingHero.heroId) : "";
-    const heroName = String(existingHero.name || "").toLowerCase();
-    const heroSlug = slugifyHeroName(existingHero.name || "");
-
-    if (heroId && indexes.byId.has(heroId)) {
-        return indexes.byId.get(heroId);
-    }
-
-    if (heroName && indexes.byName.has(heroName)) {
-        return indexes.byName.get(heroName);
-    }
-
-    if (heroSlug && indexes.bySlug.has(heroSlug)) {
-        return indexes.bySlug.get(heroSlug);
-    }
-
-    return null;
+    return {
+        ...merged,
+        heroId: existingHero.heroId ?? merged.heroId ?? null,
+        apiId: merged.apiId ?? existingHero.apiId ?? null,
+        name: existingHero.name || merged.name || "Unknown Hero",
+        slug: existingHero.slug || merged.slug || slugifyHeroName(existingHero.name || merged.name),
+        image: existingHero.image || merged.image || "",
+        alias: existingHero.alias || merged.alias || "",
+        role: existingHero.role || merged.role || "",
+        difficulty: existingHero.difficulty || merged.difficulty || "",
+        description: existingHero.description || merged.description || "",
+        lore: existingHero.lore || merged.lore || "",
+        realName: existingHero.realName || merged.realName || "",
+        team: Array.isArray(existingHero.team) && existingHero.team.length ? existingHero.team : merged.team || [],
+        abilities: Array.isArray(existingHero.abilities) && existingHero.abilities.length ? existingHero.abilities : merged.abilities || [],
+        skins: Array.isArray(existingHero.skins) && existingHero.skins.length ? existingHero.skins : merged.skins || [],
+        tips: Array.isArray(existingHero.tips) ? existingHero.tips : [],
+        counters: Array.isArray(existingHero.counters) ? existingHero.counters : []
+    };
 }
 
 async function main() {
     const existingHeroes = readJson(HEROES_JSON_PATH);
-    const apiHeroes = await fetchHeroesFromApi();
-    const indexes = buildApiIndexes(apiHeroes);
+    const indexes = buildIndexes(existingHeroes);
+    const summaryHeroes = await fetchHeroList();
 
-    let updatedCount = 0;
-    let unmatchedCount = 0;
+    const updatedHeroes = { ...existingHeroes };
 
-    for (const heroKey of Object.keys(existingHeroes)) {
-        const existingHero = existingHeroes[heroKey];
-        const apiHero = findMatchingApiHero(existingHero, indexes);
+    for (const summaryHero of summaryHeroes) {
+        const existingHero = findExistingHero(summaryHero, indexes) || {};
+        const summaryFields = mapHeroSummaryToBaseFields(summaryHero);
 
-        if (!apiHero) {
-            unmatchedCount += 1;
-            continue;
+        let detailFields = {};
+        try {
+            const details = await fetchHeroDetails(summaryHero.name || summaryHero.id);
+            detailFields = mapHeroDetailsToFields(details);
+        } catch (error) {
+            console.warn(`Could not fetch details for ${summaryHero.name}: ${error.message}`);
         }
 
-        const extraFields = mapApiHeroToExtraFields(existingHero, apiHero);
-        existingHeroes[heroKey] = mergeHero(existingHero, extraFields);
-        updatedCount += 1;
+        const targetKey = String(existingHero.heroId || summaryHero.id || summaryFields.slug);
+        updatedHeroes[targetKey] = mergeHero(existingHero, summaryFields, detailFields);
     }
 
-    writeJson(HEROES_JSON_PATH, existingHeroes);
+    // Preserve/manual synthetic Deadpool role variants
+    const deadpoolBase =
+        updatedHeroes["1057"] ||
+        Object.values(updatedHeroes).find((hero) => Number(hero.heroId) === 1057) ||
+        null;
 
-    console.log(`Updated heroes: ${updatedCount}`);
-    console.log(`Unmatched heroes: ${unmatchedCount}`);
-    console.log(`Saved: ${HEROES_JSON_PATH}`);
+    if (deadpoolBase) {
+        const deadpoolVariants = {
+            "10571": "Tankpool",
+            "10572": "DPSpool",
+            "10573": "Healpool"
+        };
+
+        for (const [variantId, variantName] of Object.entries(deadpoolVariants)) {
+            updatedHeroes[variantId] = {
+                ...deadpoolBase,
+                ...updatedHeroes[variantId],
+                heroId: Number(variantId),
+                name: variantName,
+                slug: slugifyHeroName(variantName)
+            };
+        }
+    }
+
+    writeJson(HEROES_JSON_PATH, updatedHeroes);
+    console.log(`Saved ${Object.keys(updatedHeroes).length} heroes to ${HEROES_JSON_PATH}`);
 }
 
 main().catch((error) => {

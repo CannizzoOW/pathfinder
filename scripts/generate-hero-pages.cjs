@@ -3,9 +3,14 @@ const path = require("path");
 
 const ROOT_DIR = path.join(__dirname, "..");
 const HEROES_JSON_PATH = path.join(ROOT_DIR, "data", "heroes.json");
+const HERO_DETAILS_JSON_PATH = path.join(ROOT_DIR, "data", "hero-details.json");
 const OUTPUT_DIR = path.join(ROOT_DIR, "heroes");
 
-function readJson(filePath) {
+function readJson(filePath, fallback = {}) {
+    if (!fs.existsSync(filePath)) {
+        return fallback;
+    }
+
     return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
 
@@ -30,61 +35,127 @@ function escapeHtml(value) {
         .replace(/'/g, "&#039;");
 }
 
-function renderList(items, emptyText) {
-    if (!Array.isArray(items) || items.length === 0) {
-        return `<p class="hero-empty">${escapeHtml(emptyText)}</p>`;
+function mergeHeroData(baseHero, extraHero) {
+    return {
+        ...baseHero,
+        ...extraHero,
+        abilities: Array.isArray(extraHero?.abilities) && extraHero.abilities.length
+            ? extraHero.abilities
+            : (Array.isArray(baseHero?.abilities) ? baseHero.abilities : []),
+        tips: Array.isArray(extraHero?.tips) ? extraHero.tips : (Array.isArray(baseHero?.tips) ? baseHero.tips : []),
+        counters: Array.isArray(extraHero?.counters) ? extraHero.counters : (Array.isArray(baseHero?.counters) ? baseHero.counters : []),
+        skins: Array.isArray(extraHero?.skins) && extraHero.skins.length
+            ? extraHero.skins
+            : (Array.isArray(baseHero?.skins) ? baseHero.skins : [])
+    };
+}
+
+function renderKeyValueRow(label, value) {
+    if (value == null || value === "") {
+        return "";
+    }
+
+    return `<p><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</p>`;
+}
+
+function renderTextSection(title, value) {
+    if (!value) {
+        return "";
     }
 
     return `
-        <ul class="hero-list">
-            ${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
-        </ul>
+        <section class="hero-box hero-section-block">
+            <h2>${escapeHtml(title)}</h2>
+            <p>${escapeHtml(value)}</p>
+        </section>
     `;
 }
 
-function renderAbilities(abilities) {
-    if (!Array.isArray(abilities) || abilities.length === 0) {
-        return `<p class="hero-empty">No abilities added yet.</p>`;
-    }
-
-    return abilities.map((ability) => `
-        <div class="hero-box">
-            <h3>${escapeHtml(ability.name || "Unnamed Ability")}</h3>
-            ${ability.type ? `<p><strong>Type:</strong> ${escapeHtml(ability.type)}</p>` : ""}
-            ${ability.description ? `<p>${escapeHtml(ability.description)}</p>` : ""}
-        </div>
-    `).join("");
-}
-
-function renderSkins(skins) {
-    if (!Array.isArray(skins) || skins.length === 0) {
-        return `<p class="hero-empty">No skin data available.</p>`;
+function renderListSection(title, items) {
+    if (!Array.isArray(items) || items.length === 0) {
+        return "";
     }
 
     return `
-        <div class="hero-skin-grid">
-            ${skins.map((skin) => `
-                <div class="hero-box">
-                    <div class="hero-skin-thumb">
-                        <img
-                            src="${escapeHtml(skin.image || "")}"
-                            alt="${escapeHtml(skin.name || "Skin")}"
-                            onerror="this.onerror=null;this.src='https://via.placeholder.com/120x120?text=?'"
-                        >
+        <section class="hero-box hero-section-block">
+            <h2>${escapeHtml(title)}</h2>
+            <ul class="hero-list">
+                ${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+            </ul>
+        </section>
+    `;
+}
+
+function renderAbilitiesSection(abilities) {
+    if (!Array.isArray(abilities) || abilities.length === 0) {
+        return "";
+    }
+
+    return `
+        <section class="hero-box hero-section-block">
+            <h2>Abilities</h2>
+            <div class="hero-abilities">
+                ${abilities.map((ability) => `
+                    <div class="hero-box">
+                        <h3>${escapeHtml(ability.name || "Unnamed Ability")}</h3>
+                        ${ability.type ? `<p><strong>Type:</strong> ${escapeHtml(ability.type)}</p>` : ""}
+                        ${ability.cooldown != null ? `<p><strong>Cooldown:</strong> ${escapeHtml(ability.cooldown)}</p>` : ""}
+                        ${ability.description ? `<p>${escapeHtml(ability.description)}</p>` : ""}
                     </div>
-                    <h3>${escapeHtml(skin.name || "Unnamed Skin")}</h3>
-                    ${skin.itemQuality ? `<p><strong>Quality:</strong> ${escapeHtml(skin.itemQuality)}</p>` : ""}
-                    ${skin.released ? `<p><strong>Released:</strong> ${escapeHtml(skin.released)}</p>` : ""}
-                    ${skin.expires ? `<p><strong>Expires:</strong> ${escapeHtml(skin.expires)}</p>` : ""}
-                </div>
-            `).join("")}
-        </div>
+                `).join("")}
+            </div>
+        </section>
+    `;
+}
+
+function renderSkinsSection(skins) {
+    if (!Array.isArray(skins) || skins.length === 0) {
+        return "";
+    }
+
+    return `
+        <section class="hero-box hero-section-block">
+            <h2>Skins</h2>
+            <div class="hero-skin-grid">
+                ${skins.map((skin) => `
+                    <div class="hero-box">
+                        <div class="hero-skin-thumb">
+                            <img
+                                src="${escapeHtml(skin.image || "")}"
+                                alt="${escapeHtml(skin.name || "Skin")}"
+                                onerror="this.onerror=null;this.src='https://via.placeholder.com/120x120?text=?'"
+                            >
+                        </div>
+                        <h3>${escapeHtml(skin.name || "Unnamed Skin")}</h3>
+                        ${skin.itemQuality ? `<p><strong>Quality:</strong> ${escapeHtml(skin.itemQuality)}</p>` : ""}
+                        ${skin.released ? `<p><strong>Released:</strong> ${escapeHtml(skin.released)}</p>` : ""}
+                        ${skin.expires ? `<p><strong>Expires:</strong> ${escapeHtml(skin.expires)}</p>` : ""}
+                    </div>
+                `).join("")}
+            </div>
+        </section>
     `;
 }
 
 function buildHeroPage(hero) {
     const heroName = hero.name || "Unknown Hero";
     const heroSlug = hero.slug || slugify(heroName);
+    const heroImage = hero.image || "https://via.placeholder.com/320x320?text=?";
+
+    const topInfo = [
+        renderKeyValueRow("Role", hero.role),
+        renderKeyValueRow("Difficulty", hero.difficulty),
+        renderKeyValueRow("Base Quality", hero.itemQuality)
+    ].join("");
+
+    const sections = [
+        renderTextSection("Overview", hero.description),
+        renderTextSection("Lore", hero.lore),
+        renderListSection("Tips", hero.tips),
+        renderListSection("Counters", hero.counters),
+        renderAbilitiesSection(hero.abilities),
+        renderSkinsSection(hero.skins)
+    ].filter(Boolean).join("");
 
     return `<!DOCTYPE html>
 <html lang="en">
@@ -96,13 +167,13 @@ function buildHeroPage(hero) {
 </head>
 <body class="tier-page hero-page">
     <div class="section hero-page-section">
-        <a href="../tierlist.html" class="guides-cta hero-back-link">← Back to Tier List</a>
+        <a href="../index.html" class="guides-cta hero-back-link">← Back to Tier List</a>
 
         <div class="hero-detail-card">
             <div class="hero-detail-left">
                 <div class="hero-detail-image-wrap">
                     <img
-                        src="${escapeHtml(hero.image || "")}"
+                        src="${escapeHtml(heroImage)}"
                         alt="${escapeHtml(heroName)}"
                         onerror="this.onerror=null;this.src='https://via.placeholder.com/320x320?text=?'"
                     >
@@ -111,67 +182,41 @@ function buildHeroPage(hero) {
 
             <div class="hero-detail-right">
                 <h1>${escapeHtml(heroName)}</h1>
-
-                ${hero.role ? `<p><strong>Role:</strong> ${escapeHtml(hero.role)}</p>` : ""}
-                ${hero.difficulty ? `<p><strong>Difficulty:</strong> ${escapeHtml(hero.difficulty)}</p>` : ""}
-                ${hero.heroId != null ? `<p style="display:none;"><strong>Hero ID:</strong> ${escapeHtml(hero.heroId)}</p>` : ""}
-                ${hero.itemQuality ? `<p><strong>Base Quality:</strong> ${escapeHtml(hero.itemQuality)}</p>` : ""}
-
-                <div class="hero-box">
-                    <h2>Overview</h2>
-                    ${hero.description
-            ? `<p>${escapeHtml(hero.description)}</p>`
-            : `<p class="hero-empty">No description added yet.</p>`}
-                </div>
-
-                <div class="hero-box">
-                    <h2>Lore</h2>
-                    ${hero.lore
-            ? `<p>${escapeHtml(hero.lore)}</p>`
-            : `<p class="hero-empty">No lore added yet.</p>`}
-                </div>
+                ${topInfo}
             </div>
         </div>
 
-        <div class="hero-box hero-section-block">
-            <h2>Abilities</h2>
-            ${renderAbilities(hero.abilities)}
-        </div>
-
-        <div class="hero-box hero-section-block">
-            <h2>Tips</h2>
-            ${renderList(hero.tips, "No tips added yet.")}
-        </div>
-
-        <div class="hero-box hero-section-block">
-            <h2>Counters</h2>
-            ${renderList(hero.counters, "No counters added yet.")}
-        </div>
-
-        <div class="hero-box hero-section-block">
-            <h2>Skins</h2>
-            ${renderSkins(hero.skins)}
-        </div>
+        ${sections || `
+            <section class="hero-box hero-section-block">
+                <h2>Info</h2>
+                <p class="hero-empty">No extra hero data has been added yet.</p>
+            </section>
+        `}
     </div>
 </body>
 </html>`;
 }
 
 function main() {
-    const heroes = readJson(HEROES_JSON_PATH);
+    const heroes = readJson(HEROES_JSON_PATH, {});
+    const heroDetails = readJson(HERO_DETAILS_JSON_PATH, {});
+
     ensureDir(OUTPUT_DIR);
 
-    for (const hero of Object.values(heroes)) {
-        if (!hero || !hero.name) {
+    for (const [heroId, baseHero] of Object.entries(heroes)) {
+        if (!baseHero || !baseHero.name) {
             continue;
         }
 
-        const slug = hero.slug || slugify(hero.name);
-        const html = buildHeroPage(hero);
-        const outPath = path.join(OUTPUT_DIR, `${slug}.html`);
+        const extraHero = heroDetails[heroId] || {};
+        const mergedHero = mergeHeroData(baseHero, extraHero);
 
-        fs.writeFileSync(outPath, html, "utf8");
-        console.log(`Generated ${outPath}`);
+        const slug = mergedHero.slug || slugify(mergedHero.name);
+        const html = buildHeroPage(mergedHero);
+        const outputPath = path.join(OUTPUT_DIR, `${slug}.html`);
+
+        fs.writeFileSync(outputPath, html, "utf8");
+        console.log(`Generated ${outputPath}`);
     }
 }
 

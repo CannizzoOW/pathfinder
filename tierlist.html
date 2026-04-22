@@ -84,6 +84,24 @@
         let heroMap = {};
         let seasonData = null;
 
+        const heroVariantMap = {
+            10571: {
+                baseId: 1057,
+                name: "Tankpool",
+                slug: "tankpool"
+            },
+            10572: {
+                baseId: 1057,
+                name: "DPSpool",
+                slug: "dpspool"
+            },
+            10573: {
+                baseId: 1057,
+                name: "Healpool",
+                slug: "healpool"
+            }
+        };
+
         function escapeHtml(value) {
             return String(value || "")
                 .replaceAll("&", "&amp;")
@@ -91,6 +109,14 @@
                 .replaceAll(">", "&gt;")
                 .replaceAll('"', "&quot;")
                 .replaceAll("'", "&#039;");
+        }
+
+        function slugifyHeroName(name) {
+            return String(name || "")
+                .toLowerCase()
+                .replace(/&/g, " and ")
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-+|-+$/g, "");
         }
 
         function sortHeroes(heroes) {
@@ -118,13 +144,16 @@
         }
 
         function mergeHero(hero) {
-            const meta = heroMap[String(hero.heroId)] || {};
+            const variant = heroVariantMap[hero.heroId];
+            const meta = heroMap[String(hero.heroId)]
+                || (variant ? heroMap[String(variant.baseId)] : null)
+                || {};
 
             return {
                 ...hero,
-                name: meta.name || `Hero ${hero.heroId}`,
+                name: variant?.name || meta.name || `Hero ${hero.heroId}`,
                 image: meta.image || "",
-                slug: meta.slug || "",
+                slug: variant?.slug || meta.slug || "",
                 role: meta.role || "",
                 difficulty: meta.difficulty || "",
                 itemQuality: meta.itemQuality || "",
@@ -299,7 +328,14 @@
         }
 
         function openHeroModal(heroId) {
-            const hero = heroMap[String(heroId)];
+            const variant = heroVariantMap[heroId];
+            const hero = heroMap[String(heroId)]
+                || (variant ? {
+                    ...(heroMap[String(variant.baseId)] || {}),
+                    heroId: Number(heroId),
+                    name: variant.name,
+                    slug: variant.slug
+                } : null);
 
             if (!hero) {
                 return;
@@ -379,7 +415,7 @@
                 return;
             }
 
-            const heroId = heroButton.dataset.heroId;
+            const heroId = Number(heroButton.dataset.heroId);
             openHeroModal(heroId);
         });
 
