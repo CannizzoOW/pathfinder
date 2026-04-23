@@ -1,11 +1,18 @@
+// MARK: ===== IMPORTS =====
 const fs = require("fs");
 const path = require("path");
 
+
+// MARK: ===== PATHS / CONSTANTS =====
 const ROOT_DIR = path.join(__dirname, "..");
 const HEROES_JSON_PATH = path.join(ROOT_DIR, "data", "heroes.json");
 const HERO_DETAILS_JSON_PATH = path.join(ROOT_DIR, "data", "hero-details.json");
 const OUTPUT_DIR = path.join(ROOT_DIR, "heroes");
 
+const DIFFICULTY_MAX = 6;
+
+
+// MARK: ===== FILE HELPERS =====
 function readJson(filePath, fallback = {}) {
     if (!fs.existsSync(filePath)) {
         return fallback;
@@ -18,6 +25,8 @@ function ensureDir(dirPath) {
     fs.mkdirSync(dirPath, { recursive: true });
 }
 
+
+// MARK: ===== STRING HELPERS =====
 function slugify(name) {
     return String(name || "")
         .toLowerCase()
@@ -31,8 +40,20 @@ function escapeHtml(value) {
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
+        .replace(/\"/g, "&quot;")
         .replace(/'/g, "&#039;");
+}
+
+
+// MARK: ===== DATA NORMALIZATION =====
+function normalizeDifficulty(value, max = DIFFICULTY_MAX) {
+    const num = Number(value);
+
+    if (!Number.isFinite(num)) {
+        return null;
+    }
+
+    return Math.max(1, Math.min(max, Math.round(num)));
 }
 
 function mergeHeroData(baseHero, extraHero) {
@@ -42,20 +63,42 @@ function mergeHeroData(baseHero, extraHero) {
         abilities: Array.isArray(extraHero?.abilities) && extraHero.abilities.length
             ? extraHero.abilities
             : (Array.isArray(baseHero?.abilities) ? baseHero.abilities : []),
-        tips: Array.isArray(extraHero?.tips) ? extraHero.tips : (Array.isArray(baseHero?.tips) ? baseHero.tips : []),
-        counters: Array.isArray(extraHero?.counters) ? extraHero.counters : (Array.isArray(baseHero?.counters) ? baseHero.counters : []),
-        skins: Array.isArray(extraHero?.skins) && extraHero.skins.length
-            ? extraHero.skins
-            : (Array.isArray(baseHero?.skins) ? baseHero.skins : [])
+        tips: Array.isArray(extraHero?.tips)
+            ? extraHero.tips
+            : (Array.isArray(baseHero?.tips) ? baseHero.tips : []),
+        counters: Array.isArray(extraHero?.counters)
+            ? extraHero.counters
+            : (Array.isArray(baseHero?.counters) ? baseHero.counters : [])
     };
 }
 
+
+// MARK: ===== RENDER HELPERS =====
 function renderKeyValueRow(label, value) {
     if (value == null || value === "") {
         return "";
     }
 
     return `<p><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</p>`;
+}
+
+function renderDifficultyBlock(value, max = DIFFICULTY_MAX) {
+    const difficulty = normalizeDifficulty(value, max);
+
+    if (difficulty == null) {
+        return "";
+    }
+
+    const filledStars = "★".repeat(difficulty);
+    const emptyStars = "☆".repeat(max - difficulty);
+
+    return `
+        <div class="hero-difficulty" aria-label="Difficulty ${difficulty} out of ${max}">
+            <div class="hero-difficulty-label">Difficulty</div>
+            <div class="hero-difficulty-stars" aria-hidden="true">${filledStars}${emptyStars}</div>
+            <div class="hero-difficulty-text">${difficulty}/${max}</div>
+        </div>
+    `;
 }
 
 function renderTextSection(title, value) {
@@ -108,43 +151,15 @@ function renderAbilitiesSection(abilities) {
     `;
 }
 
-function renderSkinsSection(skins) {
-    if (!Array.isArray(skins) || skins.length === 0) {
-        return "";
-    }
-
-    return `
-        <section class="hero-box hero-section-block">
-            <h2>Skins</h2>
-            <div class="hero-skin-grid">
-                ${skins.map((skin) => `
-                    <div class="hero-box">
-                        <div class="hero-skin-thumb">
-                            <img
-                                src="${escapeHtml(skin.image || "")}"
-                                alt="${escapeHtml(skin.name || "Skin")}"
-                                onerror="this.onerror=null;this.src='https://via.placeholder.com/120x120?text=?'"
-                            >
-                        </div>
-                        <h3>${escapeHtml(skin.name || "Unnamed Skin")}</h3>
-                        ${skin.itemQuality ? `<p><strong>Quality:</strong> ${escapeHtml(skin.itemQuality)}</p>` : ""}
-                        ${skin.released ? `<p><strong>Released:</strong> ${escapeHtml(skin.released)}</p>` : ""}
-                        ${skin.expires ? `<p><strong>Expires:</strong> ${escapeHtml(skin.expires)}</p>` : ""}
-                    </div>
-                `).join("")}
-            </div>
-        </section>
-    `;
-}
-
+// MARK: ===== PAGE BUILDER =====
 function buildHeroPage(hero) {
     const heroName = hero.name || "Unknown Hero";
     const heroSlug = hero.slug || slugify(heroName);
     const heroImage = hero.image || "https://via.placeholder.com/320x320?text=?";
+    const difficultyHtml = renderDifficultyBlock(hero.difficulty, DIFFICULTY_MAX);
 
     const topInfo = [
         renderKeyValueRow("Role", hero.role),
-        renderKeyValueRow("Difficulty", hero.difficulty),
         renderKeyValueRow("Base Quality", hero.itemQuality)
     ].join("");
 
@@ -153,10 +168,10 @@ function buildHeroPage(hero) {
         renderTextSection("Lore", hero.lore),
         renderListSection("Tips", hero.tips),
         renderListSection("Counters", hero.counters),
-        renderAbilitiesSection(hero.abilities),
-        renderSkinsSection(hero.skins)
+        renderAbilitiesSection(hero.abilities)
     ].filter(Boolean).join("");
 
+    // MARK: ===== HTML TEMPLATE =====
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -178,6 +193,7 @@ function buildHeroPage(hero) {
                         onerror="this.onerror=null;this.src='https://via.placeholder.com/320x320?text=?'"
                     >
                 </div>
+                ${difficultyHtml}
             </div>
 
             <div class="hero-detail-right">
@@ -197,6 +213,8 @@ function buildHeroPage(hero) {
 </html>`;
 }
 
+
+// MARK: ===== MAIN =====
 function main() {
     const heroes = readJson(HEROES_JSON_PATH, {});
     const heroDetails = readJson(HERO_DETAILS_JSON_PATH, {});
@@ -220,4 +238,6 @@ function main() {
     }
 }
 
+
+// MARK: ===== ENTRYPOINT =====
 main();

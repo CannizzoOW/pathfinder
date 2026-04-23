@@ -1892,3 +1892,26 @@ clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
         width: 100%;
     }
 }
+
+.hero-difficulty {
+    margin-top: 0.75rem;
+    text-align: center;
+}
+
+.hero-difficulty-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.hero-difficulty-stars {
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+    line-height: 1;
+}
+
+.hero-difficulty-text {
+    margin-top: 0.2rem;
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
