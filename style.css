@@ -1288,8 +1288,8 @@ clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
 }
 
 .hero {
-    width: 88px;
-    min-width: 88px;
+    width: 90px;
+    min-width: 90px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1353,6 +1353,9 @@ clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
     text-align: center;
     color: #fff;
     word-break: break-word;
+    line-height: 1.1;
+    max-width: 80px;
+    white-space: normal;
 }
 
 .hero-stats,
@@ -2020,4 +2023,19 @@ clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
     margin: 0 auto;
     padding-left: 32px;
     padding-right: 32px;
+}
+
+.tier-page .hero-button .hero-name {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+
+    display: block;
+    width: 80px;
+    max-width: 80px;
+
+    line-height: 1.1;
+    text-align: center;
+    word-break: normal;
+    overflow-wrap: break-word;
 }
