@@ -3,27 +3,18 @@ import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 
-/*
-  Fix __dirname for ES modules.
-*/
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const SOURCE_URL = "https://rivalsmeta.com/_nuxt/CnySgJyP.js";
-const OUTPUT_FILE = path.join(__dirname, "data", "heroes.json");
+const OUTPUT_FILE = path.join(__dirname, "..", "data", "heroes.json");
 
-/*
-  Convert uppercase names into title case.
-*/
 function toTitleCase(value) {
     return String(value || "")
         .toLowerCase()
         .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
-/*
-  Extract the object assigned to const e from the source file.
-*/
 function extractHeroObject(source) {
     const startToken = "const e=";
     const endToken = ";export{e as s};";
@@ -50,16 +41,38 @@ function extractHeroObject(source) {
     return objectText;
 }
 
-/*
-  Turn the JS object literal into a real object.
-*/
 function parseHeroObject(objectText) {
     return Function(`"use strict"; return (${objectText});`)();
 }
 
-/*
-  Build a clean hero map for your site.
-*/
+function getHeroImageId(heroId, baseHero) {
+    const bigIcon = baseHero.IconPreview?.BigIcons || null;
+
+    if (bigIcon && String(bigIcon).toLowerCase().startsWith("img_selecthero_")) {
+        return bigIcon;
+    }
+
+    return `img_selecthero_${heroId}001`;
+}
+
+function buildHeroImageUrl(imageId) {
+    if (!imageId) {
+        return null;
+    }
+
+    const id = String(imageId).toLowerCase();
+
+    if (id.includes("heroportrait")) {
+        return `https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/HeroPortrait/${imageId}.png`;
+    }
+
+    if (id.includes("squarehead")) {
+        return `https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SquareHead/${imageId}.png`;
+    }
+
+    return `https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/${imageId}.png`;
+}
+
 function buildHeroMap(rawData) {
     const heroes = {};
 
@@ -71,31 +84,23 @@ function buildHeroMap(rawData) {
         }
 
         const rawName = baseHero.Name || `Hero ${heroId}`;
-        const imageId = baseHero.IconPreview?.BigIcons || null;
+        const imageId = getHeroImageId(heroId, baseHero);
 
         heroes[heroId] = {
             heroId: Number(heroId),
             name: toTitleCase(rawName),
             imageId,
-            image: imageId
-                ? `https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/${imageId}.png`
-                : null
+            image: buildHeroImageUrl(imageId)
         };
     }
 
     return heroes;
 }
 
-/*
-  Ensure the output directory exists.
-*/
 async function ensureOutputDirectory() {
     await fs.mkdir(path.dirname(OUTPUT_FILE), { recursive: true });
 }
 
-/*
-  Main script.
-*/
 async function main() {
     console.log("Downloading hero data...");
 
@@ -112,8 +117,6 @@ async function main() {
 
     const objectText = extractHeroObject(source);
     console.log("Extracted object length:", objectText.length);
-    console.log("Object starts with:", objectText.slice(0, 30));
-    console.log("Object ends with:", objectText.slice(-30));
 
     const rawData = parseHeroObject(objectText);
     const heroes = buildHeroMap(rawData);

@@ -1,7 +1,7 @@
 {
   "1011": {
     "heroId": 1011,
-    "name": "Hulk",
+    "name": "Bruce Banner",
     "imageId": "img_selecthero_1011001",
     "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1011001.png"
   },
@@ -68,8 +68,8 @@
   "1025": {
     "heroId": 1025,
     "name": "Cloak & Dagger",
-    "imageId": "img_squarehead_10250010_avatar",
-    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_squarehead_10250010_avatar.png"
+    "imageId": "img_selecthero_1025001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1025001.png"
   },
   "1026": {
     "heroId": 1026,
@@ -292,5 +292,35 @@
     "name": "Rogue",
     "imageId": "img_selecthero_1065001",
     "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_1065001.png"
+  },
+  "4016": {
+    "heroId": 4016,
+    "name": "Galacta Bot",
+    "imageId": "img_selecthero_4016001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_4016001.png"
+  },
+  "4017": {
+    "heroId": 4017,
+    "name": "Default",
+    "imageId": "img_selecthero_4017001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_4017001.png"
+  },
+  "4018": {
+    "heroId": 4018,
+    "name": "Galacta Bot (Large)",
+    "imageId": "img_selecthero_4018001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_4018001.png"
+  },
+  "4019": {
+    "heroId": 4019,
+    "name": "Hero 4019",
+    "imageId": "img_selecthero_4019001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_4019001.png"
+  },
+  "9999": {
+    "heroId": 9999,
+    "name": "Hero Zero",
+    "imageId": "img_selecthero_9999001",
+    "image": "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/img_selecthero_9999001.png"
   }
 }

@@ -1601,3 +1601,4 @@ node_modules/marvelrivalsapi/lib/endpoints/matchhistoryv1.js
 node_modules/marvelrivalsapi/lib/endpoints/patchnotes.js
 node_modules/marvelrivalsapi/lib/endpoints/player.js
 node_modules/marvelrivalsapi/lib/utils/request.js
+data/heroes.json.old
