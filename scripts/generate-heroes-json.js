@@ -9,12 +9,29 @@ const __dirname = path.dirname(__filename);
 const SOURCE_URL = "https://rivalsmeta.com/_nuxt/CnySgJyP.js";
 const OUTPUT_FILE = path.join(__dirname, "..", "data", "heroes.json");
 
+/*
+  Convert uppercase names into title case.
+*/
 function toTitleCase(value) {
     return String(value || "")
         .toLowerCase()
         .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
+/*
+  Name overrides (clean and scalable)
+*/
+const heroNameOverrides = {
+    1011: "Hulk"
+};
+
+function getHeroName(heroId, rawName) {
+    return heroNameOverrides[heroId] || toTitleCase(rawName);
+}
+
+/*
+  Extract the object assigned to const e from the source file.
+*/
 function extractHeroObject(source) {
     const startToken = "const e=";
     const endToken = ";export{e as s};";
@@ -41,10 +58,16 @@ function extractHeroObject(source) {
     return objectText;
 }
 
+/*
+  Turn the JS object literal into a real object.
+*/
 function parseHeroObject(objectText) {
     return Function(`"use strict"; return (${objectText});`)();
 }
 
+/*
+  Smart imageId fix (no overrides)
+*/
 function getHeroImageId(heroId, baseHero) {
     const bigIcon = baseHero.IconPreview?.BigIcons || null;
 
@@ -55,40 +78,32 @@ function getHeroImageId(heroId, baseHero) {
     return `img_selecthero_${heroId}001`;
 }
 
+/*
+  Build correct image URL
+*/
 function buildHeroImageUrl(imageId) {
-    if (!imageId) {
-        return null;
-    }
-
-    const id = String(imageId).toLowerCase();
-
-    if (id.includes("heroportrait")) {
-        return `https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/HeroPortrait/${imageId}.png`;
-    }
-
-    if (id.includes("squarehead")) {
-        return `https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SquareHead/${imageId}.png`;
-    }
+    if (!imageId) return null;
 
     return `https://rivalsmeta.com/_ipx/q_70&s_100x100/images/heroes/SelectHero/${imageId}.png`;
 }
 
+/*
+  Build hero map
+*/
 function buildHeroMap(rawData) {
     const heroes = {};
 
     for (const [heroId, variants] of Object.entries(rawData)) {
         const baseHero = variants?.[1] || variants?.[0];
 
-        if (!baseHero) {
-            continue;
-        }
+        if (!baseHero) continue;
 
         const rawName = baseHero.Name || `Hero ${heroId}`;
         const imageId = getHeroImageId(heroId, baseHero);
 
         heroes[heroId] = {
             heroId: Number(heroId),
-            name: toTitleCase(rawName),
+            name: getHeroName(heroId, rawName),
             imageId,
             image: buildHeroImageUrl(imageId)
         };
@@ -97,10 +112,16 @@ function buildHeroMap(rawData) {
     return heroes;
 }
 
+/*
+  Ensure output directory exists.
+*/
 async function ensureOutputDirectory() {
     await fs.mkdir(path.dirname(OUTPUT_FILE), { recursive: true });
 }
 
+/*
+  Main script.
+*/
 async function main() {
     console.log("Downloading hero data...");
 
