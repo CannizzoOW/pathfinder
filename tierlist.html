@@ -37,23 +37,14 @@
         </div>
 
         <div class="control-group">
-            <label for="rankSelect">Rank</label>
-            <select id="rankSelect">
-                <option value="0">All Ranks</option>
-                <option value="1">Bronze</option>
-                <option value="2">Silver</option>
-                <option value="3">Gold</option>
-                <option value="4">Platinum</option>
-                <option value="5">Diamond</option>
-                <option value="6" selected>Diamond+</option>
-                <option value="7">Grandmaster</option>
-                <option value="8">Grandmaster+</option>
-                <option value="9">Celestial</option>
-                <option value="10">Celestial+</option>
-                <option value="11">Eternity</option>
-                <option value="12">Eternity+</option>
-                <option value="13">One Above All</option>
-            </select>
+            <label for="rankDropdownButton">Rank</label>
+
+            <input type="hidden" id="rankSelect" value="6">
+
+            <div id="rankDropdown" class="rank-dropdown">
+                <button id="rankDropdownButton" class="rank-dropdown-button" type="button"></button>
+                <div id="rankDropdownMenu" class="rank-dropdown-menu"></div>
+            </div>
         </div>
 
         <div class="control-group">
@@ -62,7 +53,6 @@
         </div>
     </div>
 
-    <div id="rankDisplay" class="rank-display"></div>
     <div id="tiers" class="tiers"></div>
 
     <div id="heroModal" class="hero-modal-overlay">
@@ -71,49 +61,51 @@
             <div id="heroModalContent"></div>
         </div>
     </div>
-    //MARK: SCRIPT 
+
     <script>
         const rankIcons = {
-            0: "https://rivalsmeta.com/_ipx/q_70&s_60x60/images/DanIcon/img_rank_norankdanicon.png",
-            1: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_01.png",
-            2: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_02.png",
-            3: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_03.png",
-            4: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_04.png",
-            5: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_05.png",
-            6: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_05.png",
-            7: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_06.png",
-            8: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_06.png",
-            9: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_07.png",
-            10: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_07.png",
-            11: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_08.png",
-            12: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_08.png",
-            13: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_09.png"
+                0: "images/ranks/norank.png",
+                1: "images/ranks/bronze.png",
+                2: "images/ranks/silver.png",
+                3: "images/ranks/gold.png",
+                4: "images/ranks/platinum.png",
+                5: "images/ranks/diamond.png",
+                6: "images/ranks/diamond.png",
+                7: "images/ranks/grandmaster.png",
+                8: "images/ranks/grandmaster.png",
+                9: "images/ranks/celestial.png",
+                10: "images/ranks/celestial.png",
+                11: "images/ranks/eternity.png",
+                12: "images/ranks/eternity.png",
+                13: "images/ranks/oneaboveall.png"
+            };
+
+        const rankNames = {
+            0: "All Ranks",
+            1: "Bronze",
+            2: "Silver",
+            3: "Gold",
+            4: "Platinum",
+            5: "Diamond",
+            6: "Diamond+",
+            7: "Grandmaster",
+            8: "Grandmaster+",
+            9: "Celestial",
+            10: "Celestial+",
+            11: "Eternity",
+            12: "Eternity+",
+            13: "One Above All"
         };
-
-        function renderRankDisplay() {
-                const rankId = rankSelect.value;
-                const rankName = rankSelect.options[rankSelect.selectedIndex].text;
-                const icon = rankIcons[rankId];
-
-                const fallback = "https://via.placeholder.com/32x32?text=?";
-
-                document.getElementById("rankDisplay").innerHTML = `
-        <div class="rank-display-inner">
-            <img 
-                src="${icon || fallback}" 
-                alt="${rankName}"
-                onerror="this.onerror=null;this.src='${fallback}'"
-            >
-            <span>${rankName}</span>
-        </div>
-    `;
-            }
 
         const seasonSelect = document.getElementById("seasonSelect");
         const rankSelect = document.getElementById("rankSelect");
         const searchInput = document.getElementById("searchInput");
         const tiersContainer = document.getElementById("tiers");
         const errorBox = document.getElementById("errorBox");
+
+        const rankDropdown = document.getElementById("rankDropdown");
+        const rankDropdownButton = document.getElementById("rankDropdownButton");
+        const rankDropdownMenu = document.getElementById("rankDropdownMenu");
 
         const heroModal = document.getElementById("heroModal");
         const heroModalContent = document.getElementById("heroModalContent");
@@ -139,6 +131,48 @@
                 slug: "healpool"
             }
         };
+
+        function renderRankDropdown() {
+            const currentRank = rankSelect.value;
+            const currentName = rankNames[currentRank] || "Unknown Rank";
+            const currentIcon = rankIcons[currentRank] || rankIcons[0];
+
+            rankDropdownButton.innerHTML = `
+                <img class="rank-icon" src="${currentIcon}" alt="${currentName}">
+                <span>${currentName}</span>
+            `;
+
+            rankDropdownMenu.innerHTML = Object.keys(rankNames).map((rankId) => `
+                <button class="rank-dropdown-option" type="button" data-rank="${rankId}">
+                    <img class="rank-icon" src="${rankIcons[rankId]}" alt="${rankNames[rankId]}">
+                    <span>${rankNames[rankId]}</span>
+                </button>
+            `).join("");
+        }
+
+        rankDropdownButton.addEventListener("click", () => {
+            rankDropdown.classList.toggle("open");
+        });
+
+        rankDropdownMenu.addEventListener("click", (event) => {
+            const option = event.target.closest(".rank-dropdown-option");
+
+            if (!option) {
+                return;
+            }
+
+            rankSelect.value = option.dataset.rank;
+            rankDropdown.classList.remove("open");
+
+            renderRankDropdown();
+            updateView();
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!rankDropdown.contains(event.target)) {
+                rankDropdown.classList.remove("open");
+            }
+        });
 
         function escapeHtml(value) {
             return String(value || "")
@@ -217,11 +251,25 @@
         }
 
         function getMergedHeroesForAllRanks() {
-            return Object.values(seasonData?.ranks || {})
-                .flatMap((rankData) => Array.isArray(rankData?.heroes) ? rankData.heroes : [])
-                .filter((hero) => hero && hero.heroId != null)
-                .map(mergeHero);
-        }
+                const seen = new Map();
+
+                for (const rankData of Object.values(seasonData?.ranks || {})) {
+                    if (!Array.isArray(rankData?.heroes)) continue;
+
+                    for (const hero of rankData.heroes) {
+                        if (!hero || hero.heroId == null) continue;
+
+                        const existing = seen.get(hero.heroId);
+
+                        // behold beste versjon (høyest winrate)
+                        if (!existing || hero.winRate > existing.winRate) {
+                            seen.set(hero.heroId, hero);
+                        }
+                    }
+                }
+
+                return Array.from(seen.values()).map(mergeHero);
+            }
 
         function renderHero(hero) {
             const fallback = "https://via.placeholder.com/70x70?text=?";
@@ -399,7 +447,6 @@
         function updateView() {
             if (!seasonData) {
                 return;
-                renderRankDisplay();
             }
 
             const selectedRank = rankSelect.value;
@@ -426,8 +473,10 @@
                 heroMap = await (await fetch("./data/heroes.json")).json();
                 const seasonId = seasonSelect.value;
                 seasonData = await (await fetch(`./data/season-${seasonId}.json`)).json();
+
+                renderRankDropdown();
                 updateView();
-                renderRankDisplay();
+
             } catch (error) {
                 console.error(error);
                 setError("Failed to load data");
@@ -445,7 +494,6 @@
             }
         });
 
-        rankSelect.addEventListener("change", updateView);
         searchInput.addEventListener("input", updateView);
 
         tiersContainer.addEventListener("click", (event) => {

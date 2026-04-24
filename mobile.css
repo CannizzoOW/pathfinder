@@ -194,3 +194,10 @@ body{
   /* Optional: hide scrollbar (it’s usually hidden on mobile anyway) */
   .nav-links::-webkit-scrollbar{ height: 0; }
 }
+
+@media (max-width: 768px) {
+  .tier-page {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
