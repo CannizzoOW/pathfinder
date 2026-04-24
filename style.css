@@ -1915,3 +1915,20 @@ clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
     font-size: 0.9rem;
     opacity: 0.85;
 }
+
+.rank-display {
+    margin: 10px 0;
+}
+
+.rank-display-inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.rank-display img {
+    width: 32px;
+    height: 32px;
+}

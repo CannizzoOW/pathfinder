@@ -62,6 +62,7 @@
         </div>
     </div>
 
+    <div id="rankDisplay" class="rank-display"></div>
     <div id="tiers" class="tiers"></div>
 
     <div id="heroModal" class="hero-modal-overlay">
@@ -70,8 +71,44 @@
             <div id="heroModalContent"></div>
         </div>
     </div>
-
+    //MARK: SCRIPT 
     <script>
+        const rankIcons = {
+            0: "https://rivalsmeta.com/_ipx/q_70&s_60x60/images/DanIcon/img_rank_norankdanicon.png",
+            1: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_01.png",
+            2: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_02.png",
+            3: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_03.png",
+            4: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_04.png",
+            5: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_05.png",
+            6: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_05.png",
+            7: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_06.png",
+            8: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_06.png",
+            9: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_07.png",
+            10: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_07.png",
+            11: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_08.png",
+            12: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_08.png",
+            13: "https://rivalsmeta.com/_ipx/q_70&s_100x100/images/DanIcon/img_rank_dan_09.png"
+        };
+
+        function renderRankDisplay() {
+                const rankId = rankSelect.value;
+                const rankName = rankSelect.options[rankSelect.selectedIndex].text;
+                const icon = rankIcons[rankId];
+
+                const fallback = "https://via.placeholder.com/32x32?text=?";
+
+                document.getElementById("rankDisplay").innerHTML = `
+        <div class="rank-display-inner">
+            <img 
+                src="${icon || fallback}" 
+                alt="${rankName}"
+                onerror="this.onerror=null;this.src='${fallback}'"
+            >
+            <span>${rankName}</span>
+        </div>
+    `;
+            }
+
         const seasonSelect = document.getElementById("seasonSelect");
         const rankSelect = document.getElementById("rankSelect");
         const searchInput = document.getElementById("searchInput");
@@ -362,6 +399,7 @@
         function updateView() {
             if (!seasonData) {
                 return;
+                renderRankDisplay();
             }
 
             const selectedRank = rankSelect.value;
@@ -389,6 +427,7 @@
                 const seasonId = seasonSelect.value;
                 seasonData = await (await fetch(`./data/season-${seasonId}.json`)).json();
                 updateView();
+                renderRankDisplay();
             } catch (error) {
                 console.error(error);
                 setError("Failed to load data");
